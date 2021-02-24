@@ -5,13 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
-                </div>
-            </div>
+    <div class="container">
+        <div class="alert alert-warning mt-5 text-center" role="alert">
+            Now you must create your shop! Please fill up all fields!
         </div>
+
     </div>
 </x-app-layout>
