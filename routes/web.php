@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Shop\ShopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware'=>['hasNotShop']],function() {
+    Route::get('/', [PageController::class,'welcome'])->middleware(['guest']);
+    Route::get('/dashboard', [PageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
+    Route::get('/', [ShopController::class,'index'])->name('shop.index');
+});
 
 require __DIR__.'/auth.php';
