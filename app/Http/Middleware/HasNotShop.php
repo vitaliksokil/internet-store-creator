@@ -16,7 +16,7 @@ class HasNotShop
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->shop()->exists()){
+        if(auth()->user() && auth()->user()->shop()->exists()){
             return redirect('shop-index');
         }
         return $next($request);

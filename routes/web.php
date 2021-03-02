@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware'=>['hasNotShop']],function() {
     Route::get('/', [PageController::class,'welcome'])->middleware(['guest']);
     Route::get('/dashboard', [PageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+    Route::group(['prefix'=>'shop'],function(){
+        Route::post('/',[ShopController::class,'store'])->name('shop.store');
+    });
 });
 Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
     Route::get('/', [ShopController::class,'index'])->name('shop.index');

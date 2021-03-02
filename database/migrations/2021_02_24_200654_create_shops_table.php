@@ -18,13 +18,13 @@ class CreateShopsTable extends Migration
             $table->unsignedBigInteger('owner_id')->unique();
             $table->foreign('owner_id')->references('id')
                 ->on('users')->onDelete('cascade');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug')->unique()->index();
             $table->text('description');
-            $table->string('img');
-            $table->string('address');
-            $table->string('phone_number');
-            $table->string('email');
+            $table->string('img')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
