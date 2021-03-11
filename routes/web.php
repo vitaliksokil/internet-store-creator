@@ -24,6 +24,8 @@ Route::group(['middleware'=>['hasNotShop']],function() {
 });
 Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
     Route::get('/', [ShopController::class,'index'])->name('shop.index');
+    Route::get('/edit', [ShopController::class,'edit'])->name('shop.edit');
+    Route::put('/edit', [ShopController::class,'update'])->name('shop.update');
 });
 
 require __DIR__.'/auth.php';

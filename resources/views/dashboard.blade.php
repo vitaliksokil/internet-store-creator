@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container">
+    <div class="container pb-5">
         <div class="alert alert-warning mt-5 text-center" role="alert">
             Now you must create your shop! Please fill up all fields!
         </div>

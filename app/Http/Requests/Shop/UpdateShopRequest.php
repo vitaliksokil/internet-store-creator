@@ -4,7 +4,7 @@ namespace App\Http\Requests\Shop;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateShopRequest extends FormRequest
+class UpdateShopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,13 +16,6 @@ class CreateShopRequest extends FormRequest
         return true;
     }
 
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'owner_id' => auth()->user()->id
-        ]);
-    }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -31,13 +24,12 @@ class CreateShopRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|max:255|unique:shops',
+            'name'=>'required|max:255|unique:shops,name,'.auth()->user()->shop->id,
             'description'=>'required',
             'img'=>'',
             'address'=>'',
             'phone_number'=>'regex:~^\+[0-9]{12}$~',
             'email'=>'email',
-            'owner_id' => 'required|integer'
         ];
     }
     public function messages()

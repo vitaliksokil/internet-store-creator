@@ -10,6 +10,8 @@
         "production": "mix --production"
     },
     "devDependencies": {
+        "@fortawesome/fontawesome": "^1.1.8",
+        "@fortawesome/fontawesome-free-solid": "^5.0.13",
         "@tailwindcss/forms": "^0.2.1",
         "alpinejs": "^2.7.3",
         "autoprefixer": "^10.1.0",
@@ -21,6 +23,7 @@
         "tailwindcss": "^2.0.2"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.2",
         "bootstrap": "^5.0.0-beta2"
     }
 }

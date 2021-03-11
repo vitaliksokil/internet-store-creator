@@ -16,7 +16,6 @@ class HasShop
      */
     public function handle(Request $request, Closure $next)
     {
-        dd(auth()->user());
         if(!auth()->user()->shop()->exists()){
             return redirect('dashboard');
         }
