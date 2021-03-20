@@ -37,4 +37,9 @@ class Shop extends Model
         return config('app.url').'/'.$this->slug;
     }
 
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
+
+
 }

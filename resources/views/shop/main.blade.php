@@ -14,9 +14,21 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('shop.index') || request()->routeIs('shop.edit') ? 'active' : ''}}" aria-current="page" href="#">
+                                <a class="nav-link {{request()->routeIs('shop.index') || request()->routeIs('shop.edit') ? 'active' : ''}}" aria-current="page" href="{{route('shop.index')}}">
                                     <i class="fas fa-home"></i>
                                     Home
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('category.index') || request()->routeIs('category.create') || request()->routeIs('category.edit') ? 'active' : ''}}" aria-current="page" href="{{route('category.index')}}">
+                                    <i class="fas fa-th-large"></i>
+                                    Categories
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('product.index') || request()->routeIs('product.create') || request()->routeIs('product.edit') ? 'active' : ''}}" aria-current="page" href="{{route('product.index')}}">
+                                    <i class="fas fa-quidditch"></i>
+                                    Products
                                 </a>
                             </li>
                         </ul>
