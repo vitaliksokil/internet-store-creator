@@ -32,12 +32,21 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
     Route::group(['prefix'=>'categories'],function(){
         Route::get('/',[CategoryController::class,'index'])->name('category.index');
         Route::get('/{id}',[CategoryController::class,'edit'])->name('category.edit');
+        Route::put('/{id}',[CategoryController::class,'update'])->name('category.update');
         Route::get('/create/new',[CategoryController::class,'create'])->name('category.create');
+        Route::post('/',[CategoryController::class,'store'])->name('category.store');
+        Route::get('/delete/{id}',[CategoryController::class,'destroy'])->name('category.destroy');
+
+        Route::get('/products/{category}',[ProductController::class,'productsByCategory'])->name('category.products');
+
     });
     Route::group(['prefix'=>'products'],function(){
         Route::get('/',[ProductController::class,'index'])->name('product.index');
         Route::get('/{id}',[ProductController::class,'edit'])->name('product.edit');
-        Route::get('/create/new',[ProductController::class,'create'])->name('product.create');
+        Route::get('/create/new/{category}',[ProductController::class,'create'])->name('product.create');
+        Route::post('/{category}',[ProductController::class,'store'])->name('product.store');
+
+        Route::delete('/{category}',[ProductController::class,'destroy'])->name('product.destroy');
     });
 });
 

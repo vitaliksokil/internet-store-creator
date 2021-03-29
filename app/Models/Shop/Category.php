@@ -9,7 +9,29 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'img',
+        'shop_id'
+    ];
+
+
+    const FILE_PATH = 'categories';
+
+    public function getImgFilePath(){
+        // shops/{id}/categories
+        return Shop::FILE_PATH . '/' .$this->shop->id . '/' . self::FILE_PATH;
+    }
+
+    public function getImgAttribute($value){
+        return '/storage/'.$value;
+    }
+
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    public function shop(){
+        return $this->belongsTo(Shop::class);
     }
 }

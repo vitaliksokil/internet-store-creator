@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Shop\Products\CreateProductRequest;
+use App\Models\Shop\Category;
 use App\Models\Shop\Product;
+use App\Services\CategoryService\CategoryServiceInterface;
 use App\Services\ProductService\ProductServiceInterface;
 use Illuminate\Http\Request;
 
@@ -23,20 +26,34 @@ class ProductController extends Controller
     {
         return view('shop.products.index',[
             'shop' => getShop(),
-            'products' => getShop()->products,
+            'categories' => getShop()->categories,
         ]);
     }
 
-    public function create()
+    public function create(Category $category)
     {
         return view('shop.products.create',[
             'shop' => getShop(),
+            'category' => $category
         ]);
     }
 
-    public function store(Request $request)
+    public function productsByCategory(Category $category){
+        return view('shop.products.productsByCategory',[
+            'shop' => getShop(),
+            'products' => $category->products,
+            'category' => $category
+        ]);
+    }
+
+    private function redirectAfterAction($message=''){
+        return redirect()->route('product.index')->with(['message'=>$message]);
+    }
+
+    public function store(CreateProductRequest $request,Category $category)
     {
-        //
+        $this->productService->store(array_merge($request->validated(),['category_id'=>$category->id]));
+        return $this->redirectAfterAction(__('messages.product_created'));
     }
 
     public function show(Product $id)
