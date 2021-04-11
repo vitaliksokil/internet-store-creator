@@ -1,7 +1,7 @@
 @extends('shop.main')
 
 @section('main')
-    <section id="shop-index">
+    <section class="shop-index">
 
     <div class=" bg-white border-b border-gray-200">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="text" class="form-control" name="price" id="price">
+                            <input type="text" class="form-control" name="price" id="price" {{old('price')}}>
                         </div>
                         <div class="mb-3">
                             <label for="currency" class="form-label">Currency</label>

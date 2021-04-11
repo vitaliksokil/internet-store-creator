@@ -1,7 +1,7 @@
 @extends('shop.main')
 
 @section('main')
-    <section id="shop-index">
+    <section class="shop-index">
 
     <div class=" bg-white border-b border-gray-200">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">

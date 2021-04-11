@@ -26,6 +26,16 @@
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-label for="type" :value="__('Type')" />
+                <select name="type" id="type" class="block mt-1 w-full" required>
+                    @foreach(\App\Models\User::TYPES as $key=>$value)
+                        <option value="{{$value}}" {{old('type') == $key ? 'selected' : ''}}>{{$key}}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Password -->
             <div class="mt-4">
                 <x-label for="password" :value="__('Password')" />

@@ -17,7 +17,7 @@ class Product extends Model
         'category_id'
     ];
 
-
+    const PRODUCTS_PAGINATION_COUNT = 10;
     const FILE_PATH = 'products';
 
 
@@ -33,5 +33,11 @@ class Product extends Model
 
     public function getImgAttribute($value){
         return '/storage/'.$value;
+    }
+    public function getPriceAttribute($value){
+        return $value/100;
+    }
+    public function setPriceAttribute($value){
+        $this->attributes['price'] = $value*100;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shop\Products\CreateProductRequest;
+use App\Http\Requests\Shop\Products\UpdateProductRequest;
 use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use App\Services\CategoryService\CategoryServiceInterface;
@@ -26,7 +27,7 @@ class ProductController extends Controller
     {
         return view('shop.products.index',[
             'shop' => getShop(),
-            'categories' => getShop()->categories,
+            'categories' => getShop()->categories()->paginate(Category::CATEGORIES_PAGINATION_COUNT),
         ]);
     }
 
@@ -41,7 +42,7 @@ class ProductController extends Controller
     public function productsByCategory(Category $category){
         return view('shop.products.productsByCategory',[
             'shop' => getShop(),
-            'products' => $category->products,
+            'products' => $category->products()->paginate(Product::PRODUCTS_PAGINATION_COUNT),
             'category' => $category
         ]);
     }
@@ -53,7 +54,7 @@ class ProductController extends Controller
     public function store(CreateProductRequest $request,Category $category)
     {
         $this->productService->store(array_merge($request->validated(),['category_id'=>$category->id]));
-        return $this->redirectAfterAction(__('messages.product_created'));
+        return redirect()->route('category.products',['category'=>$category])->with(['message'=>__('messages.product_created')]);
     }
 
     public function show(Product $id)
@@ -61,17 +62,25 @@ class ProductController extends Controller
         //
     }
 
-    public function edit(Product $id)
+    public function edit(Product $product)
     {
-        //
+        return view('shop.products.edit',[
+            'product' => $product,
+            'shop' => getShop()
+        ]);
     }
 
-    public function update(Request $request, Product $id)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $data = $request->validated();
+        $product = $this->productService->update($product, $data);
+        return redirect()->route('category.products',['category'=>$product->category])->with(['message'=>__('messages.product_updated')]);
     }
-    public function destroy(Product $id)
+
+    public function destroy(Product $product)
     {
-        //
+        $category = $product->category;
+        $this->productService->delete($product);
+        return redirect()->route('category.products',['category'=>$category])->with(['message'=>__('messages.product_deleted')]);
     }
 }

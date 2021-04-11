@@ -12,7 +12,10 @@
         @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}</div>
         @endif
-        <h3>Products of "{{$category->title}}" category</h3>
+        <div class="d-flex align-middle mb-3">
+            <img src="{{$category->img}}" class="img-table" alt="">
+            <h3 class="mb-0 ml-3 h-auto">Products of "{{$category->title}}" category</h3>
+        </div>
         <table class="table table-primary">
             <thead>
             <tr>
@@ -35,8 +38,8 @@
                     <td><img class="img-table" src="{{$product->img}}" alt=""></td>
                     <td>{{$product->created_at}}</td>
                     <td>
-                        <a href="{{route('product.edit',['id'=>$category])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="{{route('product.destroy',['id'=>$category])}}" onclick="return confirm('Are you sure?')" class="btn btn-danger ml-auto"><i class="fas fa-trash-alt"></i> Delete</a>
+                        <a href="{{route('product.edit',['product'=>$product])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-edit"></i> Edit</a>
+                        <a href="{{route('product.destroy',['product'=>$product])}}" onclick="return confirm('Are you sure?')" class="btn btn-danger ml-auto"><i class="fas fa-trash-alt"></i> Delete</a>
                     </td>
                 </tr>
             @empty
@@ -54,6 +57,7 @@
             @endforelse
             </tbody>
         </table>
+        {{$products->links()}}
 
     </section>
 @endsection

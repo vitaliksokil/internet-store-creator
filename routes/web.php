@@ -19,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware'=>['hasNotShop']],function() {
     Route::get('/', [PageController::class,'welcome'])->middleware(['guest']);
-    Route::get('/dashboard', [PageController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
-    Route::group(['prefix'=>'shop'],function(){
-        Route::post('/',[ShopController::class,'store'])->name('shop.store');
+    Route::group(['middleware'=>['auth','verified']],function() {
+        Route::get('/dashboard', [PageController::class,'dashboard'])->name('dashboard');
+        Route::group(['prefix'=>'shop'],function(){
+            Route::post('/',[ShopController::class,'store'])->name('shop.store');
+        });
     });
 });
-Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
+Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],function(){
     Route::get('/', [ShopController::class,'index'])->name('shop.index');
     Route::get('/edit', [ShopController::class,'edit'])->name('shop.edit');
     Route::put('/edit', [ShopController::class,'update'])->name('shop.update');
@@ -42,11 +44,12 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop']],function(){
     });
     Route::group(['prefix'=>'products'],function(){
         Route::get('/',[ProductController::class,'index'])->name('product.index');
-        Route::get('/{id}',[ProductController::class,'edit'])->name('product.edit');
+        Route::get('/{product}',[ProductController::class,'edit'])->name('product.edit');
+        Route::put('/{product}',[ProductController::class,'update'])->name('product.update');
         Route::get('/create/new/{category}',[ProductController::class,'create'])->name('product.create');
         Route::post('/{category}',[ProductController::class,'store'])->name('product.store');
 
-        Route::delete('/{category}',[ProductController::class,'destroy'])->name('product.destroy');
+        Route::get('/delete/{product}',[ProductController::class,'destroy'])->name('product.destroy');
     });
 });
 

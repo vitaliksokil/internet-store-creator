@@ -26,7 +26,10 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('product.index') || request()->routeIs('product.create') || request()->routeIs('product.edit') ? 'active' : ''}}" aria-current="page" href="{{route('product.index')}}">
+                                <a class="nav-link {{request()->routeIs('product.index') ||
+                                                    request()->routeIs('product.create') ||
+                                                    request()->routeIs('category.products') ||
+                                                    request()->routeIs('product.edit') ? 'active' : ''}}" aria-current="page" href="{{route('product.index')}}">
                                     <i class="fas fa-quidditch"></i>
                                     Products
                                 </a>
