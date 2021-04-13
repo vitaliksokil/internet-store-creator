@@ -18,7 +18,8 @@ class Shop extends Model
         'img',
         'address',
         'phone_number',
-        'email'
+        'email',
+        'shop_type_id'
     ];
 
     const FILE_PATH = 'shops';
@@ -41,5 +42,11 @@ class Shop extends Model
         return $this->hasMany(Category::class);
     }
 
+    public function type(){
+        return $this->belongsTo(ShopType::class,'shop_type_id');
+    }
+    public function settings(){
+        return $this->hasOne(ShopSettings::class);
+    }
 
 }

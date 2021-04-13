@@ -34,6 +34,13 @@
                                     Products
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('settings.index') ||
+                                                    request()->routeIs('settings.edit') ? 'active' : ''}}" aria-current="page" href="{{route('settings.index')}}">
+                                    <i class="fas fa-sliders-h"></i>
+                                    Settings
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

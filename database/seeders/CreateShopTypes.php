@@ -14,10 +14,10 @@ class CreateShopTypes extends Seeder
      */
     public function run()
     {
-        ShopType::create(['type'=>'Child\'s world','icon'=>'<i class="fas fa-baby-carriage"></i>']);
+        ShopType::create(['type'=>'Child\'s world','icon'=>'<i class="fas fa-child"></i>']);
         ShopType::create(['type'=>'Property','icon'=>'<i class="fas fa-home"></i>']);
         ShopType::create(['type'=>'Transport','icon'=>'<i class="fas fa-car"></i>']);
-        ShopType::create(['type'=>'Spare parts for transport','icon'=>'<i class="fas fa-tools"></i>']);
+        ShopType::create(['type'=>'Spare parts for transport','icon'=>'<i class="fas fa-wrench"></i>']);
         ShopType::create(['type'=>'Animals','icon'=>'<i class="fas fa-paw"></i>']);
         ShopType::create(['type'=>'Garden','icon'=>'<i class="fas fa-seedling"></i>']);
         ShopType::create(['type'=>'Electronics','icon'=>'<i class="fas fa-mobile-alt"></i>']);

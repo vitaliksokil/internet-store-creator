@@ -1,3 +1,4 @@
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -31,8 +32,18 @@
                 <textarea class="form-control" name="description" id="description" required>{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
-                <label for="img" class="form-label">Image</label>
+                <label for="img" class="form-label">Image *</label>
                 <input type="file" class="form-control" name="img" id="img">
+            </div>
+            <div class="mb-3">
+                <label for="img" class="form-label">Shop type *</label>
+                <select name="shop_type_id" id="" class="form-control">
+                    @forelse($shopTypes as $shopType)
+                        <option value="{{$shopType->id}}">{{$shopType->type}}</option>
+                    @empty
+                        No shop types
+                    @endforelse
+                </select>
             </div>
             <hr>
             <div class="mb-3">

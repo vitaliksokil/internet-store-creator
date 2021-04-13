@@ -23,6 +23,9 @@
                     <div class="col-8">
                         <div class="shop-name"><h1>{{$shop->name}}</h1></div>
                         <div class="shop-link">
+                            <p>Shop type: {!! $shop->type->icon !!}{{$shop->type->type}}</p>
+                        </div>
+                        <div class="shop-link">
                             <a href="{{$shop->getSiteUrl()}}">
                                 {{$shop->getSiteUrl()}}
                             </a>

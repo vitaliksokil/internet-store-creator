@@ -42792,6 +42792,10 @@ textarea.form-control-lg {
   width: 100px;
 }
 
+select {
+  font-family: 'FontAwesome', 'sans-serif';
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

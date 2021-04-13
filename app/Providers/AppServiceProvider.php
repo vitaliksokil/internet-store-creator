@@ -10,6 +10,8 @@ use App\Services\ProductService\ProductService;
 use App\Services\ProductService\ProductServiceInterface;
 use App\Services\ShopService\ShopService;
 use App\Services\ShopService\ShopServiceInterface;
+use App\Services\ShopSettingsService\ShopSettingsService;
+use App\Services\ShopSettingsService\ShopSettingsServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ShopServiceInterface::class,ShopService::class);
         $this->app->bind(CategoryServiceInterface::class,CategoryService::class);
         $this->app->bind(ProductServiceInterface::class,ProductService::class);
+        $this->app->bind(ShopSettingsServiceInterface::class,ShopSettingsService::class);
     }
 }

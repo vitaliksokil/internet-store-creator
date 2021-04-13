@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\Shop\ShopController;
+use App\Http\Controllers\Shop\ShopSettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,11 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
         Route::post('/{category}',[ProductController::class,'store'])->name('product.store');
 
         Route::get('/delete/{product}',[ProductController::class,'destroy'])->name('product.destroy');
+    });
+    Route::group(['prefix'=>'shop-settings'],function(){
+        Route::get('/',[ShopSettingsController::class,'index'])->name('settings.index');
+        Route::get('/edit',[ShopSettingsController::class,'edit'])->name('settings.edit');
+        Route::put('/edit',[ShopSettingsController::class,'update'])->name('settings.update');
     });
 });
 

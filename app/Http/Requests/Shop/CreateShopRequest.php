@@ -37,7 +37,8 @@ class CreateShopRequest extends FormRequest
             'address'=>'',
             'phone_number'=>'regex:~^\+[0-9]{12}$~',
             'email'=>'email',
-            'owner_id' => 'required|integer'
+            'owner_id' => 'required|integer',
+            'shop_type_id' => 'required|integer|exists:shop_types,id',
         ];
     }
     public function messages()
