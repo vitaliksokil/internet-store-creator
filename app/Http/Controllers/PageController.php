@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PageController extends Controller
 {
     public function welcome(){
-        return view('welcome');
+        return view('pages.main-page');
     }
     public function dashboard(){
         $shopTypes = ShopType::all();

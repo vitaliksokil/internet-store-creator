@@ -19,7 +19,6 @@ class ShopSettings extends Model
         'admin_header_color',
         'admin_tables_bg_color',
         'admin_tables_color',
-        'shop_bg',
         'shop_bg_color',
     ];
 }

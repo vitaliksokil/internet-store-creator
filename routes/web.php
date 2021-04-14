@@ -18,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [PageController::class,'welcome'])->name('home');
+Route::group(['middleware'=>['auth','customer']],function() {
+
+});
 Route::group(['middleware'=>['hasNotShop']],function() {
-    Route::get('/', [PageController::class,'welcome'])->middleware(['guest']);
     Route::group(['middleware'=>['auth','verified']],function() {
         Route::get('/dashboard', [PageController::class,'dashboard'])->name('dashboard');
         Route::group(['prefix'=>'shop'],function(){
