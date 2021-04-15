@@ -14,16 +14,60 @@ class CreateShopTypes extends Seeder
      */
     public function run()
     {
-        ShopType::create(['type'=>'Child\'s world','icon'=>'<i class="fas fa-child"></i>']);
-        ShopType::create(['type'=>'Property','icon'=>'<i class="fas fa-home"></i>']);
-        ShopType::create(['type'=>'Transport','icon'=>'<i class="fas fa-car"></i>']);
-        ShopType::create(['type'=>'Spare parts for transport','icon'=>'<i class="fas fa-wrench"></i>']);
-        ShopType::create(['type'=>'Animals','icon'=>'<i class="fas fa-paw"></i>']);
-        ShopType::create(['type'=>'Garden','icon'=>'<i class="fas fa-seedling"></i>']);
-        ShopType::create(['type'=>'Electronics','icon'=>'<i class="fas fa-mobile-alt"></i>']);
-        ShopType::create(['type'=>'Fashion & Style','icon'=>'<i class="fas fa-tshirt"></i>']);
-        ShopType::create(['type'=>'Hobbies, leisure and sports','icon'=>'<i class="fas fa-table-tennis"></i>']);
-        ShopType::create(['type'=>'Beauty and health','icon'=>'<i class="fas fa-heartbeat"></i>']);
-        ShopType::create(['type'=>'Other','icon'=>'<i class="fas fa-ellipsis-h"></i>']);
+        ShopType::create([
+            'type' => 'Child\'s world',
+            'icon' => '<i class="fas fa-child"></i>',
+            'image' => 'img/shopTypes/child.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Property',
+            'icon' => '<i class="fas fa-home"></i>',
+            'image' => 'img/shopTypes/property.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Transport',
+            'icon' => '<i class="fas fa-car"></i>',
+            'image' => 'img/shopTypes/transport.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Spare parts for transport',
+            'icon' => '<i class="fas fa-wrench"></i>',
+            'image' => 'img/shopTypes/tools.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Animals',
+            'icon' => '<i class="fas fa-paw"></i>',
+            'image' => 'img/shopTypes/animals.png'
+        ]);
+        ShopType::create([
+            'type' => 'Garden',
+            'icon' => '<i class="fas fa-seedling"></i>',
+            'image' => 'img/shopTypes/garden.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Electronics',
+            'icon' => '<i class="fas fa-mobile-alt"></i>',
+            'image' => 'img/shopTypes/electronics.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Fashion & Style',
+            'icon' => '<i class="fas fa-tshirt"></i>',
+            'image' => 'img/shopTypes/style.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Hobbies, leisure and sports',
+            'icon' => '<i class="fas fa-table-tennis"></i>',
+            'image' => 'img/shopTypes/sport.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Beauty and health',
+            'icon' => '<i class="fas fa-heartbeat"></i>',
+            'image' => 'img/shopTypes/beauty.jpg'
+        ]);
+        ShopType::create([
+            'type' => 'Other',
+            'icon' => '<i class="fas fa-ellipsis-h"></i>',
+            'image' => 'img/shopTypes/other.jpg'
+        ]);
     }
 }

@@ -16,6 +16,7 @@ class CreateShopTypesTable extends Migration
         Schema::create('shop_types', function (Blueprint $table) {
             $table->id();
             $table->string('icon');
+            $table->string('image');
             $table->string('type');
             $table->timestamps();
         });
