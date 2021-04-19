@@ -70,7 +70,7 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Our shops</h2>
+                <h2>Our shops types</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
@@ -81,7 +81,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{$shopType->type}}</h5>
                                     <hr>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="{{route('shops.index',['type'=>$shopType])}}" class="btn btn-primary">Go to shops</a>
                                 </div>
                             </div>
                         </div>

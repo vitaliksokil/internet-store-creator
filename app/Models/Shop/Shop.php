@@ -19,7 +19,8 @@ class Shop extends Model
         'address',
         'phone_number',
         'email',
-        'shop_type_id'
+        'shop_type_id',
+        'theme_id'
     ];
 
     const FILE_PATH = 'shops';
@@ -47,6 +48,13 @@ class Shop extends Model
     }
     public function settings(){
         return $this->hasOne(ShopSettings::class);
+    }
+
+    public function theme(){
+        return $this->belongsTo(Theme::class);
+    }
+    public function getTheme(){
+        return $this->theme ?? Theme::where('type',Theme::BLOCK_TYPE)->first();
     }
 
 }

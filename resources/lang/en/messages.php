@@ -9,5 +9,7 @@ return [
     'product_updated' => 'Product was successfully updated!',
     'product_deleted' => 'Product was successfully deleted!',
 
-    'settings_updated' => 'Your site settings was updated!'
+    'settings_updated' => 'Your site settings was updated!',
+
+    'theme_updated' => 'Your site theme was updated!'
 ];

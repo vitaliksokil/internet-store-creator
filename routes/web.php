@@ -5,6 +5,7 @@ use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Shop\ShopSettingsController;
+use App\Http\Controllers\Shop\ThemeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class,'welcome'])->name('home');
 Route::group(['middleware'=>['auth','customer']],function() {
 
+});
+Route::get('/shops/type/{type}', [PageController::class,'shops'])->name('shops.index');
+
+Route::group(['prefix'=>'shops/{shop}'],function() {
+    Route::get('/',[ShopController::class,'show'])->name('shop.show');
 });
 Route::group(['middleware'=>['hasNotShop']],function() {
     Route::group(['middleware'=>['auth','verified']],function() {
@@ -59,6 +65,11 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
         Route::get('/',[ShopSettingsController::class,'index'])->name('settings.index');
         Route::get('/edit',[ShopSettingsController::class,'edit'])->name('settings.edit');
         Route::put('/edit',[ShopSettingsController::class,'update'])->name('settings.update');
+    });
+    Route::group(['prefix'=>'shop-theme'],function(){
+        Route::get('/',[ThemeController::class,'index'])->name('shop.theme.index');
+        Route::get('/edit',[ThemeController::class,'edit'])->name('shop.theme.edit');
+        Route::put('/edit',[ThemeController::class,'update'])->name('shop.theme.update');
     });
 });
 

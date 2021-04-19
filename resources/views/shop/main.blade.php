@@ -41,6 +41,13 @@
                                     Settings
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('shop.theme.index') ||
+                                                    request()->routeIs('shop.theme.edit') ? 'active' : ''}}" aria-current="page" href="{{route('shop.theme.index')}}">
+                                    <i class="fas fa-palette"></i>
+                                    Themes
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
