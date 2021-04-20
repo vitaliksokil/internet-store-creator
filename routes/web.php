@@ -26,7 +26,13 @@ Route::group(['middleware'=>['auth','customer']],function() {
 Route::get('/shops/type/{type}', [PageController::class,'shops'])->name('shops.index');
 
 Route::group(['prefix'=>'shops/{shop}'],function() {
-    Route::get('/',[ShopController::class,'show'])->name('shop.show');
+    Route::get('/',[PageController::class,'showShop'])->name('shop.show');
+    Route::group(['prefix'=>'products/{category}'],function() {
+        Route::get('/',[PageController::class,'shopProductsByCategory'])->name('shop.products.show');
+    });
+    Route::group(['prefix'=>'product/{product}'],function() {
+        Route::get('/',[PageController::class,'showProduct'])->name('shop.product.show');
+    });
 });
 Route::group(['middleware'=>['hasNotShop']],function() {
     Route::group(['middleware'=>['auth','verified']],function() {

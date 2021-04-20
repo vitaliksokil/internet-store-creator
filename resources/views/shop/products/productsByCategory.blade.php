@@ -33,7 +33,7 @@
                 <tr >
                     <th scope="row">{{$product->id}}</th>
                     <td>{{$product->title}}</td>
-                    <td>{{$product->description}}</td>
+                    <td>{{\Illuminate\Support\Str::limit($product->description, 50, '...')}}</td>
                     <td>{{$product->price}}</td>
                     <td><img class="img-table" src="{{$product->img}}" alt=""></td>
                     <td>{{$product->created_at}}</td>

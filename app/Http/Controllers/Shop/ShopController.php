@@ -44,7 +44,4 @@ class ShopController extends Controller
         return redirect()->route('shop.edit')->with(['message'=>__('messages.shop_updated')]);
     }
 
-    public function show(Shop $shop){
-        dd($shop);
-    }
 }
