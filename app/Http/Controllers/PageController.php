@@ -45,7 +45,8 @@ class PageController extends Controller
     public function showProduct(Shop $shop, Product $product){
         return view('themes.'.$shop->getTheme()->type . '.product')->with([
             'shop' => $shop,
-            'products' => $product
+            'product' => $product,
+            'feedbacks' => $product->feedbacks
         ]);
     }
 }

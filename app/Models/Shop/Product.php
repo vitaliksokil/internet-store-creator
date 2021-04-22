@@ -19,6 +19,9 @@ class Product extends Model
 
     const PRODUCTS_PAGINATION_COUNT = 10;
     const FILE_PATH = 'products';
+    const CURRENCIES = [
+        'usd' => '$'
+    ];
 
 
     public function category(){
@@ -39,5 +42,8 @@ class Product extends Model
     }
     public function setPriceAttribute($value){
         $this->attributes['price'] = $value*100;
+    }
+    public function feedbacks(){
+        return $this->hasMany(Feedback::class);
     }
 }

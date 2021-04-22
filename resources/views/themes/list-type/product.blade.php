@@ -18,12 +18,12 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-5">
-                                            <img class="w-100" src="{{asset('images/img_1.jpg')}}" alt="">
+                                            <img class="w-100" src="{{$product->img}}" alt="">
                                         </div>
 
                                         <div class="col-7">
-                                            <div class="product-title">Corsair GS600 600 Watt PSU</div>
-                                            <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC</div>
+                                            <div class="product-title">{{$product->title}}</div>
+{{--                                            <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC</div>--}}
                                             <div class="product-rating">
                                                 <i class="fas fa-star gold"></i>
                                                 <i class="fas fa-star gold"></i>
@@ -32,13 +32,13 @@
                                                 <i class="fas fa-star gold"></i>
                                             </div>
                                             <hr>
-                                            <div class="product-price">$ 1234.00</div>
-                                            <div class="product-stock">In Stock</div>
+                                            <div class="product-price">{{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}</div>
+{{--                                            <div class="product-stock">In Stock</div>--}}
                                             <hr>
                                             <div class="btn-group cart">
                                                 <button type="button" class="btn btn-success">
                                                     {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                                    <i class="fas fa-shopping-cart"></i> 10$
+                                                    <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
                                                 </button>
                                             </div>
                                             <div class="btn-group wishlist">
@@ -48,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 card text-center mt-5">
+                                    <div class="col-12 card  mt-5">
                                         <div class="bd-example">
                                             <nav>
                                                 <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
@@ -57,11 +57,39 @@
                                                 </div>
                                             </nav>
                                             <div class="tab-content" id="nav-tabContent">
-                                                <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                                    <p>Placeholder content for the tab panel. This one relates to the home tab. Takes you miles high, so high, 'cause she’s got that one international smile. There's a stranger in my bed, there's a pounding in my head. Oh, no. In another life I would make you stay. ‘Cause I, I’m capable of anything. Suiting up for my crowning battle. Used to steal your parents' liquor and climb to the roof. Tone, tan fit and ready, turn it up cause its gettin' heavy. Her love is like a drug. I guess that I forgot I had a choice.</p>
+                                                <div class="tab-pane fade active show p-3" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                    <p>{{$product->description}}</p>
                                                 </div>
-                                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                                                    <p>Placeholder content for the tab panel. This one relates to the profile tab. You got the finest architecture. Passport stamps, she's cosmopolitan. Fine, fresh, fierce, we got it on lock. Never planned that one day I'd be losing you. She eats your heart out. Your kiss is cosmic, every move is magic. I mean the ones, I mean like she's the one. Greetings loved ones let's take a journey. Just own the night like the 4th of July! But you'd rather get wasted.</p>
+                                                <div class="tab-pane fade p-3" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                    @forelse($feedbacks as $feedback)
+                                                        <div class="card mb-3">
+                                                            <div class="row g-0">
+                                                                <div class="col-12">
+                                                                    <div class="card-body d-flex justify-content-between">
+                                                                        <div class="card-body-header">
+                                                                            <h6 class="card-title">{{$feedback->user->name}}</h6>
+                                                                            <p class="card-text" style="font-size: 15px">
+                                                                                @for($i=0;$i<$feedback->rate;$i++)
+                                                                                    <i class="fas fa-star gold"></i>
+                                                                                @endfor
+                                                                                @for($i=0;$i<5-$feedback->rate;$i++)
+                                                                                    <i class="fas fa-star"></i>
+                                                                                @endfor
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="card-body-body">
+
+                                                                            <p class="card-text" style="font-size: 15px">{{$feedback->text}}</p>
+                                                                            <p class="card-text"><small class="text-muted">{{date('F j, Y, g:i a',strtotime($feedback->created_at))}}</small></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @empty
+                                                        No feedbacks
+                                                    @endforelse
+                                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Feedback</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -112,5 +140,22 @@
             </div>
         </div>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Leave your feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
