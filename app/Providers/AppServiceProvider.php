@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\CategoryService\CategoryService;
 use App\Services\CategoryService\CategoryServiceInterface;
+use App\Services\FeedbacksService\FeedbackService;
+use App\Services\FeedbacksService\FeedbackServiceInterface;
 use App\Services\FileUploaderService\FileUploaderService;
 use App\Services\FileUploaderService\FileUploaderServiceInterface;
 use App\Services\ProductService\ProductService;
@@ -38,5 +40,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(CategoryServiceInterface::class,CategoryService::class);
         $this->app->bind(ProductServiceInterface::class,ProductService::class);
         $this->app->bind(ShopSettingsServiceInterface::class,ShopSettingsService::class);
+        $this->app->bind(FeedbackServiceInterface::class,FeedbackService::class);
     }
 }

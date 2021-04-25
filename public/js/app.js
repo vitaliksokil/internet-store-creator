@@ -8332,6 +8332,23 @@ $(document).ready(function () {
     itemsMobile: false,
     loop: true
   });
+  $("#leaveFeedback").submit(function (e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = $(this);
+    var url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      // serializes the form's elements.
+      success: function success(data) {
+        $('#leaveFeedback')[0].reset();
+        $('#successMessage').text(data.message);
+        $('#successMessage').show();
+      }
+    });
+  });
 });
 
 /***/ }),

@@ -46,7 +46,7 @@ class PageController extends Controller
         return view('themes.'.$shop->getTheme()->type . '.product')->with([
             'shop' => $shop,
             'product' => $product,
-            'feedbacks' => $product->feedbacks
+            'feedbacks' => $product->getPublishedFeedbacks()
         ]);
     }
 }

@@ -88,8 +88,11 @@
                                                         </div>
                                                     @empty
                                                         No feedbacks
+                                                        <br>
                                                     @endforelse
-                                                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Feedback</button>
+                                                    @auth
+                                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Feedback</button>
+                                                    @endauth
                                                 </div>
                                             </div>
                                         </div>
@@ -149,11 +152,29 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
+
+                    <div class="alert alert-success" role="alert" style="display: none" id="successMessage"></div>
+
+                    <form action="{{route('feedback.store')}}" method="post" id="leaveFeedback">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Text</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rate" class="form-label">Rate</label>
+                            <select class="form-select" id="rate" name="rate" aria-label="Default select example">
+                                @for($i=1;$i<=5;$i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

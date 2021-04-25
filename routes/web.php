@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Shop\CategoryController;
+use App\Http\Controllers\Shop\FeedbackController;
 use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Shop\ShopSettingsController;
@@ -32,6 +33,11 @@ Route::group(['prefix'=>'shops/{shop}'],function() {
     });
     Route::group(['prefix'=>'product/{product}'],function() {
         Route::get('/',[PageController::class,'showProduct'])->name('shop.product.show');
+    });
+});
+Route::group(['middleware'=>'auth'],function (){
+    Route::group(['prefix'=>'feedbacks'],function (){
+        Route::post('/',[FeedbackController::class,'store'])->name('feedback.store');
     });
 });
 Route::group(['middleware'=>['hasNotShop']],function() {

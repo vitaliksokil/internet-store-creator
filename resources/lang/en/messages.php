@@ -11,5 +11,7 @@ return [
 
     'settings_updated' => 'Your site settings was updated!',
 
-    'theme_updated' => 'Your site theme was updated!'
+    'theme_updated' => 'Your site theme was updated!',
+
+    'feedback_created' => 'Your feedback was created! The owner of the shop must review it before publishing!',
 ];

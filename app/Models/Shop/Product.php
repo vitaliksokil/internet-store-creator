@@ -46,4 +46,7 @@ class Product extends Model
     public function feedbacks(){
         return $this->hasMany(Feedback::class);
     }
+    public function getPublishedFeedbacks(){
+        return $this->feedbacks()->where('status', Feedback::PUBLISHED)->get();
+    }
 }
