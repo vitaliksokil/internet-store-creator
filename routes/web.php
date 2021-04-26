@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\FeedbackController;
 use App\Http\Controllers\Shop\ProductController;
@@ -21,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class,'welcome'])->name('home');
-Route::group(['middleware'=>['auth','customer']],function() {
 
-});
 Route::get('/shops/type/{type}', [PageController::class,'shops'])->name('shops.index');
 
 Route::group(['prefix'=>'shops/{shop}'],function() {
@@ -35,6 +34,17 @@ Route::group(['prefix'=>'shops/{shop}'],function() {
         Route::get('/',[PageController::class,'showProduct'])->name('shop.product.show');
     });
 });
+
+Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() {
+    Route::get('/',[ProfileController::class,'profileInfo'])->name('profile.info');
+    Route::get('/edit',[ProfileController::class,'profileInfoEdit'])->name('profile.info.edit');
+    Route::put('/edit',[ProfileController::class,'profileInfoUpdate'])->name('profile.info.update');
+
+    Route::group(['prefix'=>'shopping-cart'],function(){
+        Route::get('/',[ProfileController::class,'getShoppingCart'])->name('profile.shopping-cart');
+    });
+});
+
 Route::group(['middleware'=>'auth'],function (){
     Route::group(['prefix'=>'feedbacks'],function (){
         Route::post('/',[FeedbackController::class,'store'])->name('feedback.store');

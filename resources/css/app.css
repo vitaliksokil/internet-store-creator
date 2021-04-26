@@ -259,3 +259,8 @@ select {
 .gold {
     color: #FFBF00;
 }
+
+.active-header-link{
+    background: #292b31;
+    color: #f88020;
+}

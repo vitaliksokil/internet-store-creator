@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -21,7 +22,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'type'
+        'img',
+        'email_verified_at',
     ];
 
     /**
@@ -45,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     const CUSTOMER_TYPE = 1;
     const SELLER_TYPE = 2;
-
+    const IMAGE_PATH = 'users';
     const TYPES = [
         'Customer' => self::CUSTOMER_TYPE,
         'Seller' => self::SELLER_TYPE,
@@ -53,5 +55,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function shop(){
         return $this->hasOne(Shop::class,'owner_id');
+    }
+
+    public function getImgAttribute($value)
+    {
+        $img =  $value;
+        return Storage::exists($value) ? '/storage/'.$img : '/img/no-image.png';
     }
 }

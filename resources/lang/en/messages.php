@@ -14,4 +14,5 @@ return [
     'theme_updated' => 'Your site theme was updated!',
 
     'feedback_created' => 'Your feedback was created! The owner of the shop must review it before publishing!',
+    'user_profile_info_updated' => 'Your profile info was successfully updated!',
 ];

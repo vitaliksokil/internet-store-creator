@@ -33,7 +33,8 @@
 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="btn btn-warning">Dashboard</a>
+                        <a href="{{ route('profile.info') }}" class="btn btn-warning mr-3"><i class="fas fa-address-card"></i> Customer Profile</a>
+                        <a href="{{ url('/dashboard') }}" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> Seller Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
                         @if (Route::has('register'))
@@ -43,6 +44,13 @@
                 @endif
             </div>
         </div>
+        @auth
+        <hr>
+        <div class="container d-flex flex-wrap justify-content-end">
+            <button class="btn btn-danger mr-3">5 <i class="fas fa-heart"></i></button>
+            <button class="float-right btn btn-success"> 5 <i class="fas fa-shopping-cart"></i></button>
+        </div>
+        @endauth
     </header>
     <div class="">
         @yield('main-content')
