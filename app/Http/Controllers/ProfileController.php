@@ -47,4 +47,12 @@ class ProfileController extends Controller
             'shoppingCart' => $shoppingCart
         ]);
     }
+
+    public function getWishlist(){
+        $wishlist = $this->shoppingCartService->getShoppingCart(auth()->user());
+        return view('profile.pages.wishlist.wishlist')->with([
+            'user' => auth()->user(),
+            'wishlist' => $wishlist
+        ]);
+    }
 }

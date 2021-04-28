@@ -63,4 +63,11 @@ class Product extends Model
                 ->where('user_id',$user->id)
                 ->first() instanceof Wishlist;
     }
+    public function __toString()
+    {
+        return $this->title;
+    }
+    public function getPriceFormat(){
+        return number_format($this->price,2,',',' ');
+    }
 }

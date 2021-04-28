@@ -14,7 +14,7 @@
             <div class="main-bar">
                 <div class="container">
                     <section>
-                            @forelse($shoppingCart as $item)
+                        @forelse($wishlist as $item)
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
 
                                 <div class="col-lg-8">
@@ -43,25 +43,18 @@
                                                                     </a>
                                                                     <p class="mb-3 text-muted  small">{{shortDescription($product->product->description)}}</p>
                                                                 </div>
-                                                                <div>
-                                                                    <div class="def-number-input number-input safari_only mb-0 w-100">
-                                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                                                class="minus"></button>
-                                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                                                class="plus"></button>
-                                                                    </div>
-                                                                    <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                                                                        Count
-                                                                    </small>
-                                                                </div>
+
                                                             </div>
                                                             <div class="d-flex justify-content-between align-items-center ">
                                                                 <div>
-                                                                    <a href="#!" type="button" class=" btn btn-danger card-link-secondary small text-uppercase mr-3"><i
-                                                                            class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                                                                    <a href="#!" type="button" class="btn btn-danger  card-link-secondary small text-uppercase"><i
-                                                                            class="fas fa-heart mr-1"></i> Move to wish list </a>
+                                                                    <a href="#!" type="button" class=" btn btn-danger card-link-secondary small text-uppercase mr-3">
+                                                                        <i class="fas fa-trash-alt mr-1"></i>
+                                                                        Remove item
+                                                                    </a>
+                                                                    <a href="#!" type="button" class="btn btn-success  card-link-secondary small text-uppercase">
+                                                                        <i class="fas fa-shopping-cart"></i>
+                                                                        Move to Shopping Cart
+                                                                    </a>
                                                                 </div>
                                                                 <p class="mb-0"><span><strong>${{formatPrice($product->product->price)}}</strong></span></p>
                                                             </div>
@@ -72,12 +65,6 @@
                                             @empty
                                                 No products
                                             @endforelse
-                                        </div>
-                                    </div>
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <h5 class="mb-4">Expected shipping delivery</h5>
-                                            <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +95,7 @@
                                                     <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
-                                            <button type="button" class="btn btn-primary btn-block waves-effect waves-light">go to checkout</button>
+                                            <button type="button" class="btn btn-success btn-block waves-effect waves-light"><i class="fas fa-shopping-cart"></i> Buy All</button>
                                         </div>
                                     </div>
                                 </div>

@@ -46,6 +46,9 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
     Route::group(['prefix'=>'shopping-cart'],function(){
         Route::get('/',[ProfileController::class,'getShoppingCart'])->name('profile.shopping-cart');
     });
+    Route::group(['prefix'=>'wishlist'],function(){
+        Route::get('/',[ProfileController::class,'getWishlist'])->name('profile.wishlist');
+    });
 });
 
 Route::group(['middleware'=>'auth'],function (){

@@ -22,6 +22,13 @@
                                     Shopping cart
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('profile.wishlist') ? 'active' : ''}}"
+                                   aria-current="page" href="{{route('profile.wishlist')}}">
+                                    <i class="fas fa-heart"></i>
+                                    Wishlist
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="">
-    <header class="p-3 bg-dark text-white">
+    <header class="p-3 bg-dark text-white ">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -46,13 +46,13 @@
         </div>
         @auth
         <hr>
-        <div class="container d-flex flex-wrap justify-content-end">
-            <button class="btn btn-danger mr-3">5 <i class="fas fa-heart"></i></button>
-            <button class="float-right btn btn-success"> 5 <i class="fas fa-shopping-cart"></i></button>
+        <div class="container d-flex flex-wrap justify-content-end ">
+            <a href="{{route('profile.wishlist')}}" class="btn btn-danger mr-3" id="wishlistCountBtn"><span class="span">{{getWishlistCount()}}</span> <i class="fas fa-heart"></i></a>
+            <a href="{{route('profile.shopping-cart')}}" class="float-right btn btn-success" id="shoppingCartCountBtn"> <span class="span">{{getShoppingCartCount()}}</span> <i class="fas fa-shopping-cart"></i></a>
         </div>
         @endauth
     </header>
-    <div class="">
+    <div class="" >
         @yield('main-content')
     </div>
 

@@ -11,23 +11,25 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Shops of "{{$type->type}}" type</h2>
+                <h2>Categories of "{{$shop->name}}" shop</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
-                    @forelse($shops as $shop)
+                    @forelse($categories as $category)
                         <div class="col-lg-3 mb-5">
                             <div class="card" style="width: 18rem;">
-                                <img src="{{$shop->img}}" class="card-img-top" alt="...">
+                                <img src="{{$category->img}}" class="card-img-top" alt="..." style="height: 200px">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$shop->name}}</h5>
+                                    <h5 class="card-title" style="height: 75px">{{\Illuminate\Support\Str::limit($category->title, 40, '...')}}</h5>
                                     <hr>
-                                    <a href="{{route('shop.show',['shop' => $shop])}}" class="btn btn-primary">Go to shop</a>
+                                    <a href="{{route('shop.products.show',['shop' => $shop,'category'=>$category])}}" class="btn btn-primary">
+                                        Go to products
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @empty
-                        No shops
+                        No categories
                     @endforelse
                 </div>
             </div>

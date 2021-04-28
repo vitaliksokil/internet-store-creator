@@ -73,6 +73,10 @@ $(document).ready(function(){
                         $(this).prop("disabled", true);
                     })
                     form.off('click')
+
+                    var shoppingCartCountBtn = $('#shoppingCartCountBtn span');
+                    var count = +shoppingCartCountBtn.text() + 1;
+                    shoppingCartCountBtn.text(count)
                 },
                 error:function (error){
                     var err = JSON.parse(error.responseText);
@@ -115,6 +119,10 @@ $(document).ready(function(){
                         $(this).prop("disabled", true);
                     })
                     form.off('click')
+
+                    var wishlistCountBtn = $('#wishlistCountBtn span');
+                    var count = +wishlistCountBtn.text() + 1;
+                    wishlistCountBtn.text(count)
                 },
                 error:function (error){
                     var err = JSON.parse(error.responseText);
