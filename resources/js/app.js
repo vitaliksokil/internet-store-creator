@@ -6,9 +6,11 @@ require('./fontawesome');
 
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel'
+const Swal = require('sweetalert2')
 
 
 $(document).ready(function(){
+
     $('.owl-carousel').owlCarousel({
         navigation : true, // Show next and prev buttons
 
@@ -44,4 +46,87 @@ $(document).ready(function(){
 
 
     });
+    $(".add-to-shopping-cart[data-disabled='']").each(function(index) {
+        $(this).on('click', function (){
+            $(this).submit()
+        });
+        $(this).submit(function(e){
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: true,
+                        // timer: 3000
+                    });
+                    form.find('button').each(function(index){
+                        $(this).prop("disabled", true);
+                    })
+                    form.off('click')
+                },
+                error:function (error){
+                    var err = JSON.parse(error.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: err.message
+                    })
+                }
+            });
+
+        });
+    });
+
+    $(".add-to-wishlist[data-disabled='']").each(function(index) {
+        $(this).on('click', function (){
+            $(this).submit()
+        });
+        $(this).submit(function(e){
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+
+            var form = $(this);
+            var url = form.attr('action');
+            console.log(form)
+            console.log(url)
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: data.message,
+                        showConfirmButton: true,
+                        // timer: 3000
+                    });
+                    form.find('button').each(function(index){
+                        $(this).prop("disabled", true);
+                    })
+                    form.off('click')
+                },
+                error:function (error){
+                    var err = JSON.parse(error.responseText);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: err.message
+                    })
+                }
+            });
+
+        });
+    });
+
 });

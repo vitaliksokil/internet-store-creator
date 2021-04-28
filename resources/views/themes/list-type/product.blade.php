@@ -12,6 +12,40 @@
         <div class="container">
             <div class="shops-items">
                 <div class="row">
+                    <div class="col-md-4">
+                        <div class="p-4 mb-3 bg-light rounded">
+                            <h4 class="fst-italic">About "{{$shop->name}}" shop</h4>
+                            <p class="mb-0">{{$shop->description}}</p>
+                        </div>
+
+                        <div class="p-4">
+                            <h4 class="fst-italic">Categories of "{{$shop->name}}" shop</h4>
+                            <ol class="list-unstyled mb-0">
+                                @forelse($categories as $category)
+                                    <li><a href="{{route('shop.products.show',['shop'=>$shop,'category'=>$category])}}">{{$category->title}}</a></li>
+                                @empty
+                                    <li>No Categories</li>
+                                @endforelse
+                            </ol>
+                        </div>
+
+                        <div class="p-4">
+                            <h4 class="fst-italic">Recommended products</h4>
+                            <ol class="list-unstyled">
+                                @forelse($recommendedProducts as $rProduct)
+                                    <li class="mb-4">
+                                        <a class="d-flex align-items-center" href="{{route('shop.product.show',['shop'=>$shop,'product'=>$rProduct])}}">
+                                            <img src="{{$rProduct->img}}" alt="" class="mr-2" style="width: 60px">
+                                            {{$rProduct->title}}
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li>No recommended products</li>
+                                @endforelse
+                            </ol>
+                        </div>
+                    </div>
+
                     <div class="col-md-8">
                         <div class="content-wrapper">
                             <div class="item-container">
@@ -25,26 +59,35 @@
                                             <div class="product-title">{{$product->title}}</div>
 {{--                                            <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice for mid-spec gaming PC</div>--}}
                                             <div class="product-rating">
-                                                <i class="fas fa-star gold"></i>
-                                                <i class="fas fa-star gold"></i>
-                                                <i class="fas fa-star gold"></i>
-                                                <i class="fas fa-star gold"></i>
-                                                <i class="fas fa-star gold"></i>
+                                                @for($i=0;$i<$rate;$i++)
+                                                    <i class="fas fa-star gold"></i>
+                                                @endfor
+                                                @for($i=$rate;$i<5;$i++)
+                                                    <i class="fas fa-star"></i>
+                                                @endfor
                                             </div>
                                             <hr>
                                             <div class="product-price">{{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}</div>
 {{--                                            <div class="product-stock">In Stock</div>--}}
                                             <hr>
                                             <div class="btn-group cart">
-                                                <button type="button" class="btn btn-success">
-                                                    {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                                    <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
-                                                </button>
+                                                <form action="{{route('shopping-cart.store')}}" method="post" class="add-to-shopping-cart" data-disabled="{{$product->isInShoppingCart()}}">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
+                                                        {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
+                                                        <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
+                                                    </button>
+                                                </form>
                                             </div>
                                             <div class="btn-group wishlist">
-                                                <button type="button" class="btn btn-danger">
-                                                    <i class="fas fa-heart"></i>
-                                                </button>
+                                                <form action="{{route('wishlist.store')}}" method="post" class="add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                    <button type="button" class="btn btn-danger" {{$product->isInWishlist()?'disabled':''}}>
+                                                        <i class="fas fa-heart"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -104,41 +147,6 @@
                         </div>
 
                     </div>
-
-                    <div class="col-md-4">
-                        <div class="p-4 mb-3 bg-light rounded">
-                            <h4 class="fst-italic">About</h4>
-                            <p class="mb-0">Saw you downtown singing the Blues. Watch you circle the drain. Why don't you let me stop by? Heavy is the head that <em>wears the crown</em>. Yes, we make angels cry, raining down on earth from up above.</p>
-                        </div>
-
-                        <div class="p-4">
-                            <h4 class="fst-italic">Archives</h4>
-                            <ol class="list-unstyled mb-0">
-                                <li><a href="#">March 2014</a></li>
-                                <li><a href="#">February 2014</a></li>
-                                <li><a href="#">January 2014</a></li>
-                                <li><a href="#">December 2013</a></li>
-                                <li><a href="#">November 2013</a></li>
-                                <li><a href="#">October 2013</a></li>
-                                <li><a href="#">September 2013</a></li>
-                                <li><a href="#">August 2013</a></li>
-                                <li><a href="#">July 2013</a></li>
-                                <li><a href="#">June 2013</a></li>
-                                <li><a href="#">May 2013</a></li>
-                                <li><a href="#">April 2013</a></li>
-                            </ol>
-                        </div>
-
-                        <div class="p-4">
-                            <h4 class="fst-italic">Elsewhere</h4>
-                            <ol class="list-unstyled">
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">Facebook</a></li>
-                            </ol>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>

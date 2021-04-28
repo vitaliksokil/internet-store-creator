@@ -8,6 +8,8 @@ use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Shop\ShopSettingsController;
 use App\Http\Controllers\Shop\ThemeController;
+use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class,'welcome'])->name('home');
 
 Route::get('/shops/type/{type}', [PageController::class,'shops'])->name('shops.index');
+
 
 Route::group(['prefix'=>'shops/{shop}'],function() {
     Route::get('/',[PageController::class,'showShop'])->name('shop.show');
@@ -48,6 +51,14 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
 Route::group(['middleware'=>'auth'],function (){
     Route::group(['prefix'=>'feedbacks'],function (){
         Route::post('/',[FeedbackController::class,'store'])->name('feedback.store');
+    });
+
+    Route::group(['prefix'=>'shopping-cart'],function() {
+        Route::post('/',[ShoppingCartController::class,'store'])->name('shopping-cart.store');
+
+    });
+    Route::group(['prefix'=>'wishlist'],function() {
+        Route::post('/',[WishlistController::class,'store'])->name('wishlist.store');
     });
 });
 Route::group(['middleware'=>['hasNotShop']],function() {

@@ -2,6 +2,8 @@
 
 namespace App\Models\Shop;
 
+use App\Models\ShoppingCart;
+use App\Models\Wishlist;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -48,5 +50,17 @@ class Product extends Model
     }
     public function getPublishedFeedbacks(){
         return $this->feedbacks()->where('status', Feedback::PUBLISHED)->get();
+    }
+
+    public function isInShoppingCart(){
+        $user = auth()->user();
+        $shoppingCart = ShoppingCart::where('product_id',$this->id)->where('user_id',$user->id)->first();
+        return $shoppingCart instanceof ShoppingCart;
+    }
+    public function isInWishlist(){
+        $user = auth()->user();
+        return Wishlist::where('product_id',$this->id)
+                ->where('user_id',$user->id)
+                ->first() instanceof Wishlist;
     }
 }

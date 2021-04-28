@@ -18,9 +18,9 @@
                     @forelse($categories as $category)
                         <div class="col-lg-3 mb-5">
                             <div class="card" style="width: 18rem;">
-                                <img src="{{$category->img}}" class="card-img-top" alt="...">
+                                <img src="{{$category->img}}" class="card-img-top" alt="..." style="height: 200px">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$category->title}}</h5>
+                                    <h5 class="card-title" style="height: 75px">{{\Illuminate\Support\Str::limit($category->title, 40, '...')}}</h5>
                                     <hr>
                                     <a href="{{route('shop.products.show',['shop' => $shop,'category'=>$category])}}" class="btn btn-primary">
                                         Go to products

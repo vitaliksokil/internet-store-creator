@@ -18,6 +18,8 @@ use App\Services\ShopSettingsService\ShopSettingsService;
 use App\Services\ShopSettingsService\ShopSettingsServiceInterface;
 use App\Services\UserService\UserService;
 use App\Services\UserService\UserServiceInterface;
+use App\Services\Wishlist\WishlistService;
+use App\Services\Wishlist\WishlistServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -47,5 +49,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(FeedbackServiceInterface::class,FeedbackService::class);
         $this->app->bind(UserServiceInterface::class,UserService::class);
         $this->app->bind(ShoppingCartServiceInterface::class,ShoppingCartService::class);
+        $this->app->bind(WishlistServiceInterface::class,WishlistService::class);
     }
 }

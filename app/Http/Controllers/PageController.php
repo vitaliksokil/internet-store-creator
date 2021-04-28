@@ -6,10 +6,29 @@ use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use App\Models\Shop\Shop;
 use App\Models\Shop\ShopType;
+use App\Services\FeedbacksService\FeedbackServiceInterface;
+use App\Services\ProductService\ProductServiceInterface;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+
+    /**
+     * @var FeedbackServiceInterface
+     */
+    private $feedbackService;
+    /**
+     * @var ProductServiceInterface
+     */
+    private $productService;
+
+    public function __construct(FeedbackServiceInterface $feedbackService,
+                                ProductServiceInterface $productService)
+    {
+        $this->feedbackService = $feedbackService;
+        $this->productService = $productService;
+    }
+
     public function welcome(){
         return view('pages.main-page')->with([
             'shopTypes' => ShopType::all()
@@ -39,14 +58,18 @@ class PageController extends Controller
     public function shopProductsByCategory(Shop $shop, Category $category){
         return view('themes.'.$shop->getTheme()->type . '.products')->with([
             'shop' => $shop,
-            'products' => $category->products
+            'products' => $category->products,
+            'category' => $category,
         ]);
     }
     public function showProduct(Shop $shop, Product $product){
         return view('themes.'.$shop->getTheme()->type . '.product')->with([
             'shop' => $shop,
             'product' => $product,
-            'feedbacks' => $product->getPublishedFeedbacks()
+            'feedbacks' => $product->getPublishedFeedbacks(),
+            'categories' => $shop->categories,
+            'rate' => $this->feedbackService->getProductRate($product),
+            'recommendedProducts' => $this->productService->getRecommendedProducts($product)
         ]);
     }
 }
