@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeliveryAddressController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Shop\CategoryController;
@@ -45,9 +46,22 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
 
     Route::group(['prefix'=>'shopping-cart'],function(){
         Route::get('/',[ProfileController::class,'getShoppingCart'])->name('profile.shopping-cart');
+        Route::post('/',[ShoppingCartController::class,'moveShoppingCartItemToWishlist'])->name('profile.shopping-cart.move-to-wishlist');
+        Route::get('/{shoppingCart}',[ShoppingCartController::class,'destroy'])->name('shopping-cart.destroy');
+        Route::get('/remove-all/{shop}',[ShoppingCartController::class,'destroyAll'])->name('shopping-cart.destroy.all');
+        Route::post('/add-count',[ShoppingCartController::class,'addCount'])->name('shopping-cart.add-count');
     });
     Route::group(['prefix'=>'wishlist'],function(){
         Route::get('/',[ProfileController::class,'getWishlist'])->name('profile.wishlist');
+        Route::post('/',[WishlistController::class,'moveWishlistItemToShoppingCart'])->name('profile.wishlist.move-to-shopping-cart');
+        Route::get('/{wishlist}',[WishlistController::class,'destroy'])->name('wishlist.destroy');
+        Route::get('/remove-all/{shop}',[WishlistController::class,'destroyAll'])->name('wishlist.destroy.all');
+        Route::post('/move-all',[WishlistController::class,'moveAllToShoppingCart'])->name('profile.wishlist.move-all-to-shopping-cart');
+    });
+    Route::group(['prefix'=>'delivery-address'],function(){
+        Route::get('/',[ProfileController::class,'getProfileDelivery'])->name('profile.delivery.get');
+        Route::get('/edit',[DeliveryAddressController::class,'editProfileDelivery'])->name('profile.delivery.edit');
+        Route::get('/get-cities/{area_ref}',[DeliveryAddressController::class,'getCities'])->name('profile.delivery.get.cities');
     });
 });
 

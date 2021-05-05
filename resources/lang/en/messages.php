@@ -19,4 +19,12 @@ return [
     'item_already_in_shopping_cart_exception' => 'This product is already in your shopping cart!',
     'item_already_in_wishlist_exception' => 'This product is already in your wishlist!',
     'new_item_in_wishlist' => 'New product was successfully added to your wishlist!',
+    'removed_wishlist' => 'Item was removed from your wishlist',
+    'wishlist_item_moved_to_shopping_cart' => 'Wishlist item was successfully moved to shopping cart!',
+    'shopping_cart_item_moved_to_wishlist' => 'Shopping cart item was successfully moved to wishlist!',
+    'removed_shopping_cart' => 'Item was removed from your shopping cart',
+    'wishlist_all_moved_to_shopping_cart' => 'All items were moved to your shopping cart',
+    'removed_all_wishlist' => 'All items were removed from your wishlist',
+    'removed_all_shopping_cart' => 'All items were removed from your shopping cart',
+    'shopping_cart_updated' => 'Your shopping cart was updated!',
 ];

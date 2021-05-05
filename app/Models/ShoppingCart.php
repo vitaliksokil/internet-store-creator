@@ -16,6 +16,10 @@ class ShoppingCart extends Model
         'product_id',
         'count',
     ];
+    protected $attributes = [
+        'count' => 1,
+    ];
+
 
     public function user(){
         return $this->belongsTo(User::class);

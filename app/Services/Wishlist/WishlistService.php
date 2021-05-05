@@ -39,4 +39,44 @@ class WishlistService implements WishlistServiceInterface
         });
         return $wishlist;
     }
+
+    public function moveToShoppingCart(Wishlist $wishlist)
+    {
+        $shoppingCart = ShoppingCart::where([
+            ['shop_id','=',$wishlist->shop_id],
+            ['user_id','=',$wishlist->user_id],
+            ['product_id','=',$wishlist->product_id],
+        ])->first();
+        if(!($shoppingCart instanceof ShoppingCart)){
+            $shoppingCart = ShoppingCart::create(array_merge($wishlist->toArray()));
+        }
+        return $wishlist->delete();
+    }
+
+    public function delete(Wishlist $wishlist)
+    {
+        return $wishlist->delete();
+    }
+
+    public function moveAllToShoppingCart(Shop $shop)
+    {
+        $wishlists = Wishlist
+            ::where('shop_id',$shop->id)
+            ->where('user_id',auth()->user()->id)
+            ->get();
+        foreach ($wishlists as $wishlist) {
+            $this->moveToShoppingCart($wishlist);
+        }
+    }
+
+   public function deleteAll(Shop $shop){
+       $wishlists = Wishlist
+           ::where('shop_id',$shop->id)
+           ->where('user_id',auth()->user()->id)
+           ->get();
+       foreach ($wishlists as $wishlist) {
+           $this->delete($wishlist);
+       }
+   }
+
 }

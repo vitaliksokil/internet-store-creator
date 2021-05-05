@@ -8,6 +8,8 @@ use App\Services\FeedbacksService\FeedbackService;
 use App\Services\FeedbacksService\FeedbackServiceInterface;
 use App\Services\FileUploaderService\FileUploaderService;
 use App\Services\FileUploaderService\FileUploaderServiceInterface;
+use App\Services\NewPostApiService\NewPostApiService;
+use App\Services\NewPostApiService\NewPostApiServiceInterface;
 use App\Services\ProductService\ProductService;
 use App\Services\ProductService\ProductServiceInterface;
 use App\Services\ShoppingCartService\ShoppingCartService;
@@ -50,5 +52,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(UserServiceInterface::class,UserService::class);
         $this->app->bind(ShoppingCartServiceInterface::class,ShoppingCartService::class);
         $this->app->bind(WishlistServiceInterface::class,WishlistService::class);
+        $this->app->bind(NewPostApiServiceInterface::class,NewPostApiService::class);
     }
 }

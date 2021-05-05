@@ -8,6 +8,7 @@ use App\Models\Shop\Product;
 use App\Models\Shop\Shop;
 use App\Models\ShoppingCart;
 use App\Models\User;
+use App\Models\Wishlist;
 
 class ShoppingCartService implements ShoppingCartServiceInterface
 {
@@ -39,5 +40,38 @@ class ShoppingCartService implements ShoppingCartServiceInterface
             'shop_id' => $shop->id,
             'count' => 1
         ]));
+    }
+
+    public function moveToWishlist(ShoppingCart $shoppingCart)
+    {
+        $wishlist = Wishlist::where([
+            ['shop_id','=',$shoppingCart->shop_id],
+            ['user_id','=',$shoppingCart->user_id],
+            ['product_id','=',$shoppingCart->product_id],
+        ])->first();
+        if(!($wishlist instanceof Wishlist)){
+            $wishlist = Wishlist::create($shoppingCart->toArray());
+        }
+        return $shoppingCart->delete();
+    }
+    public function delete(ShoppingCart $shoppingCart){
+        return $shoppingCart->delete();
+    }
+
+    public function deleteAll(Shop $shop)
+    {
+        $shoppingCarts = ShoppingCart
+            ::where('shop_id',$shop->id)
+            ->where('user_id',auth()->user()->id)
+            ->get();
+        foreach ($shoppingCarts as $shoppingCart) {
+            $this->delete($shoppingCart);
+        }
+    }
+
+    public function changeCount(ShoppingCart $shoppingCart, $count)
+    {
+        $shoppingCart->update(['count' => $count]);
+        return $shoppingCart;
     }
 }

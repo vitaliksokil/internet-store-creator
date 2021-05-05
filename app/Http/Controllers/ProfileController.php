@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateUserInfoRequest;
+use App\Http\Requests\Wishlist\WishlistMoveToShoppingCartRequest;
+use App\Models\Shop\Product;
 use App\Services\ShoppingCartService\ShoppingCartServiceInterface;
 use App\Services\UserService\UserServiceInterface;
+use App\Services\Wishlist\WishlistServiceInterface;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -17,12 +20,18 @@ class ProfileController extends Controller
      * @var ShoppingCartServiceInterface
      */
     private $shoppingCartService;
+    /**
+     * @var WishlistServiceInterface
+     */
+    private $wishlistService;
 
     public function __construct(UserServiceInterface $userService,
-                                ShoppingCartServiceInterface $shoppingCartService)
+                                ShoppingCartServiceInterface $shoppingCartService,
+                                WishlistServiceInterface $wishlistService)
     {
         $this->userService = $userService;
         $this->shoppingCartService = $shoppingCartService;
+        $this->wishlistService = $wishlistService;
     }
 
     public function profileInfo(){
@@ -49,10 +58,16 @@ class ProfileController extends Controller
     }
 
     public function getWishlist(){
-        $wishlist = $this->shoppingCartService->getShoppingCart(auth()->user());
+        $wishlist = $this->wishlistService->getWishlist(auth()->user());
         return view('profile.pages.wishlist.wishlist')->with([
             'user' => auth()->user(),
             'wishlist' => $wishlist
+        ]);
+    }
+
+    public function getProfileDelivery(){
+        return view('profile.pages.deliveryAddress.index')->with([
+            'user' => auth()->user(),
         ]);
     }
 }

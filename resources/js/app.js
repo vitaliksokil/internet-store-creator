@@ -8,7 +8,6 @@ import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel'
 const Swal = require('sweetalert2')
 
-
 $(document).ready(function(){
 
     $('.owl-carousel').owlCarousel({
@@ -135,6 +134,12 @@ $(document).ready(function(){
             });
 
         });
+    });
+
+    $( ".product_quantity" ).change(function(e) {
+        let count = $(this).val();
+        let shoppingCartId = $(this).data('shoppingCartId');
+        $('#product_quantity_'+shoppingCartId).submit()
     });
 
 });

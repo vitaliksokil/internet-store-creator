@@ -29,6 +29,13 @@
                                     Wishlist
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('profile.delivery.get') || request()->routeIs('profile.delivery.edit') ? 'active' : ''}}"
+                                   aria-current="page" href="{{route('profile.delivery.get')}}">
+                                    <i class="fas fa-truck"></i>
+                                    Delivery Address
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

@@ -8436,6 +8436,11 @@ $(document).ready(function () {
       });
     });
   });
+  $(".product_quantity").change(function (e) {
+    var count = $(this).val();
+    var shoppingCartId = $(this).data('shoppingCartId');
+    $('#product_quantity_' + shoppingCartId).submit();
+  });
 });
 
 /***/ }),

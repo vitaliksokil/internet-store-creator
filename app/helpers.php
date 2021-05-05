@@ -15,7 +15,11 @@ function formatPrice($price){
 function getSumOfProducts($products){
     $sum = 0;
     foreach ($products as $item) {
-        $sum += $item->product->getAttributes()['price'] * $item->count;
+        if(isset($item->count)){
+            $sum += $item->product->getAttributes()['price'] * $item->count;
+        }else{
+            $sum += $item->product->getAttributes()['price'];
+        }
     }
     return $sum;
 }

@@ -4,15 +4,13 @@
     <section id="shop-index">
 
         <div class=" bg-white border-b border-gray-200">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse">
-                    <a class="btn btn-primary ml-auto mr-5" type="submit" href="{{route('profile.info.edit')}}">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                </div>
-            </nav>
             <div class="main-bar">
                 <div class="container">
+
+                    @if (Session::has('message'))
+                        <div class="alert alert-success">{{ Session::get('message') }}</div>
+                    @endif
+
                     <section>
                             @forelse($shoppingCart as $item)
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
@@ -47,7 +45,11 @@
                                                                     <div class="def-number-input number-input safari_only mb-0 w-100">
                                                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                                                                 class="minus"></button>
-                                                                        <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                                                        <form action="{{route('shopping-cart.add-count')}}" method="post" id="product_quantity_{{$product->id}}">
+                                                                            @csrf
+                                                                            <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
+                                                                            <input class="quantity product_quantity" min="1" name="count" value="{{$product->count}}" type="number" data-shopping-cart-id="{{$product->id}}">
+                                                                        </form>
                                                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                                                                                 class="plus"></button>
                                                                     </div>
@@ -58,10 +60,21 @@
                                                             </div>
                                                             <div class="d-flex justify-content-between align-items-center ">
                                                                 <div>
-                                                                    <a href="#!" type="button" class=" btn btn-danger card-link-secondary small text-uppercase mr-3"><i
-                                                                            class="fas fa-trash-alt mr-1"></i> Remove item </a>
-                                                                    <a href="#!" type="button" class="btn btn-danger  card-link-secondary small text-uppercase"><i
-                                                                            class="fas fa-heart mr-1"></i> Move to wish list </a>
+                                                                    <form action="{{route('shopping-cart.destroy',['shoppingCart'=>$product])}}" method="get" class="d-inline">
+                                                                        @csrf
+                                                                        <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase mr-3">
+                                                                            <i class="fas fa-trash-alt mr-1"></i>
+                                                                            Remove item
+                                                                        </button>
+                                                                    </form>
+                                                                    <form action="{{route('profile.shopping-cart.move-to-wishlist')}}" method="post" class="d-inline">
+                                                                        @csrf
+                                                                        <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
+                                                                        <button type="submit" class="btn btn-danger  card-link-secondary small text-uppercase">
+                                                                            <i class="fas fa-heart mr-1"></i>
+                                                                            Move to wish list
+                                                                        </button>
+                                                                    </form>
                                                                 </div>
                                                                 <p class="mb-0"><span><strong>${{formatPrice($product->product->price)}}</strong></span></p>
                                                             </div>
@@ -76,8 +89,13 @@
                                     </div>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <h5 class="mb-4">Expected shipping delivery</h5>
-                                            <p class="mb-0"> Thu., 12.03. - Mon., 16.03.</p>
+                                            <form action="{{route('shopping-cart.destroy.all',['shop'=>$product->shop_id])}}" method="get" class="d-inline float-right">
+                                                @csrf
+                                                <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
+                                                    <i class="fas fa-trash-alt mr-1"></i>
+                                                    Remove All
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
