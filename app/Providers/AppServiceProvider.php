@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Services\CategoryService\CategoryService;
 use App\Services\CategoryService\CategoryServiceInterface;
+use App\Services\DeliveryAddressService\DeliveryAddressService;
+use App\Services\DeliveryAddressService\DeliveryAddressServiceInterface;
 use App\Services\FeedbacksService\FeedbackService;
 use App\Services\FeedbacksService\FeedbackServiceInterface;
 use App\Services\FileUploaderService\FileUploaderService;
@@ -53,5 +55,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ShoppingCartServiceInterface::class,ShoppingCartService::class);
         $this->app->bind(WishlistServiceInterface::class,WishlistService::class);
         $this->app->bind(NewPostApiServiceInterface::class,NewPostApiService::class);
+        $this->app->bind(DeliveryAddressServiceInterface::class,DeliveryAddressService::class);
     }
 }

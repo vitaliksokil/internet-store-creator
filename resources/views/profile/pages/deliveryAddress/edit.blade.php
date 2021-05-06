@@ -14,10 +14,21 @@
             <div class="main-bar">
                 <div class="container">
                     <section>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="list-group list-group-flush mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="list-group-item">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         @if (Session::has('message'))
                             <div class="alert alert-success">{{ Session::get('message') }}</div>
                         @endif
-                        <form action="">
+                        <form action="{{route('profile.delivery.update')}}" method="post">
+                            @csrf
+                            @method('PUT')
                             <div class="row">
                                 <div class="col-12">
                                     <div class="shop-name"><h2>Delivery address</h2></div>
@@ -39,7 +50,10 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="post_office" class="form-label">Post Office</label>
-                                        <select id="post_office" name="post_office" class="form-control"></select>
+                                        <input type="text" id="post_office" name="post_office" list="warehouses" class="form-control">
+                                        <datalist id="warehouses">
+
+                                        </datalist>
                                     </div>
                                     <div class="mb-3">
                                         <label for="client_name" class="form-label">Name</label>
@@ -58,8 +72,11 @@
                                         <input type="text" class="form-control" id="client_email" name="client_email" required value="{{ '' }}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_phone_number" class="form-label">Phone number</label>
-                                        <input type="text" class="form-control" id="client_phone_number" name="client_phone_number" required value="{{ '' }}">
+                                        <label for="client_phone_number" class="form-label">Phone number(Example: +380981234123 )</label>
+                                        <input type="text" class="form-control" id="client_phone_number" name="client_phone_number" required value="{{ '' }}" placeholder="+380981234123">
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -76,6 +93,8 @@
         document.addEventListener("DOMContentLoaded", function(event) {
             $( document ).ready(function() {
                 $('#area').on('change',function(e){
+                    $('#city').val('')
+                    $('#post_office').val('')
                     let area = this.value
                     $.ajax({
                         url: '/profile/delivery-address/get-cities/'+area,
@@ -84,9 +103,30 @@
                             let cities = response
                             let html = '';
                             for (const city of cities) {
-                                html += `<option>${city.description}</option>`
+                                html += `<option id="${city.ref}" value="${city.description}" />`
                             }
                             $('#cityname').html(html)
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+                });
+                $('#city').on('change',function(e){
+                    $('#post_office').val('')
+                    let city = this.value
+                    var opt = $('option[value="'+city+'"]');
+                    let cityId = opt.attr('id')
+                    $.ajax({
+                        url: '/profile/delivery-address/get-warehouses/' + cityId,
+                        method: 'GET',
+                        success: response => {
+                            let warehouses = response
+                            let html = '';
+                            for (const warehouse of warehouses) {
+                                html += `<option>${warehouse.description}</option>`
+                            }
+                            $('#warehouses').html(html)
                         },
                         error: function (error) {
                             console.log(error);

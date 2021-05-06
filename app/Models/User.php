@@ -62,4 +62,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $img =  $value;
         return Storage::exists($value) ? '/storage/'.$img : '/img/no-image.png';
     }
+
+    public function delivery_addresses(){
+        return $this->belongsTo(DeliveryAddress::class);
+    }
 }

@@ -61,7 +61,9 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
     Route::group(['prefix'=>'delivery-address'],function(){
         Route::get('/',[ProfileController::class,'getProfileDelivery'])->name('profile.delivery.get');
         Route::get('/edit',[DeliveryAddressController::class,'editProfileDelivery'])->name('profile.delivery.edit');
+        Route::put('/update',[DeliveryAddressController::class,'updateDeliveryAddress'])->name('profile.delivery.update');
         Route::get('/get-cities/{area_ref}',[DeliveryAddressController::class,'getCities'])->name('profile.delivery.get.cities');
+        Route::get('/get-warehouses/{city_ref}',[DeliveryAddressController::class,'getWarehouses'])->name('profile.delivery.get.warehouses');
     });
 });
 
