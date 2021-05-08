@@ -12,7 +12,7 @@
                     @endif
 
                     <section>
-                            @forelse($shoppingCart as $item)
+                        @forelse($orders as $item)
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
 
                                 <div class="col-lg-8">
@@ -126,11 +126,7 @@
                                                     <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
-                                            <form action="{{route('profile.orders.create')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Order</button>
-                                            </form>
+                                            <button type="button" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Order</button>
                                         </div>
                                     </div>
                                 </div>

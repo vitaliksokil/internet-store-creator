@@ -10,6 +10,7 @@ class DeliveryAddress extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'area',
         'city',
         'post_office',

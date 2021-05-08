@@ -16,9 +16,9 @@ class DeliveryAddressService implements DeliveryAddressServiceInterface
         $area = Area::where('ref',$data['area'])->firstOrFail();
         $data['area'] = $area->description;
         $insertData = array_merge($data,['user_id' => $user->id]);
-        if($user->delivery_addresses()->exists()){
+        if($user->delivery_address()->exists()){
             // update
-            return $user->delivery_addresses()->update($insertData);
+            return $user->delivery_address()->update($insertData);
         }else{
             // create
             return DeliveryAddress::create($insertData);

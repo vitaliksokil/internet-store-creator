@@ -66,8 +66,10 @@ class ProfileController extends Controller
     }
 
     public function getProfileDelivery(){
+        $user = auth()->user();
         return view('profile.pages.deliveryAddress.index')->with([
-            'user' => auth()->user(),
+            'user' => $user,
+            'deliveryAddress' => $user->delivery_address
         ]);
     }
 }

@@ -269,3 +269,14 @@ select {
 
 /*products*/
 
+
+/*stripe*/
+.stripe-connect-btn{
+    border: 1px solid #8128ff;
+}
+
+.stripe-connect-btn img{
+    display: inline;
+    border-right: 1px solid black;
+    width: 90px;
+}

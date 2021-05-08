@@ -1,3 +1,6 @@
+@php
+$shop = getShop()
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -46,6 +49,18 @@
                                                     request()->routeIs('shop.theme.edit') ? 'active' : ''}}" aria-current="page" href="{{route('shop.theme.index')}}">
                                     <i class="fas fa-palette"></i>
                                     Themes
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('shop.orders.index')  ? 'active' : ''}}" aria-current="page" href="{{route('shop.orders.index')}}">
+                                    <i class="fas fa-truck-loading"></i>
+                                    Orders
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('shop.stripe.index')  ? 'active' : ''}}" aria-current="page" href="{{route('shop.stripe.index')}}">
+                                    <i class="fas fa-money-check-alt"></i>
+                                    Stripe Connect
                                 </a>
                             </li>
                         </ul>

@@ -30,9 +30,11 @@ class DeliveryAddressController extends Controller
 
     public function editProfileDelivery(){
         $areas = Area::all();
+        $user = auth()->user();
         return view('profile.pages.deliveryAddress.edit')->with([
-            'user' => auth()->user(),
-            'areas' => $areas
+            'user' => $user,
+            'areas' => $areas,
+            'deliveryAddress' => $user->delivery_address
         ]);
     }
     public function getCities($area_ref){
@@ -47,7 +49,6 @@ class DeliveryAddressController extends Controller
     public function updateDeliveryAddress(DeliveryAddressUpdateRequest $request){
         $data = $request->validated();
         $this->deliveryAddressService->createOrUpdate(auth()->user(),$data);
-        // todo change message + add to edit template values
-        return redirect()->route('profile.delivery.get')->with(['message'=>__('messages.shop_updated')]);
+        return redirect()->route('profile.delivery.get')->with(['message'=>__('messages.delivery_address_update')]);
     }
 }

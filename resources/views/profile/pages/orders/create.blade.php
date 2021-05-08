@@ -10,9 +10,8 @@
                     @if (Session::has('message'))
                         <div class="alert alert-success">{{ Session::get('message') }}</div>
                     @endif
-
+                    <h1>Create order</h1>
                     <section>
-                            @forelse($shoppingCart as $item)
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
 
                                 <div class="col-lg-8">
@@ -45,13 +44,8 @@
                                                                     <div class="def-number-input number-input safari_only mb-0 w-100">
                                                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                                                                 class="minus"></button>
-                                                                        <form action="{{route('shopping-cart.add-count')}}" method="post" id="product_quantity_{{$product->id}}">
-                                                                            @csrf
                                                                             <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
-                                                                            <input class="quantity product_quantity" min="1" name="count" value="{{$product->count}}" type="number" data-shopping-cart-id="{{$product->id}}">
-                                                                        </form>
-                                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                                                class="plus"></button>
+                                                                            <input class="quantity product_quantity" disabled min="1" name="count" value="{{$product->count}}" type="number" data-shopping-cart-id="{{$product->id}}">
                                                                     </div>
                                                                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
                                                                         Count
@@ -60,21 +54,6 @@
                                                             </div>
                                                             <div class="d-flex justify-content-between align-items-center ">
                                                                 <div>
-                                                                    <form action="{{route('shopping-cart.destroy',['shoppingCart'=>$product])}}" method="get" class="d-inline">
-                                                                        @csrf
-                                                                        <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase mr-3">
-                                                                            <i class="fas fa-trash-alt mr-1"></i>
-                                                                            Remove item
-                                                                        </button>
-                                                                    </form>
-                                                                    <form action="{{route('profile.shopping-cart.move-to-wishlist')}}" method="post" class="d-inline">
-                                                                        @csrf
-                                                                        <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
-                                                                        <button type="submit" class="btn btn-danger  card-link-secondary small text-uppercase">
-                                                                            <i class="fas fa-heart mr-1"></i>
-                                                                            Move to wish list
-                                                                        </button>
-                                                                    </form>
                                                                 </div>
                                                                 <p class="mb-0"><span><strong>${{formatPrice($product->product->price)}}</strong></span></p>
                                                             </div>
@@ -89,13 +68,10 @@
                                     </div>
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <form action="{{route('shopping-cart.destroy.all',['shop'=>$product->shop_id])}}" method="get" class="d-inline float-right">
-                                                @csrf
-                                                <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
-                                                    <i class="fas fa-trash-alt mr-1"></i>
-                                                    Remove All
-                                                </button>
-                                            </form>
+                                            <a href="{{URL::previous()}}" type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
+                                                <i class="fas fa-ban"></i>
+                                                Cancel
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -136,9 +112,6 @@
                                 </div>
                             </div>
                             <hr>
-                        @empty
-                            Your Shopping Cart is empty
-                        @endforelse
                     </section>
                 </div>
             </div>

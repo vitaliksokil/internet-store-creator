@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\DeliveryAddressController;
+use App\Http\Controllers\OrderHistoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Shop\CategoryController;
 use App\Http\Controllers\Shop\FeedbackController;
+use App\Http\Controllers\Shop\OrdersController;
 use App\Http\Controllers\Shop\ProductController;
 use App\Http\Controllers\Shop\ShopController;
 use App\Http\Controllers\Shop\ShopSettingsController;
+use App\Http\Controllers\Shop\StripeController;
 use App\Http\Controllers\Shop\ThemeController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\WishlistController;
@@ -64,6 +67,11 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
         Route::put('/update',[DeliveryAddressController::class,'updateDeliveryAddress'])->name('profile.delivery.update');
         Route::get('/get-cities/{area_ref}',[DeliveryAddressController::class,'getCities'])->name('profile.delivery.get.cities');
         Route::get('/get-warehouses/{city_ref}',[DeliveryAddressController::class,'getWarehouses'])->name('profile.delivery.get.warehouses');
+    });
+    Route::group(['prefix'=>'orders'],function(){
+        Route::get('/',[OrderHistoryController::class,'index'])->name('profile.orders.get');
+        Route::post('/',[OrderHistoryController::class,'store'])->name('profile.orders.store');
+        Route::post('/create',[OrderHistoryController::class,'create'])->name('profile.orders.create');
     });
 });
 
@@ -122,6 +130,14 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
         Route::get('/',[ThemeController::class,'index'])->name('shop.theme.index');
         Route::get('/edit',[ThemeController::class,'edit'])->name('shop.theme.edit');
         Route::put('/edit',[ThemeController::class,'update'])->name('shop.theme.update');
+    });
+    Route::group(['prefix'=>'stripe'],function(){
+        Route::get('/',[StripeController::class,'index'])->name('shop.stripe.index');
+        Route::get('/connect-stripe',[StripeController::class,'connect'])->name('shop.stripe.connect');
+    });
+    Route::group(['prefix'=>'orders'],function(){
+        Route::get('/',[OrdersController::class,'index'])->name('shop.orders.index');
+
     });
 });
 

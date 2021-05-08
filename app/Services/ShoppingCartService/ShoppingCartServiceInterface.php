@@ -16,4 +16,5 @@ interface ShoppingCartServiceInterface
     public function delete(ShoppingCart $shoppingCart);
     public function deleteAll(Shop $shop);
     public function changeCount(ShoppingCart $shoppingCart, $count);
+    public function getShoppingCartForOrder(User $user, $shopId);
 }

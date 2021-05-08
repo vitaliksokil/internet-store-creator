@@ -43015,6 +43015,18 @@ select {
 
 /*products*/
 
+/*stripe*/
+
+.stripe-connect-btn{
+  border: 1px solid #8128ff;
+}
+
+.stripe-connect-btn img{
+  display: inline;
+  border-right: 1px solid black;
+  width: 90px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -196054,5 +196066,4 @@ select {
             animation: bounce 1s infinite;
   }
 }
-
 

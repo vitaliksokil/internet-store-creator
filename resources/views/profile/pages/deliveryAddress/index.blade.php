@@ -22,35 +22,35 @@
                                 <div class="shop-name"><h2>Delivery address</h2></div>
                                 <div class="mb-3">
                                     <label for="area" class="form-label">Area</label>
-                                    <input disabled type="text" class="form-control" id="area" name="area" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="area" name="area" required value="{{ $deliveryAddress->area ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="city" class="form-label">City</label>
-                                    <input disabled type="text" class="form-control" id="city" name="city" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="city" name="city" required value="{{ $deliveryAddress->city ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="post_office" class="form-label">Post Office</label>
-                                    <input disabled type="text" class="form-control" id="post_office" name="post_office" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="post_office" name="post_office" required value="{{ $deliveryAddress->post_office ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="client_name" class="form-label">Name</label>
-                                    <input disabled type="text" class="form-control" id="client_name" name="client_name" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="client_name" name="client_name" required value="{{ $deliveryAddress->client_name ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="client_surname" class="form-label">Surname</label>
-                                    <input disabled type="text" class="form-control" id="client_surname" name="client_surname" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="client_surname" name="client_surname" required value="{{ $deliveryAddress->client_surname ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="client_middlename" class="form-label">Middle name</label>
-                                    <input disabled type="text" class="form-control" id="client_middlename" name="client_middlename" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="client_middlename" name="client_middlename" required value="{{ $deliveryAddress->client_middlename ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="client_email" class="form-label">Email</label>
-                                    <input disabled type="text" class="form-control" id="client_email" name="client_email" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="client_email" name="client_email" required value="{{ $deliveryAddress->client_email ?? '' }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="client_phone_number" class="form-label">Phone number</label>
-                                    <input disabled type="text" class="form-control" id="client_phone_number" name="client_phone_number" required value="{{ '' }}">
+                                    <input disabled type="text" class="form-control" id="client_phone_number" name="client_phone_number" required value="{{ $deliveryAddress->client_phone_number ?? '' }}">
                                 </div>
                             </div>
                         </div>

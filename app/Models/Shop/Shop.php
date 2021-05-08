@@ -20,7 +20,8 @@ class Shop extends Model
         'phone_number',
         'email',
         'shop_type_id',
-        'theme_id'
+        'theme_id',
+        'account_id',
     ];
 
     const FILE_PATH = 'shops';

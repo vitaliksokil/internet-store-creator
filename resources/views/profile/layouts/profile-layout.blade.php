@@ -1,3 +1,6 @@
+@php
+$user = auth()->user()
+@endphp
 <x-app-layout>
     <section id="admin-menu">
         <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -34,6 +37,13 @@
                                    aria-current="page" href="{{route('profile.delivery.get')}}">
                                     <i class="fas fa-truck"></i>
                                     Delivery Address
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('profile.orders.get') ? 'active' : ''}}"
+                                   aria-current="page" href="{{route('profile.orders.get')}}">
+                                    <i class="fas fa-truck-loading"></i>
+                                    Orders
                                 </a>
                             </li>
                         </ul>

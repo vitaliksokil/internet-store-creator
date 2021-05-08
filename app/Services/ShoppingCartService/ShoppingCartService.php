@@ -28,6 +28,21 @@ class ShoppingCartService implements ShoppingCartServiceInterface
         return $shoppingCart;
     }
 
+    public function getShoppingCartForOrder(User $user, $shopId){
+        $shoppingCart =ShoppingCart::where('user_id',$user->id)
+            ->where('shop_id',$shopId)
+            ->get();
+        $shoppingCart = $shoppingCart->groupBy('shop_id');
+        $shoppingCart = $shoppingCart->map(function($item,$key){
+            return [
+                'products' => $item,
+                'total_amount' => getSumOfProducts($item),
+                'shop' => Shop::find($key)
+            ];
+        });
+        return $shoppingCart->first();
+    }
+
     public function store(array $data)
     {
         $product = Product::find($data['product_id']);

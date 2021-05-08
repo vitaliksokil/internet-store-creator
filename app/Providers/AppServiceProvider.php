@@ -20,6 +20,8 @@ use App\Services\ShopService\ShopService;
 use App\Services\ShopService\ShopServiceInterface;
 use App\Services\ShopSettingsService\ShopSettingsService;
 use App\Services\ShopSettingsService\ShopSettingsServiceInterface;
+use App\Services\StripeService\StripeService;
+use App\Services\StripeService\StripeServiceInterface;
 use App\Services\UserService\UserService;
 use App\Services\UserService\UserServiceInterface;
 use App\Services\Wishlist\WishlistService;
@@ -56,5 +58,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(WishlistServiceInterface::class,WishlistService::class);
         $this->app->bind(NewPostApiServiceInterface::class,NewPostApiService::class);
         $this->app->bind(DeliveryAddressServiceInterface::class,DeliveryAddressService::class);
+        $this->app->bind(StripeServiceInterface::class,StripeService::class);
     }
 }

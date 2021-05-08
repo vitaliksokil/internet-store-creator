@@ -27,4 +27,5 @@ return [
     'removed_all_wishlist' => 'All items were removed from your wishlist',
     'removed_all_shopping_cart' => 'All items were removed from your shopping cart',
     'shopping_cart_updated' => 'Your shopping cart was updated!',
+    'delivery_address_update' => 'Your delivery address is updated!',
 ];
