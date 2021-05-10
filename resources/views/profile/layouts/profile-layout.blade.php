@@ -40,7 +40,7 @@ $user = auth()->user()
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('profile.orders.get') ? 'active' : ''}}"
+                                <a class="nav-link {{request()->routeIs('profile.orders.get') || request()->routeIs('profile.orders.show')  ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.orders.get')}}">
                                     <i class="fas fa-truck-loading"></i>
                                     Orders

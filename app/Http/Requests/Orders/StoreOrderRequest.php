@@ -4,7 +4,7 @@ namespace App\Http\Requests\Orders;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateOrderRequest extends FormRequest
+class StoreOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,9 +13,12 @@ class CreateOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        $result = auth()->user()->delivery_address()->exists();
-        if(!$result) abort(403,"<a href='".route('profile.delivery.get')."'>You must fill up your delivery address first</a>");
-        return $result;
+        return true;
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge(['user_id'=>auth()->user()->id]);
     }
 
     /**
@@ -26,7 +29,12 @@ class CreateOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_id' => 'required|integer|exists:shops,id',
+            'products_ids' => 'required',
+            'total_price' => 'required',
+            'shop_id' => 'required',
+            'payment_type' => 'required',
+
+            'user_id' => 'required',
         ];
     }
 }

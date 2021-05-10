@@ -12,6 +12,8 @@ use App\Services\FileUploaderService\FileUploaderService;
 use App\Services\FileUploaderService\FileUploaderServiceInterface;
 use App\Services\NewPostApiService\NewPostApiService;
 use App\Services\NewPostApiService\NewPostApiServiceInterface;
+use App\Services\OrderService\OrderService;
+use App\Services\OrderService\OrderServiceInterface;
 use App\Services\ProductService\ProductService;
 use App\Services\ProductService\ProductServiceInterface;
 use App\Services\ShoppingCartService\ShoppingCartService;
@@ -27,6 +29,7 @@ use App\Services\UserService\UserServiceInterface;
 use App\Services\Wishlist\WishlistService;
 use App\Services\Wishlist\WishlistServiceInterface;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Cashier::ignoreMigrations();
     }
 
     /**
@@ -47,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $this->app->bind(FileUploaderServiceInterface::class,FileUploaderService::class);
         $this->app->bind(ShopServiceInterface::class,ShopService::class);
         $this->app->bind(CategoryServiceInterface::class,CategoryService::class);
@@ -59,5 +63,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NewPostApiServiceInterface::class,NewPostApiService::class);
         $this->app->bind(DeliveryAddressServiceInterface::class,DeliveryAddressService::class);
         $this->app->bind(StripeServiceInterface::class,StripeService::class);
+        $this->app->bind(OrderServiceInterface::class,OrderService::class);
     }
 }

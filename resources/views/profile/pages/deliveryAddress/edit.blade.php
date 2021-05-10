@@ -39,7 +39,7 @@
                                             @foreach($areas as $area)
                                                 <option value="{{$area->ref}}"
                                                         data-get-city-url="{{route('profile.delivery.get.cities',['area_ref'=>$area->ref])}}"
-                                                        {{$deliveryAddress->area == $area->description ? 'selected' : '' }}
+                                                        {{isset($deliveryAddress) && $deliveryAddress->area == $area->description ? 'selected' : '' }}
                                                 >
                                                     {{$area->description}}
                                                 </option>

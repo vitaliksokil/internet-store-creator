@@ -1,26 +1,41 @@
-@extends('profile.layouts.profile-layout')
+@extends('shop.main')
 
 @section('main')
     <section id="shop-index">
-
+       @include('components.back-btn')
         <div class=" bg-white border-b border-gray-200">
             <div class="main-bar">
                 <div class="container">
+                    <h1>Замовлення № {{$item['order']->id}}</h1>
 
                     @include('session_messages.error_403')
                     @include('session_messages.message')
 
-
-                        <section>
-                            @forelse($shoppingCart as $item)
+                    <section>
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
 
                                 <div class="col-lg-8">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            @if($item['order']->status)
+                                                <button type="submit" disabled class=" btn btn-success card-link-secondary small text-uppercase  mr-3">
+                                                    <i class="fas fa-check"></i>
+                                                    Підтверджено!
+                                                </button>
+                                            @else
+                                                <button type="submit" disabled class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
+                                                    <i class="fas fa-trash-alt mr-1"></i>
+                                                    Не підтверджено!
+                                                </button>
+                                            @endif
+
+                                        </div>
+                                    </div>
                                     <div class="card wish-list mb-3">
                                         <div class="card-body">
                                             <h5 class="mb-4"><a href="{{route('shop.show',['shop' => $item['shop']])}}"><img src="{{$item['shop']->img}}" alt="" style="width: 80px;display: inline"></a>
                                                 <a href="{{route('shop.show',['shop' => $item['shop']])}}">"{{$item['shop']->name}} Shop"</a>
-                                                Cart (<span>{{$item['products']->count()}}</span> items)
+                                                (<span>{{$item['products']->count()}}</span> товари)
                                             </h5>
                                             @forelse($item['products'] as $product)
                                                 <div class="row mb-4">
@@ -45,36 +60,16 @@
                                                                     <div class="def-number-input number-input safari_only mb-0 w-100">
                                                                         <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                                                                                 class="minus"></button>
-                                                                        <form action="{{route('shopping-cart.add-count')}}" method="post" id="product_quantity_{{$product->id}}">
-                                                                            @csrf
                                                                             <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
-                                                                            <input class="quantity product_quantity" min="1" name="count" value="{{$product->count}}" type="number" data-shopping-cart-id="{{$product->id}}">
-                                                                        </form>
-                                                                        <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                                                class="plus"></button>
+                                                                            <input class="quantity product_quantity" disabled min="1" name="count" value="{{$product->count}}" type="number" data-shopping-cart-id="{{$product->id}}">
                                                                     </div>
                                                                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                                                                        Count
+                                                                        Кількість
                                                                     </small>
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex justify-content-between align-items-center ">
                                                                 <div>
-                                                                    <form action="{{route('shopping-cart.destroy',['shoppingCart'=>$product])}}" method="get" class="d-inline">
-                                                                        @csrf
-                                                                        <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase mr-3">
-                                                                            <i class="fas fa-trash-alt mr-1"></i>
-                                                                            Remove item
-                                                                        </button>
-                                                                    </form>
-                                                                    <form action="{{route('profile.shopping-cart.move-to-wishlist')}}" method="post" class="d-inline">
-                                                                        @csrf
-                                                                        <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
-                                                                        <button type="submit" class="btn btn-danger  card-link-secondary small text-uppercase">
-                                                                            <i class="fas fa-heart mr-1"></i>
-                                                                            Move to wish list
-                                                                        </button>
-                                                                    </form>
                                                                 </div>
                                                                 <p class="mb-0"><span><strong>${{formatPrice($product->product->price)}}</strong></span></p>
                                                             </div>
@@ -87,22 +82,12 @@
                                             @endforelse
                                         </div>
                                     </div>
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <form action="{{route('shopping-cart.destroy.all',['shop'=>$product->shop_id])}}" method="get" class="d-inline float-right">
-                                                @csrf
-                                                <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
-                                                    <i class="fas fa-trash-alt mr-1"></i>
-                                                    Remove All
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
+
                                 <div class="col-lg-4">
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <h5 class="mb-3">The total amount of</h5>
+                                            <h5 class="mb-3">Загальна сума</h5>
                                             <ul class="list-group list-group-flush">
                                                 @forelse($item['products'] as $product)
                                                     @if($loop->last)
@@ -121,24 +106,27 @@
                                                 @endforelse
                                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                                     <div>
-                                                        <strong>The total amount of</strong>
+                                                        <strong>Загальна сума</strong>
                                                     </div>
                                                     <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
-                                            <form action="{{route('profile.orders.create')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Order</button>
-                                            </form>
+                                            <div class="d-flex flex-column align-content-center text-center">
+                                                @if($item['order']->payment_type == 1)
+                                                    <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light" disabled>
+                                                        <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Метод оплати - Online
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="btn btn-outline-danger btn-block waves-effect waves-light" disabled>
+                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Метод оплати - Offline
+                                                    </button>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                        @empty
-                            Your Shopping Cart is empty
-                        @endforelse
                     </section>
                 </div>
             </div>

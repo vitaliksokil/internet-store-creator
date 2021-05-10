@@ -6,11 +6,11 @@
         <div class=" bg-white border-b border-gray-200">
             <div class="main-bar">
                 <div class="container">
-
-                    @if (Session::has('message'))
-                        <div class="alert alert-success">{{ Session::get('message') }}</div>
-                    @endif
                     <h1>Create order</h1>
+
+                    @include('session_messages.error_403')
+                    @include('session_messages.message')
+
                     <section>
                             <div class="row p-3" style="background: {{$item['shop']->settings->branding_second_color}};border-radius: 10px">
 
@@ -102,11 +102,28 @@
                                                     <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
-                                            <form action="{{route('profile.orders.create')}}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Order</button>
-                                            </form>
+                                            <div class="d-flex flex-column align-content-center text-center">
+                                                <form action="{{route('profile.orders.store')}}" method="post" class="mb-2">
+                                                    @csrf
+                                                    <input type="hidden" name="products_ids" value="{{$item['products']->pluck('id')}}">
+                                                    <input type="hidden" name="total_price" value="{{$item['total_amount']}}">
+                                                    <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
+                                                    <input type="hidden" name="payment_type" value="{{\App\Models\Order::OFFLINE_PAYMENT_TYPE}}">
+                                                    <button type="submit" class="btn btn-outline-danger btn-block waves-effect waves-light">
+                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Confirm order with offline payment
+                                                    </button>
+                                                </form>
+                                                <form action="{{route('profile.orders.store')}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="products_ids" value="{{$item['products']->pluck('id')}}">
+                                                    <input type="hidden" name="total_price" value="{{$item['total_amount']}}">
+                                                    <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
+                                                    <input type="hidden" name="payment_type" value="{{\App\Models\Order::ONLINE_PAYMENT_TYPE}}">
+                                                    <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light">
+                                                        <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Confirm order with Online payment
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

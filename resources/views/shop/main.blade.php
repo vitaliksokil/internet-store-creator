@@ -52,7 +52,7 @@ $shop = getShop()
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{request()->routeIs('shop.orders.index')  ? 'active' : ''}}" aria-current="page" href="{{route('shop.orders.index')}}">
+                                <a class="nav-link {{request()->routeIs('shop.orders.index') || request()->routeIs('shop.orders.show')   ? 'active' : ''}}" aria-current="page" href="{{route('shop.orders.index')}}">
                                     <i class="fas fa-truck-loading"></i>
                                     Orders
                                 </a>

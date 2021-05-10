@@ -43027,6 +43027,12 @@ select {
   width: 90px;
 }
 
+.image-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

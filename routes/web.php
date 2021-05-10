@@ -70,6 +70,7 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
     });
     Route::group(['prefix'=>'orders'],function(){
         Route::get('/',[OrderHistoryController::class,'index'])->name('profile.orders.get');
+        Route::get('/{order}',[OrderHistoryController::class,'show'])->name('profile.orders.show');
         Route::post('/',[OrderHistoryController::class,'store'])->name('profile.orders.store');
         Route::post('/create',[OrderHistoryController::class,'create'])->name('profile.orders.create');
     });
@@ -137,6 +138,7 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
     });
     Route::group(['prefix'=>'orders'],function(){
         Route::get('/',[OrdersController::class,'index'])->name('shop.orders.index');
+        Route::get('/{order}',[OrdersController::class,'show'])->name('shop.orders.show');
 
     });
 });
