@@ -10,6 +10,8 @@ use App\Services\FeedbacksService\FeedbackService;
 use App\Services\FeedbacksService\FeedbackServiceInterface;
 use App\Services\FileUploaderService\FileUploaderService;
 use App\Services\FileUploaderService\FileUploaderServiceInterface;
+use App\Services\MailSenderService\MailSenderSenderService;
+use App\Services\MailSenderService\MailSenderServiceInterface;
 use App\Services\NewPostApiService\NewPostApiService;
 use App\Services\NewPostApiService\NewPostApiServiceInterface;
 use App\Services\OrderService\OrderService;
@@ -64,5 +66,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DeliveryAddressServiceInterface::class,DeliveryAddressService::class);
         $this->app->bind(StripeServiceInterface::class,StripeService::class);
         $this->app->bind(OrderServiceInterface::class,OrderService::class);
+        $this->app->bind(MailSenderServiceInterface::class,MailSenderSenderService::class);
     }
 }
