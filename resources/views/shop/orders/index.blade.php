@@ -35,8 +35,21 @@
                     <td>{!! \App\Models\Order::IS_PAID_ICONS[$order->is_paid] !!}</td>
                     <td>{!! \App\Models\Order::STATUS_ICONS[$order->status] !!}</td>
                     <td>{{$order->created_at}}</td>
-                    <td>
-                        <a href="{{route('shop.orders.show',['order'=>$order])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                    <td class="d-flex flex-column">
+                        <form class="mb-2">
+                            <a href="{{route('shop.orders.show',['order'=>$order])}}" class="w-100 btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                        </form>
+                        <form action="{{route('shop.orders.confirm',['order'=>$order])}}" class="mb-2" method="post" onsubmit="return confirm('Ви впевнені, що хочете підтвердити дане замовлення?')">
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn btn-success w-100" {{$order->status ? 'disabled' : ''}}><i class="fas fa-check"></i>Підтвердити</button>
+                        </form>
+                        <form method="post" action="{{route('shop.orders.delete',['order'=>$order])}}" class="mb-2" onsubmit="return confirm('Ви впевнені, що хочете видалити дане замовлення?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger w-100"><i class="fas fa-trash-alt"></i>Видалити</button>
+                        </form>
+
                     </td>
                 </tr>
             @empty

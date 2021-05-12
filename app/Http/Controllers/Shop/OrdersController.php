@@ -33,4 +33,14 @@ class OrdersController extends Controller
             'item' => $orderShow
         ]);
     }
+
+    public function delete(Order $order){
+        $this->orderService->delete($order);
+        return redirect()->route('shop.orders.index')->with(['message'=>__('messages.order_deleted')]);
+    }
+
+    public function confirm(Order $order){
+        $this->orderService->confirm($order);
+        return redirect()->back()->with(['message'=>__('messages.order_confirmed')]);
+    }
 }

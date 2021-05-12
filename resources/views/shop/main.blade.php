@@ -19,13 +19,13 @@ $shop = getShop()
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('shop.index') || request()->routeIs('shop.edit') ? 'active' : ''}}" aria-current="page" href="{{route('shop.index')}}">
                                     <i class="fas fa-home"></i>
-                                    Home
+                                    Домашня сторінка
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('category.index') || request()->routeIs('category.create') || request()->routeIs('category.edit') ? 'active' : ''}}" aria-current="page" href="{{route('category.index')}}">
                                     <i class="fas fa-th-large"></i>
-                                    Categories
+                                    Категорії
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -34,27 +34,33 @@ $shop = getShop()
                                                     request()->routeIs('category.products') ||
                                                     request()->routeIs('product.edit') ? 'active' : ''}}" aria-current="page" href="{{route('product.index')}}">
                                     <i class="fas fa-quidditch"></i>
-                                    Products
+                                    Товари
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('settings.index') ||
                                                     request()->routeIs('settings.edit') ? 'active' : ''}}" aria-current="page" href="{{route('settings.index')}}">
                                     <i class="fas fa-sliders-h"></i>
-                                    Settings
+                                    Налаштування
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('shop.theme.index') ||
                                                     request()->routeIs('shop.theme.edit') ? 'active' : ''}}" aria-current="page" href="{{route('shop.theme.index')}}">
                                     <i class="fas fa-palette"></i>
-                                    Themes
+                                    Теми
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('shop.orders.index') || request()->routeIs('shop.orders.show')   ? 'active' : ''}}" aria-current="page" href="{{route('shop.orders.index')}}">
                                     <i class="fas fa-truck-loading"></i>
-                                    Orders
+                                    Замовлення
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{request()->routeIs('shop.feedbacks.index') || request()->routeIs('shop.feedbacks.index')   ? 'active' : ''}}" aria-current="page" href="{{route('shop.feedbacks.index')}}">
+                                    <i class="fas fa-comments"></i>
+                                    Відгуки
                                 </a>
                             </li>
                             <li class="nav-item">

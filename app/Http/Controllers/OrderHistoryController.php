@@ -49,7 +49,7 @@ class OrderHistoryController extends Controller
     }
 
     public function show(Order $order){
-        $orderShow = $this->orderService->getShowOrder(auth()->user(),$order);
+        $orderShow = $this->orderService->getShowOrder($order);
         return view('profile.pages.orders.show')->with([
             'item' => $orderShow
         ]);

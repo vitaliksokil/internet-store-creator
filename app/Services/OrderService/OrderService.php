@@ -55,4 +55,11 @@ class OrderService implements OrderServiceInterface
         return Order::where('shop_id',$shop->id)->orderBy('id','desc')->paginate(Order::ORDERS_PAGINATION_COUNT);
 
     }
+    public function delete(Order $order){
+        return $order->delete();
+    }
+    public function confirm(Order $order){
+        $order->update(['status' => Order::STATUS_CONFIRMED]);
+        return $order;
+    }
 }

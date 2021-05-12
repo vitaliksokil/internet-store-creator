@@ -2,7 +2,7 @@
 
 @section('main')
     <section id="shop-index">
-       @include('components.back-btn')
+       @include('components.back-btn',['url' => route('shop.orders.index')])
         <div class=" bg-white border-b border-gray-200">
             <div class="main-bar">
                 <div class="container">
@@ -24,7 +24,7 @@
                                                 </button>
                                             @else
                                                 <button type="submit" disabled class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
-                                                    <i class="fas fa-trash-alt mr-1"></i>
+                                                    <i class="fas fa-times"></i>
                                                     Не підтверджено!
                                                 </button>
                                             @endif
@@ -82,6 +82,29 @@
                                             @endforelse
                                         </div>
                                     </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="mb-3">Дії</h5>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <form action="{{route('shop.orders.confirm',['order'=>$item['order']])}}" class="mb-2" method="post" onsubmit="return confirm('Ви впевнені, що хочете підтвердити дане замовлення?')">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button class="btn btn-success w-100" {{$item['order']->status ? 'disabled' : ''}}><i class="fas fa-check"></i>Підтвердити</button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-6">
+
+                                                    <form method="post" action="{{route('shop.orders.delete',['order'=>$item['order']])}}" class="mb-2" onsubmit="return confirm('Ви впевнені, що хочете видалити дане замовлення?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger w-100"><i class="fas fa-trash-alt"></i>Видалити</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-4">
@@ -122,6 +145,56 @@
                                                     </button>
                                                 @endif
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <h5 class="mb-3">Дані покупця:</h5>
+                                            @php
+                                                $deliveryAddress = isset($item) ? $item['order']->user->delivery_address : '';
+                                            @endphp
+                                            <ul class="list-group list-group-flush">
+{{--                                                "area" => "Вінницька"--}}
+{{--                                                "city" => "Бар"--}}
+{{--                                                "post_office" => "Відділення №1: вул. Леонтовича, 14"--}}
+{{--                                                "client_name" => "Vitalii Sokil"--}}
+{{--                                                "client_surname" => "Сокіл"--}}
+{{--                                                "client_middlename" => "Святославович"--}}
+{{--                                                "client_email" => "vitaliksokil200@gmail.com"--}}
+{{--                                                "client_phone_number" => "+380986225367"--}}
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Область:
+                                                    <span>{{$deliveryAddress->area}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Місто:
+                                                    <span>{{$deliveryAddress->city}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Відділення:
+                                                    <span>{{$deliveryAddress->post_office}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Ім'я:
+                                                    <span>{{$deliveryAddress->client_name}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Фамілія:
+                                                    <span>{{$deliveryAddress->client_surname}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Ім'я по батькові:
+                                                    <span>{{$deliveryAddress->client_middlename}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Email:
+                                                    <span>{{$deliveryAddress->client_email}}</span>
+                                                </li>
+                                                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    Номер телефону:
+                                                    <span>{{$deliveryAddress->client_phone_number}}</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

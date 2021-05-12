@@ -16,10 +16,13 @@ class Order extends Model
         'shop_id',
         'total_price',
         'payment_method_type',
-        'is_paid'
+        'is_paid',
+        'status'
     ];
 
     const ORDERS_PAGINATION_COUNT = 10;
+    const STATUS_NOT_CONFIRMED = false;
+    const STATUS_CONFIRMED = true;
 
     const ONLINE_PAYMENT_TYPE = 1;
     const OFFLINE_PAYMENT_TYPE = 2;

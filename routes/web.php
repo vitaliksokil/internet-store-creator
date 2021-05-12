@@ -139,6 +139,15 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
     Route::group(['prefix'=>'orders'],function(){
         Route::get('/',[OrdersController::class,'index'])->name('shop.orders.index');
         Route::get('/{order}',[OrdersController::class,'show'])->name('shop.orders.show');
+        Route::delete('/{order}',[OrdersController::class,'delete'])->name('shop.orders.delete');
+        Route::patch('/confirm/{order}',[OrdersController::class,'confirm'])->name('shop.orders.confirm');
+
+    });
+    Route::group(['prefix'=>'feedbacks'],function(){
+        Route::get('/',[FeedbackController::class,'index'])->name('shop.feedbacks.index');
+        Route::get('/{feedback}',[FeedbackController::class,'show'])->name('shop.feedbacks.show');
+        Route::delete('/{feedback}',[FeedbackController::class,'delete'])->name('shop.feedbacks.delete');
+        Route::patch('/confirm/{feedback}',[FeedbackController::class,'confirm'])->name('shop.feedbacks.confirm');
 
     });
 });
