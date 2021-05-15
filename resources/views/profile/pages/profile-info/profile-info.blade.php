@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse">
                     <a class="btn btn-primary ml-auto mr-5" type="submit" href="{{route('profile.info.edit')}}">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> Редагувати
                     </a>
                 </div>
             </nav>

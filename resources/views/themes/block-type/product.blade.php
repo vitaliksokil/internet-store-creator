@@ -14,23 +14,23 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="p-4 mb-3 bg-light rounded">
-                            <h4 class="fst-italic">About "{{$shop->name}}" shop</h4>
+                            <h4 class="fst-italic">Про "{{$shop->name}}" магазин</h4>
                             <p class="mb-0">{{$shop->description}}</p>
                         </div>
 
                         <div class="p-4">
-                            <h4 class="fst-italic">Categories of "{{$shop->name}}" shop</h4>
+                            <h4 class="fst-italic">Категорії "{{$shop->name}}" магазину</h4>
                             <ol class="list-unstyled mb-0">
                                 @forelse($categories as $category)
                                     <li><a href="{{route('shop.products.show',['shop'=>$shop,'category'=>$category])}}">{{$category->title}}</a></li>
                                 @empty
-                                    <li>No Categories</li>
+                                    <li>Немає категорій</li>
                                 @endforelse
                             </ol>
                         </div>
 
                         <div class="p-4">
-                            <h4 class="fst-italic">Recommended products</h4>
+                            <h4 class="fst-italic">Рекомендовані товари</h4>
                             <ol class="list-unstyled">
                                 @forelse($recommendedProducts as $rProduct)
                                     <li class="mb-4">
@@ -40,7 +40,7 @@
                                         </a>
                                     </li>
                                 @empty
-                                    <li>No recommended products</li>
+                                    <li>Немає рекомендованих товарів</li>
                                 @endforelse
                             </ol>
                         </div>
@@ -95,8 +95,8 @@
                                         <div class="bd-example">
                                             <nav>
                                                 <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                                                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
-                                                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Feedbacks</button>
+                                                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Опис</button>
+                                                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Відгуки</button>
                                                 </div>
                                             </nav>
                                             <div class="tab-content" id="nav-tabContent">
@@ -130,11 +130,11 @@
                                                             </div>
                                                         </div>
                                                     @empty
-                                                        No feedbacks
+                                                        Немає відгуків
                                                         <br>
                                                     @endforelse
                                                     @auth
-                                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Feedback</button>
+                                                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Додати відгук</button>
                                                     @endauth
                                                 </div>
                                             </div>
@@ -156,7 +156,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Leave your feedback</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Залиште ваш відгук</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -171,7 +171,7 @@
                             <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="rate" class="form-label">Rate</label>
+                            <label for="rate" class="form-label">Рейтинг</label>
                             <select class="form-select" id="rate" name="rate" aria-label="Default select example">
                                 @for($i=1;$i<=5;$i++)
                                     <option value="{{$i}}">{{$i}}</option>
@@ -179,8 +179,8 @@
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрити</button>
+                            <button type="submit" class="btn btn-primary">Підтвердити</button>
                         </div>
                     </form>
                 </div>

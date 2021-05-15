@@ -27,7 +27,7 @@
                             </ul>
                         </div>
                     @endif
-                    <h3>Edit "{{$product->title}}" product</h3>
+                    <h3>Редагувати "{{$product->title}}" товар</h3>
                     <form method="post" action="{{route('product.update',['product'=>$product])}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

@@ -42,7 +42,7 @@
             @empty
                 <tr>
                     <th scope="row">
-                        No orders!
+                        Немає замовлень
                     </th>
                     <td></td>
                     <td></td>

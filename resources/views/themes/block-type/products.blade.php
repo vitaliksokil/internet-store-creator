@@ -11,7 +11,7 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Products of "{{$category->title}}" category</h2>
+                <h2>Товари "{{$category->title}}" категорії</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
@@ -23,30 +23,31 @@
                                     <h5 class="card-title">{{$product->title}}</h5>
                                     <p class="card-text" style="height: 120px">{{\Illuminate\Support\Str::limit($product->description, 150, '...')}}</p>
                                     <hr>
-                                    <a href="{{route('shop.product.show',['shop' => $shop,'product'=>$product])}}" class="btn btn-primary">
-                                        View <i class="fas fa-eye"></i>
-                                    </a>
-                                    <form action="{{route('shopping-cart.store')}}" method="post" class="d-inline float-right add-to-shopping-cart" data-disabled="{{$product->isInShoppingCart()}}">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
-                                            {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                            <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
-                                        </button>
-                                    </form>
-                                    <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <button type="button" class="btn btn-danger" {{$product->isInWishlist()?'disabled':''}}>
-                                            <i class="fas fa-heart"></i>
-                                        </button>
-                                    </form>
-
+                                    <div class="d-flex">
+                                        <a href="{{route('shop.product.show',['shop' => $shop,'product'=>$product])}}" class="btn btn-primary mr-1">
+                                            Переглянути <i class="fas fa-eye"></i>
+                                        </a>
+                                        <form action="{{route('shopping-cart.store')}}" method="post" class="d-inline float-right add-to-shopping-cart mr-1" data-disabled="{{$product->isInShoppingCart()}}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                                            <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
+                                                {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
+                                                <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
+                                            </button>
+                                        </form>
+                                        <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                                            <button type="button" class="btn btn-danger h-100" {{$product->isInWishlist()?'disabled':''}}>
+                                                <i class="fas fa-heart"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     @empty
-                        No categories
+                        Немає категорій!
                     @endforelse
                 </div>
             </div>

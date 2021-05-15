@@ -6,7 +6,7 @@
         <div class=" bg-white border-b border-gray-200">
             <div class="main-bar">
                 <div class="container">
-                    <h1>Create order</h1>
+                    <h1>Створити замовлення</h1>
 
                     @include('session_messages.error_403')
                     @include('session_messages.message')
@@ -19,7 +19,7 @@
                                         <div class="card-body">
                                             <h5 class="mb-4"><a href="{{route('shop.show',['shop' => $item['shop']])}}"><img src="{{$item['shop']->img}}" alt="" style="width: 80px;display: inline"></a>
                                                 <a href="{{route('shop.show',['shop' => $item['shop']])}}">"{{$item['shop']->name}} Shop"</a>
-                                                Cart (<span>{{$item['products']->count()}}</span> items)
+                                                Корзина (<span>{{$item['products']->count()}}</span> items)
                                             </h5>
                                             @forelse($item['products'] as $product)
                                                 <div class="row mb-4">
@@ -62,7 +62,7 @@
                                                 </div>
                                                 <hr class="mb-4">
                                             @empty
-                                                No products
+                                                Немає товарів
                                             @endforelse
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                                         <div class="card-body">
                                             <a href="{{URL::previous()}}" type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
                                                 <i class="fas fa-ban"></i>
-                                                Cancel
+                                                Відмінити
                                             </a>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                 <div class="col-lg-4">
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <h5 class="mb-3">The total amount of</h5>
+                                            <h5 class="mb-3">Загальна сума</h5>
                                             <ul class="list-group list-group-flush">
                                                 @forelse($item['products'] as $product)
                                                     @if($loop->last)
@@ -93,11 +93,11 @@
                                                         </li>
                                                     @endif
                                                 @empty
-                                                    No products
+                                                    Немає товарів
                                                 @endforelse
                                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                                     <div>
-                                                        <strong>The total amount of</strong>
+                                                        <strong>Загальна сума</strong>
                                                     </div>
                                                     <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
@@ -110,7 +110,7 @@
                                                     <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
                                                     <input type="hidden" name="payment_type" value="{{\App\Models\Order::OFFLINE_PAYMENT_TYPE}}">
                                                     <button type="submit" class="btn btn-outline-danger btn-block waves-effect waves-light">
-                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Confirm order with offline payment
+                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Підтвердити замовлення накладеним платежом
                                                     </button>
                                                 </form>
                                                 <form action="{{route('profile.orders.store')}}" method="post">
@@ -120,7 +120,7 @@
                                                     <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
                                                     <input type="hidden" name="payment_type" value="{{\App\Models\Order::ONLINE_PAYMENT_TYPE}}">
                                                     <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light">
-                                                        <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Confirm order with Online payment
+                                                        <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Підтвердити замовлення оплатою онлайн
                                                     </button>
                                                 </form>
                                             </div>

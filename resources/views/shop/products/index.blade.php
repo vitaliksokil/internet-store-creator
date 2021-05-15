@@ -35,7 +35,7 @@
             @empty
                 <tr>
                     <th scope="row">
-                        No categories!
+                        Немає категорій
                     </th>
                     <td></td>
                     <td></td>

@@ -14,6 +14,7 @@ class Feedback extends Model
         'rate',
         'user_id',
         'product_id',
+        'status'
     ];
 
     const FEEDBACKS_PAGINATION_COUNT = 10;

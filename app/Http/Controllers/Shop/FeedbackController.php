@@ -45,11 +45,13 @@ class FeedbackController extends Controller
 
     public function delete(Feedback $feedback)
     {
-
+        $this->service->delete($feedback);
+        return redirect()->route('shop.feedbacks.index')->with(['message'=>__('messages.feedback_deleted')]);
     }
 
     public function confirm(Feedback $feedback)
     {
-
+        $this->service->confirm($feedback);
+        return redirect()->back()->with(['message'=>__('messages.feedback_confirmed')]);
     }
 }

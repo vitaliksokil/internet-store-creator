@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse">
                     <a class="btn btn-primary ml-5" type="submit" href="{{route('profile.info')}}">
-                        <i class="fas fa-arrow-left"></i> Back
+                        <i class="fas fa-arrow-left"></i> Назад
                     </a>
                 </div>
             </nav>
@@ -32,21 +32,21 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name *</label>
+                                <label for="name" class="form-label">Ім'я *</label>
                                 <input type="text" class="form-control" id="name" name="name" required value="{{ $user->name }}">
                             </div>
                             <div class="mb-3">
-                                <label for="img" class="form-label">Image</label>
+                                <label for="img" class="form-label">Картинка</label>
                                 <img src="{{$user->img}}" alt="" class="img-form">
                                 <input type="file" class="form-control" name="img" id="img">
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Contact Email</label>
+                                <label for="email" class="form-label">Контакт email</label>
                                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Підтвердити</button>
                         </form>
                     </div>
                 </div>

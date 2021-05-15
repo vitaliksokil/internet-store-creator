@@ -33,12 +33,12 @@
 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('profile.info') }}" class="btn btn-warning mr-3"><i class="fas fa-address-card"></i> Customer Profile</a>
-                        <a href="{{ url('/dashboard') }}" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> Seller Dashboard</a>
+                        <a href="{{ route('profile.info') }}" class="btn btn-warning mr-3"><i class="fas fa-address-card"></i> Профіль покупця</a>
+                        <a href="{{ url('/dashboard') }}" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> Профіль продавця</a>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Login</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Логін</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-warning">Register</a>
+                            <a href="{{ route('register') }}" class="btn btn-warning">Регістрація</a>
                         @endif
                     @endauth
                 @endif
@@ -64,7 +64,7 @@
                 <div class="row">
 
                     <div class="col-md pr-md-5 mb-4 mb-md-0">
-                        <h3>About Us</h3>
+                        <h3>Про нас</h3>
                         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam itaque unde facere repellendus, odio et iste voluptatum aspernatur ratione mollitia tempora eligendi maxime est, blanditiis accusamus. Incidunt, aut, quis!</p>
                         <ul class="list-unstyled quick-info mb-4">
                             <li><a href="#" class="d-flex align-items-center"><span class="icon mr-3 icon-phone"></span> +1 291 3912 329</a></li>

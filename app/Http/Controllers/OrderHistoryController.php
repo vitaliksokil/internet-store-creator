@@ -35,8 +35,8 @@ class OrderHistoryController extends Controller
     }
 
     public function store(StoreOrderRequest $request){
-        $this->orderService->store($request->validated());
-        return redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_created')]);
+        $result = $this->orderService->store($request->validated());
+        return $result;
     }
 
 
@@ -44,7 +44,7 @@ class OrderHistoryController extends Controller
         $shopId = $request->validated()['shop_id'];
         $shoppingCart = $this->shoppingCartService->getShoppingCartForOrder(auth()->user(),$shopId);
         return view('profile.pages.orders.create')->with([
-            'item' => $shoppingCart
+            'item' => $shoppingCart,
         ]);
     }
 
@@ -53,5 +53,16 @@ class OrderHistoryController extends Controller
         return view('profile.pages.orders.show')->with([
             'item' => $orderShow
         ]);
+    }
+
+    public function paidSuccess(Order $order){
+        $this->orderService->paymentSuccess($order);
+        session()->flash('message',__('messages.order_payment_success'));
+        return redirect()->route('profile.orders.show',['order'=>$order]);
+    }
+    public function paidCanceled(Order $order){
+//        $this->orderService->paymentSuccess($order);
+        session()->flash('error_403',__('messages.order_payment_canceled'));
+        return redirect()->route('profile.orders.show',['order'=>$order]);
     }
 }

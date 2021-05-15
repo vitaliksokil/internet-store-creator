@@ -4,8 +4,11 @@
 namespace App\Services\StripeService;
 
 
+use App\Models\Order;
 use App\Models\Shop\Shop;
+use App\Models\User;
 use Stripe\BaseStripeClient;
+use Stripe\Customer;
 use Stripe\StripeClient;
 
 class StripeService implements StripeServiceInterface
@@ -18,6 +21,7 @@ class StripeService implements StripeServiceInterface
     public function __construct()
     {
         $this->stripeClient = new StripeClient(config('stripe.stripe_secret'));
+        \Stripe\Stripe::setApiKey(config('stripe.stripe_secret'));
     }
 
     public function issetShopStripeAccount(Shop $shop)
@@ -47,5 +51,38 @@ class StripeService implements StripeServiceInterface
             'type' => 'account_onboarding',
         ]);
         return $link;
+    }
+
+    public function getCheckoutLink(User $user, Shop $shop, Order $order)
+    {
+        $stripeCustomer = $user->createOrGetStripeCustomer();
+        $customer = Customer::create([
+            'customer' => $stripeCustomer,
+            'email' => $user->email
+        ],['stripe_account' => $shop->account_id]);
+        $checkoutSession = \Stripe\Checkout\Session::create([
+            'payment_method_types' => ['card'],
+            'mode' => 'payment',
+            'payment_intent_data' => [
+//                'application_fee_amount' => getApplicationFee($validatedRequest['amount'])
+            ],
+            'line_items' => [
+                [
+                    'amount' => $order->total_price,
+                    'quantity' => 1,
+                    'currency' => 'usd',
+                    'name' => 'Замовлення № ' . $order->id
+                ],
+            ],
+            'customer'      => $customer->id,
+            'success_url'   => route('stripe.paid-success',['order'=>$order]),
+            'cancel_url'    => route('stripe.paid-canceled',['order'=>$order]),
+            'metadata'      => [
+                'order_id' => $order->id,
+                'total_price' => $order->total_price,
+                'shop_id' => $shop->id
+            ],
+        ], ['stripe_account' => $shop->account_id]);
+        return $checkoutSession->id;
     }
 }

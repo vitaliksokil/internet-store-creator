@@ -8,7 +8,7 @@
 
     <div class="container pb-5">
         <div class="alert alert-warning mt-5 text-center" role="alert">
-            Now you must create your shop! Please fill up all fields!
+            Тепер вам потрібно створити свій магазин! Будь ласка заповніть всі поля!
         </div>
 
         @if ($errors->any())
@@ -24,46 +24,46 @@
         <form method="post" action="{{route('shop.store')}}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Name *</label>
+                <label for="name" class="form-label">Ім'я магазину *</label>
                 <input type="text" class="form-control" id="name" name="name" required value="{{ old('name') }}">
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description *</label>
+                <label for="description" class="form-label">Опис *</label>
                 <textarea class="form-control" name="description" id="description" required>{{ old('description') }}</textarea>
             </div>
             <div class="mb-3">
-                <label for="img" class="form-label">Image *</label>
+                <label for="img" class="form-label">Картинка *</label>
                 <input type="file" class="form-control" name="img" id="img">
             </div>
             <div class="mb-3">
-                <label for="img" class="form-label">Shop type *</label>
+                <label for="img" class="form-label">Рубрика магазину *</label>
                 <select name="shop_type_id" id="" class="form-control">
                     @forelse($shopTypes as $shopType)
                         <option value="{{$shopType->id}}">{{$shopType->type}}</option>
                     @empty
-                        No shop types
+                        Немає рубрик!
                     @endforelse
                 </select>
             </div>
             <hr>
             <div class="mb-3">
-                <h4 class="form-label">Contact info</h4>
+                <h4 class="form-label">Контактна інформація</h4>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
+                <label for="address" class="form-label">Адрес</label>
                 <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
             </div>
             <div class="mb-3">
-                <label for="phone_number" class="form-label">Phone Number</label>
+                <label for="phone_number" class="form-label">Номер телефону</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Contact Email</label>
+                <label for="email" class="form-label">Контактний e-mail</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Підтвердити</button>
         </form>
     </div>
 </x-app-layout>

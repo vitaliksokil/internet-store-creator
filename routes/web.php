@@ -152,4 +152,9 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
     });
 });
 
+Route::group(['prefix' => 'stripe-callbacks'],function(){
+    Route::post('/paid-success/{order}',[OrderHistoryController::class,'paidSuccess'])->name('stripe.paid-success');
+    Route::post('/paid-canceled/{order}',[OrderHistoryController::class,'paidCanceled'])->name('stripe.paid-canceled');
+});
+
 require __DIR__.'/auth.php';

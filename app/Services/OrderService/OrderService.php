@@ -10,9 +10,19 @@ use App\Models\Shop\Product;
 use App\Models\Shop\Shop;
 use App\Models\ShoppingCart;
 use App\Models\User;
+use App\Services\StripeService\StripeServiceInterface;
 
 class OrderService implements OrderServiceInterface
 {
+    /**
+     * @var StripeServiceInterface
+     */
+    private $stripeService;
+
+    public function __construct(StripeServiceInterface $stripeService)
+    {
+        $this->stripeService = $stripeService;
+    }
 
     public function store($data)
     {
@@ -28,9 +38,11 @@ class OrderService implements OrderServiceInterface
         }
         switch ($data['payment_type']){
             case Order::ONLINE_PAYMENT_TYPE:
-                // todo create checkout session!
+                $result = $this->stripeService->getCheckoutLink(auth()->user(),$order->shop,$order);
+                return redirect()->to('https://translate.google.com/?sl=en&tl=uk&text=Handle%20an%20incoming%20password%20reset%20link%20request.&op=translate');
                 break;
             case Order::OFFLINE_PAYMENT_TYPE:
+                redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_created')]);
                 break;
         }
     }
@@ -60,6 +72,10 @@ class OrderService implements OrderServiceInterface
     }
     public function confirm(Order $order){
         $order->update(['status' => Order::STATUS_CONFIRMED]);
+        return $order;
+    }
+    public function paymentSuccess(Order $order){
+        $order->update(['is_paid' => true]);
         return $order;
     }
 }

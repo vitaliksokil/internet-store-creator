@@ -28,7 +28,18 @@ class FeedbackService implements FeedbackServiceInterface
             $q->whereHas('category',function($q) use($shop){
                 $q->where('shop_id',$shop->id);
             });
-        })->paginate(Feedback::FEEDBACKS_PAGINATION_COUNT);
+        })->orderBy('id','desc')->paginate(Feedback::FEEDBACKS_PAGINATION_COUNT);
         return $feedbacks;
+    }
+
+    public function confirm(Feedback $feedback)
+    {
+        $feedback->update(['status' => Feedback::PUBLISHED]);
+        return $feedback;
+    }
+
+    public function delete(Feedback $feedback)
+    {
+        return $feedback->delete();
     }
 }

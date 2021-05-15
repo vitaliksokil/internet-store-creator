@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse">
                     <a class="btn btn-primary ml-5" type="submit" href="{{route('profile.delivery.get')}}">
-                        <i class="fas fa-arrow-left"></i> Back
+                        <i class="fas fa-arrow-left"></i> Назад
                     </a>
                 </div>
             </nav>
@@ -31,11 +31,11 @@
                             @method('PUT')
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="shop-name"><h2>Delivery address</h2></div>
+                                    <div class="shop-name"><h2>Адрес доставки</h2></div>
                                     <div class="mb-3">
-                                        <label for="area" class="form-label">Area</label>
+                                        <label for="area" class="form-label">Область</label>
                                         <select id="area" name="area" class="form-control" >
-                                            <option value="">Select Area</option>
+                                            <option value="">Оберіть область</option>
                                             @foreach($areas as $area)
                                                 <option value="{{$area->ref}}"
                                                         data-get-city-url="{{route('profile.delivery.get.cities',['area_ref'=>$area->ref])}}"
@@ -47,42 +47,42 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="city" class="form-label">City</label>
+                                        <label for="city" class="form-label">Місто</label>
                                         <input type="text" id="city" name="city" list="cityname" class="form-control" value="{{$deliveryAddress->city ?? ''}}">
                                         <datalist id="cityname">
 
                                         </datalist>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="post_office" class="form-label">Post Office</label>
+                                        <label for="post_office" class="form-label">Відділення нової пошти</label>
                                         <input type="text" id="post_office" name="post_office" list="warehouses" class="form-control" value="{{$deliveryAddress->post_office ?? ''}}">
                                         <datalist id="warehouses">
 
                                         </datalist>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_name" class="form-label">Name</label>
+                                        <label for="client_name" class="form-label">Ім'я отримувача</label>
                                         <input type="text" class="form-control" id="client_name" name="client_name" required value="{{$deliveryAddress->client_name ?? ''}}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_surname" class="form-label">Surname</label>
+                                        <label for="client_surname" class="form-label">Фамілія отримувача</label>
                                         <input type="text" class="form-control" id="client_surname" name="client_surname" required value="{{$deliveryAddress->client_surname ?? ''}}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_middlename" class="form-label">Middle name</label>
+                                        <label for="client_middlename" class="form-label">Ім'я по батькові отримувача</label>
                                         <input type="text" class="form-control" id="client_middlename" name="client_middlename" required value="{{$deliveryAddress->client_middlename ?? ''}}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_email" class="form-label">Email</label>
+                                        <label for="client_email" class="form-label">Email адрес</label>
                                         <input type="text" class="form-control" id="client_email" name="client_email" required value="{{$deliveryAddress->client_email ?? ''}}">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="client_phone_number" class="form-label">Phone number(Example: +380981234123 )</label>
+                                        <label for="client_phone_number" class="form-label">Номер телефону(Приклад: +380981234123 )</label>
                                         <input type="text" class="form-control" id="client_phone_number" name="client_phone_number" required value="{{$deliveryAddress->client_phone_number ?? ''}}" placeholder="+380981234123">
                                     </div>
                                     <div class="mb-3">
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                        <a href="{{route('profile.delivery.get')}}" class="btn btn-danger">Cancel</a>
+                                        <button type="submit" class="btn btn-success">Підтвердити</button>
+                                        <a href="{{route('profile.delivery.get')}}" class="btn btn-danger">Відмінити</a>
                                     </div>
                                 </div>
                             </div>

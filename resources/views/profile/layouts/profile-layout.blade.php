@@ -15,35 +15,35 @@ $user = auth()->user()
                                 <a class="nav-link {{request()->routeIs('profile.info') || request()->routeIs('profile.info.edit') ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.info')}}">
                                     <i class="fas fa-address-card"></i>
-                                    Profile info
+                                    Інформація профілю
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('profile.shopping-cart') ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.shopping-cart')}}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    Shopping cart
+                                    Корзина
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('profile.wishlist') ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.wishlist')}}">
                                     <i class="fas fa-heart"></i>
-                                    Wishlist
+                                    Список бажаного
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('profile.delivery.get') || request()->routeIs('profile.delivery.edit') ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.delivery.get')}}">
                                     <i class="fas fa-truck"></i>
-                                    Delivery Address
+                                    Адрес доставки
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link {{request()->routeIs('profile.orders.get') || request()->routeIs('profile.orders.show')  ? 'active' : ''}}"
                                    aria-current="page" href="{{route('profile.orders.get')}}">
                                     <i class="fas fa-truck-loading"></i>
-                                    Orders
+                                    Замовлення
                                 </a>
                             </li>
                         </ul>
