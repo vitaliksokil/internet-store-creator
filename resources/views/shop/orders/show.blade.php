@@ -28,7 +28,17 @@
                                                     Не підтверджено!
                                                 </button>
                                             @endif
-
+                                                @if($item['order']->is_paid)
+                                                    <button type="submit" disabled class=" btn btn-success card-link-secondary small text-uppercase  mr-3">
+                                                        <i class="fas fa-check"></i>
+                                                        Оплачено!
+                                                    </button>
+                                                @else
+                                                    <button type="submit" disabled class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
+                                                        <i class="fas fa-times"></i>
+                                                        Не оплачено!
+                                                    </button>
+                                                @endif
                                         </div>
                                     </div>
                                     <div class="card wish-list mb-3">

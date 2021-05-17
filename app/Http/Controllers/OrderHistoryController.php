@@ -7,6 +7,7 @@ use App\Http\Requests\Orders\StoreOrderRequest;
 use App\Models\Order;
 use App\Services\OrderService\OrderServiceInterface;
 use App\Services\ShoppingCartService\ShoppingCartServiceInterface;
+use App\Services\StripeService\StripeServiceInterface;
 use Illuminate\Http\Request;
 
 class OrderHistoryController extends Controller
@@ -19,12 +20,18 @@ class OrderHistoryController extends Controller
      * @var OrderServiceInterface
      */
     private $orderService;
+    /**
+     * @var StripeServiceInterface
+     */
+    private $stripeService;
 
     public function __construct(ShoppingCartServiceInterface $shoppingCartService,
-                                OrderServiceInterface $orderService)
+                                OrderServiceInterface $orderService,
+                                StripeServiceInterface $stripeService)
     {
         $this->shoppingCartService = $shoppingCartService;
         $this->orderService = $orderService;
+        $this->stripeService = $stripeService;
     }
 
     public function index(){
@@ -50,8 +57,10 @@ class OrderHistoryController extends Controller
 
     public function show(Order $order){
         $orderShow = $this->orderService->getShowOrder($order);
+        $checkout = $this->stripeService->getCheckoutLink(auth()->user(),$order->shop,$order);
         return view('profile.pages.orders.show')->with([
-            'item' => $orderShow
+            'item' => $orderShow,
+            'checkout' => $checkout
         ]);
     }
 
@@ -64,5 +73,9 @@ class OrderHistoryController extends Controller
 //        $this->orderService->paymentSuccess($order);
         session()->flash('error_403',__('messages.order_payment_canceled'));
         return redirect()->route('profile.orders.show',['order'=>$order]);
+    }
+    public function delete(Order $order){
+        $this->orderService->delete($order);
+        return redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_deleted')]);
     }
 }

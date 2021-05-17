@@ -38,8 +38,11 @@ class OrderService implements OrderServiceInterface
         }
         switch ($data['payment_type']){
             case Order::ONLINE_PAYMENT_TYPE:
-                $result = $this->stripeService->getCheckoutLink(auth()->user(),$order->shop,$order);
-                return redirect()->to('https://translate.google.com/?sl=en&tl=uk&text=Handle%20an%20incoming%20password%20reset%20link%20request.&op=translate');
+                $checkout = $this->stripeService->getCheckoutLink(auth()->user(),$order->shop,$order);
+                return view('profile.pages.checkout.checkout')->with([
+                    'checkout' => $checkout,
+                    'shop' => $order->shop
+                ]);
                 break;
             case Order::OFFLINE_PAYMENT_TYPE:
                 redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_created')]);
@@ -69,6 +72,9 @@ class OrderService implements OrderServiceInterface
     }
     public function delete(Order $order){
         return $order->delete();
+    }
+    public function update(Order $order,$data){
+        return $order->update($data);
     }
     public function confirm(Order $order){
         $order->update(['status' => Order::STATUS_CONFIRMED]);

@@ -73,6 +73,7 @@ Route::group(['prefix'=>'profile','middleware'=>['auth','verified']],function() 
         Route::get('/{order}',[OrderHistoryController::class,'show'])->name('profile.orders.show');
         Route::post('/',[OrderHistoryController::class,'store'])->name('profile.orders.store');
         Route::post('/create',[OrderHistoryController::class,'create'])->name('profile.orders.create');
+        Route::delete('/delete/{order}',[OrderHistoryController::class,'delete'])->name('profile.orders.delete');
     });
 });
 
@@ -139,6 +140,8 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
     Route::group(['prefix'=>'orders'],function(){
         Route::get('/',[OrdersController::class,'index'])->name('shop.orders.index');
         Route::get('/{order}',[OrdersController::class,'show'])->name('shop.orders.show');
+        Route::get('/edit/{order}',[OrdersController::class,'edit'])->name('shop.orders.edit');
+        Route::put('/edit/{order}',[OrdersController::class,'update'])->name('shop.orders.update');
         Route::delete('/{order}',[OrdersController::class,'delete'])->name('shop.orders.delete');
         Route::patch('/confirm/{order}',[OrdersController::class,'confirm'])->name('shop.orders.confirm');
 
@@ -153,8 +156,8 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
 });
 
 Route::group(['prefix' => 'stripe-callbacks'],function(){
-    Route::post('/paid-success/{order}',[OrderHistoryController::class,'paidSuccess'])->name('stripe.paid-success');
-    Route::post('/paid-canceled/{order}',[OrderHistoryController::class,'paidCanceled'])->name('stripe.paid-canceled');
+    Route::get('/paid-success/{order}',[OrderHistoryController::class,'paidSuccess'])->name('stripe.paid-success');
+    Route::get('/paid-canceled/{order}',[OrderHistoryController::class,'paidCanceled'])->name('stripe.paid-canceled');
 });
 
 require __DIR__.'/auth.php';

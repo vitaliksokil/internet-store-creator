@@ -60,6 +60,7 @@ class StripeService implements StripeServiceInterface
             'customer' => $stripeCustomer,
             'email' => $user->email
         ],['stripe_account' => $shop->account_id]);
+        $amount = $order->getAttributes()['total_price'];
         $checkoutSession = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
             'mode' => 'payment',
@@ -68,7 +69,7 @@ class StripeService implements StripeServiceInterface
             ],
             'line_items' => [
                 [
-                    'amount' => $order->total_price,
+                    'amount' => $amount,
                     'quantity' => 1,
                     'currency' => 'usd',
                     'name' => 'Замовлення № ' . $order->id
@@ -79,7 +80,7 @@ class StripeService implements StripeServiceInterface
             'cancel_url'    => route('stripe.paid-canceled',['order'=>$order]),
             'metadata'      => [
                 'order_id' => $order->id,
-                'total_price' => $order->total_price,
+                'total_price' => $amount,
                 'shop_id' => $shop->id
             ],
         ], ['stripe_account' => $shop->account_id]);

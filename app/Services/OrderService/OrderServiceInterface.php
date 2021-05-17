@@ -15,6 +15,7 @@ interface OrderServiceInterface
     public function getShowOrder(Order $order);
     public function getShopOrders(Shop $shop);
     public function delete(Order $order);
+    public function update(Order $order,$data);
     public function confirm(Order $order);
     public function paymentSuccess(Order $order);
 }

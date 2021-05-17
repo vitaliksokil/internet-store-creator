@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Orders\UpdateOrderRequest;
 use App\Models\Order;
 use App\Services\OrderService\OrderServiceInterface;
 use Illuminate\Http\Request;
@@ -32,6 +33,16 @@ class OrdersController extends Controller
         return view('shop.orders.show')->with([
             'item' => $orderShow
         ]);
+    }
+    public function edit(Order $order){
+        return view('shop.orders.edit')->with([
+            'order' => $order
+        ]);
+    }
+
+    public function update(UpdateOrderRequest $request, Order $order){
+        $this->orderService->update($order,$request->validated());
+        return redirect()->route('shop.orders.index')->with(['message'=>__('messages.order_updated')]);
     }
 
     public function delete(Order $order){

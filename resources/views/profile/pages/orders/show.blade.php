@@ -2,7 +2,7 @@
 
 @section('main')
     <section id="shop-index">
-       @include('components.back-btn')
+       @include('components.back-btn',['url' => route('profile.orders.get')])
         <div class=" bg-white border-b border-gray-200">
             <div class="main-bar">
                 <div class="container">
@@ -24,11 +24,21 @@
                                                 </button>
                                             @else
                                                 <button type="submit" disabled class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
-                                                    <i class="fas fa-trash-alt mr-1"></i>
+                                                    <i class="fas fa-times"></i>
                                                     Не підтверджено!
                                                 </button>
                                             @endif
-
+                                            @if($item['order']->is_paid)
+                                                <button type="submit" disabled class=" btn btn-success card-link-secondary small text-uppercase  mr-3">
+                                                    <i class="fas fa-check"></i>
+                                                    Оплачено!
+                                                </button>
+                                            @else
+                                                <button type="submit" disabled class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
+                                                    <i class="fas fa-times"></i>
+                                                    Не оплачено!
+                                                </button>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="card wish-list mb-3">
@@ -116,6 +126,12 @@
                                                     <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light" disabled>
                                                         <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Метод оплати - Online
                                                     </button>
+                                                @if(!$item['order']->is_paid)
+                                                    <button  class="btn stripe-connect-btn mt-3" id="stripe_pay" data-checkout="{{$checkout}}">
+                                                        <img src="{{asset('img/stripe.png')}}" alt="">
+                                                        Оплатити
+                                                    </button>
+                                                @endif
                                                 @else
                                                     <button type="submit" class="btn btn-outline-danger btn-block waves-effect waves-light" disabled>
                                                         <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Метод оплати - Offline
@@ -134,3 +150,17 @@
     </section>
 
 @endsection
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        $('#stripe_pay').on('click',function(){
+            const stripe = Stripe('{{config('stripe.stripe_key')}}',{
+                stripeAccount: '{{$item['order']->shop->account_id}}',
+            });
+            let checkout = $(this).attr('data-checkout');
+            const result = stripe.redirectToCheckout({
+                sessionId: checkout,
+            });
+        })
+    });
+</script>

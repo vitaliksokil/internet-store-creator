@@ -36,7 +36,16 @@
                 <td>{!! \App\Models\Order::STATUS_ICONS[$order->status] !!}</td>
                 <td>{{$order->created_at}}</td>
                 <td>
-                    <a href="{{route('profile.orders.show',['order'=>$order])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                    <form class="mb-2">
+                        <a href="{{route('profile.orders.show',['order'=>$order])}}" class="btn btn-primary ml-auto mr-5 w-100"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                    </form>
+                    @if(!$order->status)
+                        <form method="post" action="{{route('profile.orders.delete',['order'=>$order])}}" class="mb-2" onsubmit="return confirm('Ви впевнені, що хочете видалити дане замовлення?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger w-100"><i class="fas fa-trash-alt"></i>Скасувати</button>
+                        </form>
+                    @endif
                 </td>
             </tr>
             @empty

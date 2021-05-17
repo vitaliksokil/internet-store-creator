@@ -142,4 +142,5 @@ $(document).ready(function(){
         $('#product_quantity_'+shoppingCartId).submit()
     });
 
+
 });

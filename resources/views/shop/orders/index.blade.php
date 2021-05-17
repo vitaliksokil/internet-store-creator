@@ -37,7 +37,10 @@
                     <td>{{$order->created_at}}</td>
                     <td class="d-flex flex-column">
                         <form class="mb-2">
-                            <a href="{{route('shop.orders.show',['order'=>$order])}}" class="w-100 btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                            <a href="{{route('shop.orders.show',['order'=>$order])}}" class="w-100 btn btn-info ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути замовлення </a>
+                        </form>
+                        <form class="mb-2">
+                            <a href="{{route('shop.orders.edit',['order'=>$order])}}" class="w-100 btn btn-primary ml-auto mr-5"><i class="fas fa-edit"></i> Редагувати замовлення </a>
                         </form>
                         <form action="{{route('shop.orders.confirm',['order'=>$order])}}" class="mb-2" method="post" onsubmit="return confirm('Ви впевнені, що хочете підтвердити дане замовлення?')">
                             @csrf
