@@ -7,7 +7,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="collapse navbar-collapse">
                 <a class="btn btn-primary ml-5" type="submit" href="{{route('category.index')}}">
-                    <i class="fas fa-arrow-left"></i> Back
+                    <i class="fas fa-arrow-left"></i> Назад
                 </a>
             </div>
         </nav>
@@ -27,19 +27,19 @@
                             </ul>
                         </div>
                     @endif
-                    <h3>Create category</h3>
+                    <h3>Створити категорію</h3>
                     <form method="post" action="{{route('category.store')}}" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="title" class="form-label">Title *</label>
+                            <label for="title" class="form-label">Назва категорії *</label>
                             <input type="text" class="form-control" id="title" name="title" required value="{{ old('title') }}">
                         </div>
                         <div class="mb-3">
-                            <label for="img" class="form-label">Image</label>
+                            <label for="img" class="form-label">Картинка</label>
                             <input type="file" class="form-control" name="img" id="img">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Підтвердити</button>
                     </form>
                 </div>
             </div>

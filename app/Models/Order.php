@@ -44,7 +44,7 @@ class Order extends Model
         return $this->hasMany(OrderProduct::class);
     }
     public function products(){
-        return $this->hasManyThrough(Product::class,OrderProduct::class,'product_id','id');
+        return $this->hasManyThrough(Product::class,OrderProduct::class,'product_id','id')->withTrashed();
     }
     public function shop(){
         return $this->belongsTo(Shop::class);

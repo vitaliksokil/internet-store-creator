@@ -33,7 +33,7 @@
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
                                                     {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                                    <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
+                                                    <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{$shop->currency}}
                                                 </button>
                                             </form>
                                             <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">

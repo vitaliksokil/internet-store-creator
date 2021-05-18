@@ -20,21 +20,21 @@
                             @if($stripeConnectedEmail)
                                 <div class="mb-3">
                                     <div class="alert alert-success" role="alert">
-                                        You have connected Stripe Account with email: <b>{{$stripeConnectedEmail}}</b>
+                                        У вас є під'єднаний Stripe аккаунт з електронною поштою: <b>{{$stripeConnectedEmail}}</b>
                                     </div>
                                     <a href="https://dashboard.stripe.com/" class="btn stripe-connect-btn" target="_blank">
                                         <img src="{{asset('img/stripe.png')}}" alt="">
-                                        Go to your Stripe Account
+                                        Перейти на Stripe
                                     </a>
                                 </div>
                             @else
                                 <div class="mb-3">
                                     <div class="alert alert-info" role="alert">
-                                        You don't have connected Stripe account. Please connect it for accepting online payments!
+                                        У вас немає під'єднаного Stripe аккаунта. Будь ласка під'єднайте Stripe для прийому онлайн платежів!
                                     </div>
                                     <a href="{{route('shop.stripe.connect')}}" class="btn stripe-connect-btn">
                                         <img src="{{asset('img/stripe.png')}}" alt="">
-                                        Connect With Stripe
+                                        Під'єднати Stripe
                                     </a>
                                 </div>
                             @endif

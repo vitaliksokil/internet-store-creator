@@ -22,9 +22,18 @@ class Shop extends Model
         'shop_type_id',
         'theme_id',
         'account_id',
+        'currency'
     ];
 
     const FILE_PATH = 'shops';
+    const CURRENCIES = [
+        'usd' => '$',
+        'uah' => '₴'
+    ];
+
+    public function getCurrencyAttribute($value){
+        return self::CURRENCIES[$value];
+    }
 
     public function getAvatarsFilePath(){
         return self::FILE_PATH.'/'.$this->id.'/avatars';

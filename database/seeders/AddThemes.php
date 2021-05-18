@@ -15,12 +15,14 @@ class AddThemes extends Seeder
     public function run()
     {
         Theme::create([
-            'name' => 'Block Theme',
-            'type' => Theme::BLOCK_TYPE
+            'name' => 'Блочне відображення',
+            'type' => Theme::BLOCK_TYPE,
+            'image_preview' => '/img/themes/previews/block-type.png'
         ]);
         Theme::create([
-            'name' => 'List Theme',
-            'type' => Theme::LIST_TYPE
+            'name' => 'Відображення списком',
+            'type' => Theme::LIST_TYPE,
+            'image_preview' => '/img/themes/previews/list-type.png'
         ]);
     }
 }

@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse">
                     <a class="btn btn-primary ml-5" type="submit" href="{{route('shop.orders.index')}}">
-                        <i class="fas fa-arrow-left"></i> Back
+                        <i class="fas fa-arrow-left"></i> Назад
                     </a>
                 </div>
             </nav>
@@ -36,7 +36,7 @@
                                 <input type="text" class="form-control" disabled value="{{ $order->id }}">
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Загальна ціна</label>
+                                <label for="description" class="form-label">Загальна ціна {{$order->shop->currency}}</label>
                                 <input type="text" class="form-control" disabled value="{{ $order->total_price }}">
                             </div>
                             <div class="mb-3">

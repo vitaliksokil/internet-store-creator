@@ -14,18 +14,18 @@
 {{--@dd(request()->routeIs('shop.*'))--}}
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <a href="{{route('profile.info')}}" class="btn {{request()->is('profile*') ? 'active-header-link' : ''}} mr-4">{{ __('Customer Profile') }}</a>
-                <a href="{{route('dashboard')}}" class="btn {{request()->is('shop*') || request()->is('dashboard*') ? 'active-header-link' : ''}} mr-4">{{ __('Seller Dashboard') }}</a>
+                <a href="{{route('profile.info')}}" class="btn {{request()->is('profile*') ? 'active-header-link' : ''}} mr-4">Профіль покупця</a>
+                <a href="{{route('dashboard')}}" class="btn {{request()->is('shop*') || request()->is('dashboard*') ? 'active-header-link' : ''}} mr-4">Профіль продавця</a>
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-dropdown-link style="cursor: pointer"
-                                     onclick="let r = confirm('Are you sure?');console.log(r);
+                                     onclick="let r = confirm('Ви впевнені, що бажаєте вийти?');console.log(r);
                                      if(r){
                                          event.preventDefault();
                                          this.closest('form').submit();
                                      }">
-                        {{ __('Logout') }}
+                        Вийти
                     </x-dropdown-link>
                 </form>
 
@@ -74,7 +74,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Logout') }}
+                        Вийти
                     </x-responsive-nav-link>
                 </form>
             </div>

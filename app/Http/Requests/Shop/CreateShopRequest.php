@@ -39,6 +39,7 @@ class CreateShopRequest extends FormRequest
             'email'=>'email',
             'owner_id' => 'required|integer',
             'shop_type_id' => 'required|integer|exists:shop_types,id',
+            'currency'=>'required'
         ];
     }
     public function messages()

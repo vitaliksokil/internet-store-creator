@@ -33,7 +33,7 @@
 
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('profile.info') }}" class="btn btn-warning mr-3"><i class="fas fa-address-card"></i> Профіль покупця</a>
+                        <a href="{{ route('profile.info') }}" class="btn btn-warning mr-3"><i class="fas fa-address-card"></i>Профіль покупця</a>
                         <a href="{{ url('/dashboard') }}" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> Профіль продавця</a>
                     @else
                         <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Логін</a>

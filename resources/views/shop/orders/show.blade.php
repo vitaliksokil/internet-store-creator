@@ -88,7 +88,7 @@
                                                 </div>
                                                 <hr class="mb-4">
                                             @empty
-                                                No products
+                                                Немає товарів
                                             @endforelse
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                                         </li>
                                                     @endif
                                                 @empty
-                                                    No products
+                                                    Немає товарів
                                                 @endforelse
                                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                                     <div>

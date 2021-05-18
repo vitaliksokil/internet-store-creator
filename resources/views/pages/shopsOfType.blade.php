@@ -12,7 +12,7 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Shops of "{{$type->type}}" type</h2>
+                <h2>Магазини рубрики "{{$type->type}}"</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
@@ -23,12 +23,12 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{$shop->name}}</h5>
                                     <hr>
-                                    <a href="{{route('shop.show',['shop' => $shop])}}" class="btn btn-primary">Go to shop</a>
+                                    <a href="{{route('shop.show',['shop' => $shop])}}" class="btn btn-primary">Перейти до магазину</a>
                                 </div>
                             </div>
                         </div>
                     @empty
-                        No shops
+                        Немає магазинів
                     @endforelse
                 </div>
             </div>

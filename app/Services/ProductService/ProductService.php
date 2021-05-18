@@ -33,9 +33,9 @@ class ProductService implements ProductServiceInterface
 
     public function delete(Product $product)
     {
-        if($product->img){
-            $this->fileUploaderService->deleteImg($product->getAttributes()['img']);
-        }
+//        if($product->img){
+//            $this->fileUploaderService->deleteImg($product->getAttributes()['img']);
+//        }
         $product->delete();
     }
     public function update(Product $product,array $data){

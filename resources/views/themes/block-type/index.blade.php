@@ -11,7 +11,7 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Categories of "{{$shop->name}}" shop</h2>
+                <h2>Категорії магазину "{{$shop->name}}"</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
@@ -23,13 +23,13 @@
                                     <h5 class="card-title" style="height: 75px">{{\Illuminate\Support\Str::limit($category->title, 40, '...')}}</h5>
                                     <hr>
                                     <a href="{{route('shop.products.show',['shop' => $shop,'category'=>$category])}}" class="btn btn-primary">
-                                        Go to products
+                                        Перейти до товарів
                                     </a>
                                 </div>
                             </div>
                         </div>
                     @empty
-                        No categories
+                        Немає категорій
                     @endforelse
                 </div>
             </div>

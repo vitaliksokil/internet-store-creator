@@ -12,7 +12,7 @@
     <div class="container">
         <div class="goal pt-10 pb-10">
             <div class="goal-title text-center">
-                <h2>What we do?</h2>
+                <h2>Що ми робимо?</h2>
             </div>
             <div class="goal-items mt-10">
                 <div class="row justify-around ">
@@ -70,7 +70,7 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Our shops types</h2>
+                <h2>Рубрики магазинів</h2>
             </div>
             <div class="shops-items">
                 <div class="row">
@@ -81,7 +81,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{$shopType->type}}</h5>
                                     <hr>
-                                    <a href="{{route('shops.index',['type'=>$shopType])}}" class="btn btn-primary">Go to shops</a>
+                                    <a href="{{route('shops.index',['type'=>$shopType])}}" class="btn btn-primary">Перейти до магазинів</a>
                                 </div>
                             </div>
                         </div>

@@ -39,7 +39,7 @@
                     <form class="mb-2">
                         <a href="{{route('profile.orders.show',['order'=>$order])}}" class="btn btn-primary ml-auto mr-5 w-100"><i class="fas fa-eye"></i> Переглянути замовлення </a>
                     </form>
-                    @if(!$order->status)
+                    @if(!$order->status && !$order->is_paid)
                         <form method="post" action="{{route('profile.orders.delete',['order'=>$order])}}" class="mb-2" onsubmit="return confirm('Ви впевнені, що хочете видалити дане замовлення?')">
                             @csrf
                             @method('DELETE')

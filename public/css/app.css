@@ -43013,6 +43013,11 @@ select {
   color: #f88020;
 }
 
+.active-header-link:hover{
+  background: #3c3f46;
+  color: #f88020;
+}
+
 /*products*/
 
 /*stripe*/

@@ -23,7 +23,7 @@
                     <div class="col-8">
                         <div class="shop-name"><h1>{{$shop->name}}</h1></div>
                         <div class="shop-link">
-                            <p>Shop type: {!! $shop->type->icon !!}{{$shop->type->type}}</p>
+                            <p>Рубрика магазину: {!! $shop->type->icon !!}{{$shop->type->type}}</p>
                         </div>
                         <div class="shop-link">
                             <a href="{{$shop->getSiteUrl()}}">
@@ -31,9 +31,9 @@
                             </a>
                         </div>
                         <hr>
-                        <div class="shop-description">Description: <p class="bg-light">{{$shop->description}}</p></div>
-                        <div class="shop-description">Address: <p class="bg-light">{{$shop->address}}</p></div>
-                        <div class="shop-description">Phone number: <p class="bg-light">{{$shop->phone_number}}</p></div>
+                        <div class="shop-description">Опис: <p class="bg-light">{{$shop->description}}</p></div>
+                        <div class="shop-description">Адрес: <p class="bg-light">{{$shop->address}}</p></div>
+                        <div class="shop-description">Номер телефону: <p class="bg-light">{{$shop->phone_number}}</p></div>
                         <div class="shop-description">Email: <p class="bg-light">{{$shop->email}}</p></div>
                     </div>
                 </div>

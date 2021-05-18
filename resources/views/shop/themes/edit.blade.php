@@ -7,7 +7,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="collapse navbar-collapse">
                     <a class="btn btn-primary ml-5" type="submit" href="{{route('shop.theme.index')}}">
-                        <i class="fas fa-arrow-left"></i> Back
+                        <i class="fas fa-arrow-left"></i> Назад
                     </a>
                 </div>
             </nav>
@@ -31,22 +31,22 @@
                         <form method="post" action="{{route('shop.theme.update')}}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="shop-name"><h2>Choose theme</h2></div>
+                            <div class="shop-name"><h2>Виберіть тему</h2></div>
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Theme name</th>
-                                    <th scope="col">Preview</th>
+                                    <th scope="col">Ім'я теми</th>
+                                    <th scope="col">Попередній перегляд</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @forelse($themes as $theme)
                                     <tr>
                                         <th scope="row">{{$theme->name}}</th>
-                                        <td><img src="{{$theme->image_preview}}" alt=""></td>
+                                        <td><img src="{{$theme->image_preview}}" alt="" style="width: 57%"></td>
                                     </tr>
                                 @empty
-                                    No themes
+                                    Немає тем
                                 @endforelse
                                 </tbody>
                             </table>
@@ -55,7 +55,7 @@
                                     <option value="{{$theme->id}}" {{$shop->theme_id == $theme->id ? 'selected' : ''}}>{{$theme->name}}</option>
                                 @endforeach
                             </select>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Підтвердити</button>
                         </form>
                     </div>
                 </div>

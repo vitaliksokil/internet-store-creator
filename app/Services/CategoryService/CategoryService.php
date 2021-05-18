@@ -31,9 +31,9 @@ class CategoryService implements CategoryServiceInterface
 
     public function delete(Category $category)
     {
-        if($category->img){
-            $this->fileUploaderService->deleteImg($category->getAttributes()['img']);
-        }
+//        if($category->img){
+//            $this->fileUploaderService->deleteImg($category->getAttributes()['img']);
+//        }
         $category->delete();
     }
 
