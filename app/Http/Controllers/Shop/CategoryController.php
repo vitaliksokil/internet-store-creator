@@ -47,10 +47,10 @@ class CategoryController extends Controller
         return $this->redirectAfterAction(__('messages.category_created'));
     }
 
-    public function show(Category $id)
-    {
-        //
-    }
+//    public function show(Category $id)
+//    {
+//        //
+//    }
 
     public function edit(Category $id)
     {

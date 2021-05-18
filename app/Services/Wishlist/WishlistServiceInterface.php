@@ -18,3 +18,4 @@ interface WishlistServiceInterface
     public function delete(Wishlist $wishlist);
     public function deleteAll(Shop $shop);
 }
+

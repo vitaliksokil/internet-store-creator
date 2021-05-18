@@ -27,21 +27,24 @@
                                         <a href="{{route('shop.product.show',['shop' => $shop,'product'=>$product])}}" class="btn btn-primary mr-1">
                                             Переглянути <i class="fas fa-eye"></i>
                                         </a>
-                                        <form action="{{route('shopping-cart.store')}}" method="post" class="d-inline float-right add-to-shopping-cart mr-1" data-disabled="{{$product->isInShoppingCart()}}">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                            <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
-                                                {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                                <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
-                                            </button>
-                                        </form>
-                                        <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                            <button type="button" class="btn btn-danger h-100" {{$product->isInWishlist()?'disabled':''}}>
-                                                <i class="fas fa-heart"></i>
-                                            </button>
-                                        </form>
+                                        @auth()
+                                            <form action="{{route('shopping-cart.store')}}" method="post" class="d-inline float-right add-to-shopping-cart mr-1" data-disabled="{{$product->isInShoppingCart()}}">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
+                                                    {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
+                                                    <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
+                                                </button>
+                                            </form>
+                                            <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <button type="button" class="btn btn-danger h-100" {{$product->isInWishlist()?'disabled':''}}>
+                                                    <i class="fas fa-heart"></i>
+                                                </button>
+                                            </form>
+                                        @endauth
+
                                     </div>
                                 </div>
                             </div>

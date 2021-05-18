@@ -71,16 +71,19 @@
 {{--                                            <div class="product-stock">In Stock</div>--}}
                                             <hr>
                                             <div class="btn-group cart">
-                                                <form action="{{route('shopping-cart.store')}}" method="post" class="add-to-shopping-cart" data-disabled="{{$product->isInShoppingCart()}}">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                    <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
-                                                        {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
-                                                        <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
-                                                    </button>
-                                                </form>
+                                                @auth()
+                                                    <form action="{{route('shopping-cart.store')}}" method="post" class="add-to-shopping-cart" data-disabled="{{$product->isInShoppingCart()}}">
+                                                        @csrf
+                                                        <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                        <button type="button" class="btn btn-success " {{$product->isInShoppingCart()?'disabled':''}} >
+                                                            {{--                                                <i class="fas fa-shopping-cart"></i> {{$product->price}}$--}}
+                                                            <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{\App\Models\Shop\Product::CURRENCIES[$product->currency]}}
+                                                        </button>
+                                                    </form>
+                                                @endauth
                                             </div>
                                             <div class="btn-group wishlist">
+                                                @auth()
                                                 <form action="{{route('wishlist.store')}}" method="post" class="add-to-wishlist" data-disabled="{{$product->isInWishlist()}}">
                                                     @csrf
                                                     <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -88,6 +91,7 @@
                                                         <i class="fas fa-heart"></i>
                                                     </button>
                                                 </form>
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>
