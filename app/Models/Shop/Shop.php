@@ -27,8 +27,8 @@ class Shop extends Model
 
     const FILE_PATH = 'shops';
     const CURRENCIES = [
+        'uah' => '₴',
         'usd' => '$',
-        'uah' => '₴'
     ];
 
     public function getCurrencyAttribute($value){

@@ -1,4 +1,5 @@
 @extends('welcome')
+@section('back-link',route('shops.index',['type'=>$shop->type]))
 @section('main-content')
     {{--    <div class="slider">--}}
     {{--        <div class="owl-carousel owl-theme">--}}
@@ -13,9 +14,15 @@
             <div class="shops-title text-center mb-10">
                 <h2>Категорії магазину "{{$shop->name}}"</h2>
             </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-8">
+                    {{$categories->links()}}
+                </div>
+            </div>
             <div class="shops-items">
                 <div class="row justify-content-center">
                     <div class="col-8 ">
+
                         @forelse($categories as $category)
                             <div class="row p-2 bg-white border rounded">
                                 <div class="col-md-3 mt-1">
@@ -29,6 +36,9 @@
                                     <hr>
                                 </div>
                                 <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <h6 class="mr-1">Кількість товарів: {{$category->products()->where('is_published','>',\App\Models\Shop\Product::STATUS_UNPUBLISHED)->count()}}</h6>
+                                    </div>
                                     <div class="d-flex flex-column mt-4">
                                         <a href="{{route('shop.products.show',['shop' => $shop,'category'=>$category])}}" class="btn btn-primary btn-sm">
                                             Перейти до товарів
@@ -39,6 +49,11 @@
                         @empty
                             Немає категорій
                         @endforelse
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <div class="col-8">
+                        {{$categories->links()}}
                     </div>
                 </div>
             </div>

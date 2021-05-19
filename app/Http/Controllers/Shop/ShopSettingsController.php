@@ -44,5 +44,10 @@ class ShopSettingsController extends Controller
         $this->service->update($request->validated());
         return redirect()->route('settings.index')->with(['message'=>__('messages.settings_updated')]);
     }
+    public function destroy(){
+        getShop()->settings()->delete();
+        getShop()->settings()->create();
+        return redirect()->route('settings.index')->with(['message'=>__('messages.settings_updated')]);
+    }
 
 }

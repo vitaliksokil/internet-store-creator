@@ -1,4 +1,5 @@
 @extends('welcome')
+@section('back-link',route('home'))
 
 @section('main-content')
 {{--    <div class="slider">--}}
@@ -16,14 +17,16 @@
             </div>
             <div class="shops-items">
                 <div class="row">
-                    @forelse($shops as $shop)
+                    @forelse($shops as $s)
                         <div class="col-lg-3 mb-5">
                             <div class="card" style="width: 18rem;">
-                                <img src="{{$shop->img}}" class="card-img-top" alt="...">
+                                <img src="{{$s->img}}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$shop->name}}</h5>
+                                    <h5 class="card-title">{{$s->name}}</h5>
                                     <hr>
-                                    <a href="{{route('shop.show',['shop' => $shop])}}" class="btn btn-primary">Перейти до магазину</a>
+                                    <div>Кількість категорій : {{$s->categories()->count()}}</div>
+                                    <hr>
+                                    <a href="{{route('shop.show',['shop' => $s])}}" class="btn btn-primary">Перейти до магазину</a>
                                 </div>
                             </div>
                         </div>

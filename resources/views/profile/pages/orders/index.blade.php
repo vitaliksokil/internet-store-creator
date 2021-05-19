@@ -30,7 +30,7 @@
             <tr >
                 <th scope="row">{{$order->id}}</th>
                 <td><a href="{{route('shop.show',['shop'=>$order->shop])}}"><img src="{{$order->shop->img}}" class="img-table d-inline mr-3" alt="">{{$order->shop->name}}</a></td>
-                <td>{{formatPrice($order->total_price)}}$</td>
+                <td>{{formatPrice($order->total_price)}}{{$order->shop->currency}}</td>
                 <td>{!! \App\Models\Order::PAYMENT_TYPES[$order->payment_type] !!}</td>
                 <td>{!! \App\Models\Order::IS_PAID_ICONS[$order->is_paid] !!}</td>
                 <td>{!! \App\Models\Order::STATUS_ICONS[$order->status] !!}</td>

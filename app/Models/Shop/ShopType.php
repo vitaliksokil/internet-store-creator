@@ -9,4 +9,8 @@ class ShopType extends Model
 {
     use HasFactory;
     protected $fillable = ['*'];
+
+    public function shops(){
+        return $this->hasMany(Shop::class);
+    }
 }

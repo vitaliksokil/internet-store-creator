@@ -81,6 +81,8 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{$shopType->type}}</h5>
                                     <hr>
+                                    <div>Кількість магазинів : {{$shopType->shops()->count()}}</div>
+                                    <hr>
                                     <a href="{{route('shops.index',['type'=>$shopType])}}" class="btn btn-primary">Перейти до магазинів</a>
                                 </div>
                             </div>

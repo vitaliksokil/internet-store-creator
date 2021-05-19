@@ -127,6 +127,8 @@ Route::group(['prefix'=>'shop','middleware'=>['auth','hasShop','verified']],func
         Route::get('/',[ShopSettingsController::class,'index'])->name('settings.index');
         Route::get('/edit',[ShopSettingsController::class,'edit'])->name('settings.edit');
         Route::put('/edit',[ShopSettingsController::class,'update'])->name('settings.update');
+        Route::delete('/delete',[ShopSettingsController::class,'destroy'])->name('settings.destroy');
+
     });
     Route::group(['prefix'=>'shop-theme'],function(){
         Route::get('/',[ThemeController::class,'index'])->name('shop.theme.index');

@@ -76,6 +76,11 @@
 
                             <button type="submit" class="btn btn-primary">Підтвердити</button>
                         </form>
+                            <form  class="mt-4" method="post" action="{{route('settings.destroy')}}" enctype="multipart/form-data" onsubmit="confirm('Ви впевнені, що хочете скинути налаштування?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Скинути налаштування</button>
+                            </form>
                     </div>
                 </div>
             </div>

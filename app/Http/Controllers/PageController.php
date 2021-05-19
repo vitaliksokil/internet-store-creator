@@ -51,19 +51,20 @@ class PageController extends Controller
     public function showShop(Shop $shop){
         return view('themes.'.$shop->getTheme()->type . '.index')->with([
             'shop' => $shop,
-            'categories' => $shop->categories
+            'categories' => $shop->categories()->paginate(Category::CATEGORIES_PAGINATION_COUNT)
         ]);
     }
 
     public function shopProductsByCategory(Shop $shop, Category $category){
         return view('themes.'.$shop->getTheme()->type . '.products')->with([
             'shop' => $shop,
-            'products' => $category->products,
+            'products' => $category->products()->where('is_published','>',0)
+                ->orderBy('is_published','asc')->paginate(Product::PRODUCTS_PAGINATION_COUNT),
             'category' => $category,
         ]);
     }
     public function showProduct(Shop $shop, Product $product){
-        return view('themes.'.$shop->getTheme()->type . '.product')->with([
+        return view('themes.product')->with([
             'shop' => $shop,
             'product' => $product,
             'feedbacks' => $product->getPublishedFeedbacks(),

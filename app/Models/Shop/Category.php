@@ -29,7 +29,7 @@ class Category extends Model
     }
 
     public function products(){
-        return $this->hasMany(Product::class)->withTrashed();
+        return $this->hasMany(Product::class)->withTrashed()->where('is_published','>',\App\Models\Shop\Product::STATUS_UNPUBLISHED);
     }
 
     public function shop(){

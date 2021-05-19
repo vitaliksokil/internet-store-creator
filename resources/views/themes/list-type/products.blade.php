@@ -1,4 +1,5 @@
 @extends('welcome')
+@section('back-link',route('shop.show',['shop' => $category->shop]))
 @section('main-content')
     {{--    <div class="slider">--}}
     {{--        <div class="owl-carousel owl-theme">--}}
@@ -11,11 +12,17 @@
     <div class="shops pt-10 pb-10">
         <div class="container">
             <div class="shops-title text-center mb-10">
-                <h2>Товари "{{$category->title}}" категорії</h2>
+                <h2>Товари категорії "{{$category->title}}"</h2>
+            </div>
+            <div class="row justify-content-center mb-4">
+                <div class="col-8">
+                    {{$products->links()}}
+                </div>
             </div>
             <div class="shops-items">
-                <div class="row">
+                <div class="row justify-content-center">
                     @forelse($products as $product)
+                        <div class="col-8">
                         <div class="row p-2 bg-white border rounded">
                             <div class="col-md-3 mt-1">
                                 <a href="{{route('shop.product.show',['shop' => $shop,'product'=>$product])}}" class="btn btn-primary w-100 mb-2 mr-1">
@@ -40,12 +47,13 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <h4 class="mr-1">{{$shop->currency}}{{formatPrice($product->price)}}</h4>
                                 </div>
-                                <h6 class="text-danger">Немає в наявності</h6>
+                                <h6 class="text-danger">{{$product->is_published == \App\Models\Shop\Product::STATUS_NOT_AVAILABLE ? 'Немає в наявності' : ''}}</h6>
                                 <div class="d-flex flex-column mt-4">
                                     <a href="{{route('shop.product.show',['shop' => $shop,'product'=>$product])}}" class="btn btn-primary w-100 mb-2 mr-1">
                                         Переглянути <i class="fas fa-eye"></i>
                                     </a>
                                     @auth()
+                                        @if($product->is_published == \App\Models\Shop\Product::STATUS_PUBLISHED)
                                         <form action="{{route('shopping-cart.store')}}" method="post" class="d-inline float-right w-100  mb-2 add-to-shopping-cart mr-1" data-disabled="{{$product->isInShoppingCart()}}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -54,6 +62,7 @@
                                                 <i class="fas fa-shopping-cart"></i> {{number_format($product->price,2,',',' ')}}{{$shop->currency}}
                                             </button>
                                         </form>
+                                        @endif
                                         <form action="{{route('wishlist.store')}}" method="post" class="d-inline add-to-wishlist w-100 mb-2" data-disabled="{{$product->isInWishlist()}}">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -66,9 +75,16 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                     @empty
                         Немає категорій!
                     @endforelse
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-8">
+                    {{$products->links()}}
+
                 </div>
             </div>
         </div>

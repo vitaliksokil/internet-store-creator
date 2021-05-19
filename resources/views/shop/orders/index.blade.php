@@ -30,7 +30,7 @@
                 <tr >
                     <th scope="row">{{$order->id}}</th>
                     <td><img src="{{$order->user->img}}" class="img-table d-inline mr-3" alt="">{{$order->user->name}}</td>
-                    <td>{{formatPrice($order->total_price)}}$</td>
+                    <td>{{formatPrice($order->total_price)}}{{$order->shop->currency}}</td>
                     <td>{!! \App\Models\Order::PAYMENT_TYPES[$order->payment_type] !!}</td>
                     <td>{!! \App\Models\Order::IS_PAID_ICONS[$order->is_paid] !!}</td>
                     <td>{!! \App\Models\Order::STATUS_ICONS[$order->status] !!}</td>
@@ -58,7 +58,7 @@
             @empty
                 <tr>
                     <th scope="row">
-                        No orders!
+                        Немає замовлень
                     </th>
                     <td></td>
                     <td></td>

@@ -15,6 +15,14 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        @php
+            $siteSettings = isset($shop) ? $shop->settings : null;
+        @endphp
+        <style>
+            .shops{
+                background: {{$siteSettings->shop_bg_color ?? '#f8f9fa'}} !important;;
+            }
+        </style>
     </head>
     <body class="">
     <header class="p-3 bg-dark text-white ">
@@ -46,9 +54,14 @@
         </div>
         @auth
         <hr>
-        <div class="container d-flex flex-wrap justify-content-end ">
-            <a href="{{route('profile.wishlist')}}" class="btn btn-danger mr-3" id="wishlistCountBtn"><span class="span">{{getWishlistCount()}}</span> <i class="fas fa-heart"></i></a>
-            <a href="{{route('profile.shopping-cart')}}" class="float-right btn btn-success" id="shoppingCartCountBtn"> <span class="span">{{getShoppingCartCount()}}</span> <i class="fas fa-shopping-cart"></i></a>
+        <div class="container d-flex flex-wrap justify-content-between">
+            <div>
+                <a href="@yield('back-link',\Illuminate\Support\Facades\URL::previous())" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Назад</a>
+            </div>
+            <div>
+                <a href="{{route('profile.wishlist')}}" class="btn btn-danger mr-3" id="wishlistCountBtn"><span class="span">{{getWishlistCount()}}</span> <i class="fas fa-heart"></i></a>
+                <a href="{{route('profile.shopping-cart')}}" class="float-right btn btn-success" id="shoppingCartCountBtn"> <span class="span">{{getShoppingCartCount()}}</span> <i class="fas fa-shopping-cart"></i></a>
+            </div>
         </div>
         @endauth
     </header>

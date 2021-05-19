@@ -28,6 +28,7 @@ class UpdateProductRequest extends FormRequest
             'description' => 'required',
             'img' => 'file',
             'price' => 'required|integer',
+            'is_published' => 'required'
         ];
     }
 }

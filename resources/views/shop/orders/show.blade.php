@@ -126,12 +126,12 @@
                                                     @if($loop->last)
                                                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                                             {{$product->product}} x {{$product->count}}
-                                                            <span>${{formatPrice($product->product->price * $product->count)}}</span>
+                                                            <span>{{$item['shop']->currency}}{{formatPrice($product->product->price * $product->count)}}</span>
                                                         </li>
                                                     @else
                                                         <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                                             {{$product->product}} x {{$product->count}}
-                                                            <span>${{formatPrice($product->product->price * $product->count)}}</span>
+                                                            <span>{{$item['shop']->currency}}{{formatPrice($product->product->price * $product->count)}}</span>
                                                         </li>
                                                     @endif
                                                 @empty
@@ -141,7 +141,7 @@
                                                     <div>
                                                         <strong>Загальна сума</strong>
                                                     </div>
-                                                    <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
+                                                    <span><strong>{{$item['shop']->currency}}{{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
                                             <div class="d-flex flex-column align-content-center text-center">

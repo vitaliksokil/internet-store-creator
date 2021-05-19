@@ -17,13 +17,17 @@ class Product extends Model
         'description',
         'price',
         'img',
-        'category_id'
+        'category_id',
+        'is_published'
     ];
 
     const PRODUCTS_PAGINATION_COUNT = 10;
     const FILE_PATH = 'products';
 
 
+    const STATUS_PUBLISHED = 1;
+    const STATUS_UNPUBLISHED = 0;
+    const STATUS_NOT_AVAILABLE = 2;
     const IS_PUBLISHED_ICONS = [
         0 => 'Не опубліковано <i class="fas fa-times" style="color: red"></i>',
         1 => 'Опубліковано <i class="fas fa-check" style="color: green"></i>',

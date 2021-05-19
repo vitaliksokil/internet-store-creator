@@ -19,8 +19,8 @@
                                     <div class="card wish-list mb-3">
                                         <div class="card-body">
                                             <h5 class="mb-4"><a href="{{route('shop.show',['shop' => $item['shop']])}}"><img src="{{$item['shop']->img}}" alt="" style="width: 80px;display: inline"></a>
-                                                <a href="{{route('shop.show',['shop' => $item['shop']])}}">"{{$item['shop']->name}} Shop"</a>
-                                                Cart (<span>{{$item['products']->count()}}</span> items)
+                                                <a href="{{route('shop.show',['shop' => $item['shop']])}}">"{{$item['shop']->name}} Магазин"</a>
+                                                Кошик (<span>{{$item['products']->count()}}</span> товари)
                                             </h5>
                                             @forelse($item['products'] as $product)
                                                 <div class="row mb-4">
@@ -54,7 +54,7 @@
                                                                                 class="plus"></button>
                                                                     </div>
                                                                     <small id="passwordHelpBlock" class="form-text text-muted text-center">
-                                                                        Count
+                                                                        Кількість
                                                                     </small>
                                                                 </div>
                                                             </div>
@@ -64,7 +64,7 @@
                                                                         @csrf
                                                                         <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase mr-3">
                                                                             <i class="fas fa-trash-alt mr-1"></i>
-                                                                            Remove item
+                                                                            Видалити
                                                                         </button>
                                                                     </form>
                                                                     <form action="{{route('profile.shopping-cart.move-to-wishlist')}}" method="post" class="d-inline">
@@ -72,18 +72,18 @@
                                                                         <input type="hidden" name="shopping_cart_id" value="{{$product->id}}">
                                                                         <button type="submit" class="btn btn-danger  card-link-secondary small text-uppercase">
                                                                             <i class="fas fa-heart mr-1"></i>
-                                                                            Move to wish list
+                                                                            Перемістити до бажаного
                                                                         </button>
                                                                     </form>
                                                                 </div>
-                                                                <p class="mb-0"><span><strong>${{formatPrice($product->product->price)}}</strong></span></p>
+                                                                <p class="mb-0"><span><strong>{{$item['shop']->currency}}{{formatPrice($product->product->price)}}</strong></span></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <hr class="mb-4">
                                             @empty
-                                                No products
+                                                Немає товарів
                                             @endforelse
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
                                                 @csrf
                                                 <button type="submit" class=" btn btn-danger card-link-secondary small text-uppercase  mr-3">
                                                     <i class="fas fa-trash-alt mr-1"></i>
-                                                    Remove All
+                                                    Видалити всі
                                                 </button>
                                             </form>
                                         </div>
@@ -102,34 +102,34 @@
                                 <div class="col-lg-4">
                                     <div class="card mb-3">
                                         <div class="card-body">
-                                            <h5 class="mb-3">The total amount of</h5>
+                                            <h5 class="mb-3">Загальна сума</h5>
                                             <ul class="list-group list-group-flush">
                                                 @forelse($item['products'] as $product)
                                                     @if($loop->last)
                                                         <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                                                             {{$product->product}} x {{$product->count}}
-                                                            <span>${{formatPrice($product->product->price * $product->count)}}</span>
+                                                            <span>{{$item['shop']->currency}}{{formatPrice($product->product->price * $product->count)}}</span>
                                                         </li>
                                                     @else
                                                         <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                                                             {{$product->product}} x {{$product->count}}
-                                                            <span>${{formatPrice($product->product->price * $product->count)}}</span>
+                                                            <span>{{$item['shop']->currency}}{{formatPrice($product->product->price * $product->count)}}</span>
                                                         </li>
                                                     @endif
                                                 @empty
-                                                    No products
+                                                    Немає товарів
                                                 @endforelse
                                                 <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                                                     <div>
-                                                        <strong>The total amount of</strong>
+                                                        <strong>Загальна сума</strong>
                                                     </div>
-                                                    <span><strong>${{formatPrice($item['total_amount']/100)}}</strong></span>
+                                                    <span><strong>{{$item['shop']->currency}}{{formatPrice($item['total_amount']/100)}}</strong></span>
                                                 </li>
                                             </ul>
                                             <form action="{{route('profile.orders.create')}}" method="post">
                                                 @csrf
                                                 <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Order</button>
+                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"><i class="fas fa-truck-loading"></i> Замовити</button>
                                             </form>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                             </div>
                             <hr>
                         @empty
-                            Your Shopping Cart is empty
+                            Корзина пуста
                         @endforelse
                     </section>
                 </div>

@@ -45,6 +45,16 @@
                     @endforelse
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="currency" class="form-label">Валюта магазину *</label>
+                <select name="currency" id="currency" class="form-control">
+                    @forelse(\App\Models\Shop\Shop::CURRENCIES as $key=>$shopType)
+                        <option value="{{$key}}">{{$key}} - {{$shopType}}</option>
+                    @empty
+                        Немає валют!
+                    @endforelse
+                </select>
+            </div>
             <hr>
             <div class="mb-3">
                 <h4 class="form-label">Контактна інформація</h4>

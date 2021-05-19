@@ -13,7 +13,7 @@
             <div class="alert alert-success">{{ Session::get('message') }}</div>
         @endif
 
-        <table class="table table-primary">
+        <table class="table">
             <thead>
             <tr>
                 <th scope="col">№</th>
