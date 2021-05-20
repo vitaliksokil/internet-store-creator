@@ -73,4 +73,17 @@ class PageController extends Controller
             'recommendedProducts' => $this->productService->getRecommendedProducts($product)
         ]);
     }
+
+    public function features(){
+        return view('pages.features');
+    }
+    public function pricing(){
+        return view('pages.pricing');
+    }
+    public function about(){
+        return view('pages.about');
+    }
+    public function faqs(){
+        return view('pages.faqs');
+    }
 }

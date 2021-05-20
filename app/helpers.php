@@ -30,3 +30,14 @@ function getWishlistCount(){
 function getShoppingCartCount(){
     return \App\Models\ShoppingCart::where('user_id',auth()->user()->id)->count();
 }
+
+
+function getApplicationFee($amount){
+    return round($amount * config('stripe.application_fee'));
+}
+
+//STRIPE_STATIC_FEE=30
+//STRIPE_DYNAMIC_FEE=0.029
+function getStripeFee($amount){
+    return round(($amount + config('stripe.stripe_static_fee'))/(1 - config('stripe.stripe_dynamic_fee')));
+}

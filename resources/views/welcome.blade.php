@@ -32,11 +32,11 @@
                     <img src="{{asset('img/logo.png')}}" width="70" alt="">
                 </a>
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    <li><a href="/" class="nav-link px-2 {{request()->routeIs('home') ? 'text-secondary' : 'text-white'}}">Домашня сторінка</a></li>
+                    <li><a href="{{route('features')}}" class="nav-link px-2 {{request()->routeIs('features') ? 'text-secondary' : 'text-white'}} ">Можливості</a></li>
+                    <li><a href="{{route('pricing')}}" class="nav-link px-2 {{request()->routeIs('pricing') ? 'text-secondary' : 'text-white'}}">Ціни</a></li>
+                    <li><a href="{{route('faqs')}}" class="nav-link px-2 {{request()->routeIs('faqs') ? 'text-secondary' : 'text-white'}}">FAQs</a></li>
+                    <li><a href="{{route('about')}}" class="nav-link px-2 {{request()->routeIs('about') ? 'text-secondary' : 'text-white'}}">Про сайт</a></li>
                 </ul>
 
                 @if (Route::has('login'))
@@ -52,18 +52,18 @@
                 @endif
             </div>
         </div>
-        @auth
         <hr>
         <div class="container d-flex flex-wrap justify-content-between">
             <div>
                 <a href="@yield('back-link',\Illuminate\Support\Facades\URL::previous())" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Назад</a>
             </div>
-            <div>
-                <a href="{{route('profile.wishlist')}}" class="btn btn-danger mr-3" id="wishlistCountBtn"><span class="span">{{getWishlistCount()}}</span> <i class="fas fa-heart"></i></a>
-                <a href="{{route('profile.shopping-cart')}}" class="float-right btn btn-success" id="shoppingCartCountBtn"> <span class="span">{{getShoppingCartCount()}}</span> <i class="fas fa-shopping-cart"></i></a>
-            </div>
+            @auth
+                <div>
+                    <a href="{{route('profile.wishlist')}}" class="btn btn-danger mr-3" id="wishlistCountBtn"><span class="span">{{getWishlistCount()}}</span> <i class="fas fa-heart"></i></a>
+                    <a href="{{route('profile.shopping-cart')}}" class="float-right btn btn-success" id="shoppingCartCountBtn"> <span class="span">{{getShoppingCartCount()}}</span> <i class="fas fa-shopping-cart"></i></a>
+                </div>
+            @endauth
         </div>
-        @endauth
     </header>
     <div class="" >
         @yield('main-content')
@@ -77,20 +77,11 @@
                 <div class="row">
 
                     <div class="col-md pr-md-5 mb-4 mb-md-0">
-                        <h3>Про нас</h3>
+                        <h3>Про Cайт</h3>
                         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam itaque unde facere repellendus, odio et iste voluptatum aspernatur ratione mollitia tempora eligendi maxime est, blanditiis accusamus. Incidunt, aut, quis!</p>
-                        <ul class="list-unstyled quick-info mb-4">
-                            <li><a href="#" class="d-flex align-items-center"><span class="icon mr-3 icon-phone"></span> +1 291 3912 329</a></li>
-                            <li><a href="#" class="d-flex align-items-center"><span class="icon mr-3 icon-envelope"></span> info@gmail.com</a></li>
-                        </ul>
-
-                        <form action="#" class="subscribe">
-                            <input type="text" class="form-control" placeholder="Enter your e-mail">
-                            <input type="submit" class="btn btn-submit" value="Send">
-                        </form>
                     </div>
                     <div class="col-md mb-4 mb-md-0">
-                        <h3>Latest Tweet</h3>
+                        <h3>Про творця</h3>
                         <ul class="list-unstyled tweets">
                             <li class="d-flex">
                                 <div class="mr-4"><span class="icon icon-twitter"></span></div>
@@ -105,38 +96,25 @@
                                 <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere unde omnis veniam porro excepturi.</div>
                             </li>
                         </ul>
-                    </div>
-
-
-                    <div class="col-md-3 mb-4 mb-md-0">
-                        <h3>Instagram</h3>
-                        <div class="row gallery">
-                            <div class="col-6">
-                                <a href="#"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-                                <a href="#"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                                <a href="#"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-                            </div>
-                        </div>
+                        <ul class="list-unstyled quick-info mb-4">
+                            <li><a href="#" class="d-flex align-items-center"><span class="icon mr-3 icon-phone"></span>+380 98 6225 367</a></li>
+                            <li><a href="#" class="d-flex align-items-center"><span class="icon mr-3 icon-envelope"></span> vitaliksokil200@gmail.com</a></li>
+                        </ul>
                     </div>
 
                     <div class="col-12">
-                        <div class="py-5 footer-menu-wrap d-md-flex align-items-center">
-                            <ul class="list-unstyled footer-menu mr-auto">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Our works</a></li>
-                                <li><a href="#">Services</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                        <hr>
+                        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                                <li><a href="/" class="nav-link px-2 {{request()->routeIs('home') ? 'text-secondary' : 'text-white'}}">Домашня сторінка</a></li>
+                                <li><a href="{{route('features')}}" class="nav-link px-2 {{request()->routeIs('features') ? 'text-secondary' : 'text-white'}} ">Можливості</a></li>
+                                <li><a href="{{route('pricing')}}" class="nav-link px-2 {{request()->routeIs('pricing') ? 'text-secondary' : 'text-white'}}">Ціни</a></li>
+                                <li><a href="{{route('faqs')}}" class="nav-link px-2 {{request()->routeIs('faqs') ? 'text-secondary' : 'text-white'}}">FAQs</a></li>
+                                <li><a href="{{route('about')}}" class="nav-link px-2 {{request()->routeIs('about') ? 'text-secondary' : 'text-white'}}">Про сайт</a></li>
                             </ul>
-                            <div class="site-logo-wrap ml-auto">
-                                <a href="#" class="site-logo">
-                                    Colorlib
-                                </a>
-                            </div>
+                            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                                <img src="{{asset('img/logo.png')}}" width="70" alt="">
+                            </a>
                         </div>
                     </div>
 

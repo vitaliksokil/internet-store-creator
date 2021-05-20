@@ -12,29 +12,29 @@
     <div class="container">
         <div class="goal pt-10 pb-10">
             <div class="goal-title text-center">
-                <h2>Що ми робимо?</h2>
+                <h2>Можливості</h2>
             </div>
             <div class="goal-items mt-10">
                 <div class="row justify-around ">
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/creating.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Створення магазину</h4>
+                            <p>Ви можете з легкістю створити свій магазин</p>
                         </div>
                     </div>
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/fill.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Заповнення контентом</h4>
+                            <p>Ви можете додавати категорії та товари для свого магазину</p>
                         </div>
                     </div>
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/stripe.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Отримання оплати за допомогою Stripe</h4>
+                            <p>Приєднання Stripe аккаунта допоможе вам приймати оплати онлайн</p>
                         </div>
                     </div>
 
@@ -42,24 +42,24 @@
                 <hr class="mb-6 mt-6">
                 <div class="row justify-around ">
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/cart.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Кошик</h4>
+                            <p>Добавлення товарів в кошик та подальше їх замовлення</p>
                         </div>
                     </div>
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/wishlist.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Список бажаного</h4>
+                            <p>Добавлення товарів в список бажаного допоможе вам не загубити свій бажаний товар</p>
                         </div>
                     </div>
                     <div class="col-4 flex align-middle justify-center">
-                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/goal-1.png')}}" alt=""></div>
+                        <div class="col-4 d-flex align-middle justify-center"><img src="{{asset('img/goal/new-post.png')}}" alt=""></div>
                         <div class="col-8">
-                            <h4>Title</h4>
-                            <p>Description</p>
+                            <h4>Отримання замовлення на відділення нової пошти</h4>
+                            <p>Покупці можуть отримувати свої замовлення на відділення нової пошти</p>
                         </div>
                     </div>
 

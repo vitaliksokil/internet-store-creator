@@ -15,57 +15,57 @@ class CreateShopTypes extends Seeder
     public function run()
     {
         ShopType::create([
-            'type' => 'Child\'s world',
+            'type' => 'Дитячий світ',
             'icon' => '<i class="fas fa-child"></i>',
             'image' => 'img/shopTypes/child.jpg'
         ]);
         ShopType::create([
-            'type' => 'Property',
+            'type' => 'Нерухомість',
             'icon' => '<i class="fas fa-home"></i>',
             'image' => 'img/shopTypes/property.jpg'
         ]);
         ShopType::create([
-            'type' => 'Transport',
+            'type' => 'Транспорт',
             'icon' => '<i class="fas fa-car"></i>',
             'image' => 'img/shopTypes/transport.jpg'
         ]);
         ShopType::create([
-            'type' => 'Spare parts for transport',
+            'type' => 'Запчастини для транспорту',
             'icon' => '<i class="fas fa-wrench"></i>',
             'image' => 'img/shopTypes/tools.jpg'
         ]);
         ShopType::create([
-            'type' => 'Animals',
+            'type' => 'Тварини',
             'icon' => '<i class="fas fa-paw"></i>',
             'image' => 'img/shopTypes/animals.png'
         ]);
         ShopType::create([
-            'type' => 'Garden',
+            'type' => 'Сад',
             'icon' => '<i class="fas fa-seedling"></i>',
             'image' => 'img/shopTypes/garden.jpg'
         ]);
         ShopType::create([
-            'type' => 'Electronics',
+            'type' => 'Електроніка',
             'icon' => '<i class="fas fa-mobile-alt"></i>',
             'image' => 'img/shopTypes/electronics.jpg'
         ]);
         ShopType::create([
-            'type' => 'Fashion & Style',
+            'type' => 'Мода і стиль',
             'icon' => '<i class="fas fa-tshirt"></i>',
             'image' => 'img/shopTypes/style.jpg'
         ]);
         ShopType::create([
-            'type' => 'Hobbies, leisure and sports',
+            'type' => 'Хобі, відпочинок і спорт',
             'icon' => '<i class="fas fa-table-tennis"></i>',
             'image' => 'img/shopTypes/sport.jpg'
         ]);
         ShopType::create([
-            'type' => 'Beauty and health',
+            'type' => 'Краса і здоров\'я',
             'icon' => '<i class="fas fa-heartbeat"></i>',
             'image' => 'img/shopTypes/beauty.jpg'
         ]);
         ShopType::create([
-            'type' => 'Other',
+            'type' => 'Інше',
             'icon' => '<i class="fas fa-ellipsis-h"></i>',
             'image' => 'img/shopTypes/other.jpg'
         ]);

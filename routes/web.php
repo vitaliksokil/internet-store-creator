@@ -30,6 +30,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class,'welcome'])->name('home');
 
 Route::get('/shops/type/{type}', [PageController::class,'shops'])->name('shops.index');
+Route::get('/features', [PageController::class,'features'])->name('features');
+Route::get('/pricing', [PageController::class,'pricing'])->name('pricing');
+Route::get('/about', [PageController::class,'about'])->name('about');
+Route::get('/faqs', [PageController::class,'faqs'])->name('faqs');
 
 
 Route::group(['prefix'=>'shops/{shop}'],function() {

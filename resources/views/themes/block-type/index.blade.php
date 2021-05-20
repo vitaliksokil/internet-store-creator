@@ -25,7 +25,7 @@
                         <div class="col-lg-3 mb-5">
                             <div class="card" style="width: 18rem;">
                                 <img src="{{$category->img}}" class="card-img-top" alt="..." style="height: 200px">
-                                <div class="card-body">
+                                <div class="card-body align-content-end" style="height: 250px">
                                     <h5 class="card-title" style="height: 75px">{{\Illuminate\Support\Str::limit($category->title, 40, '...')}}</h5>
                                     <hr>
                                     <h6 class="mr-1">Кількість товарів: {{$category->products()->count()}}</h6>

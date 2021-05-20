@@ -40,7 +40,10 @@ class StripeService implements StripeServiceInterface
     {
         if (!$shop->account_id) {
             $account = $this->stripeClient->accounts->create([
-                'type' => 'standard'
+                'type' => 'standard',
+                'business_profile' => [
+                    'name' => $shop->name
+                ]
             ]);
             $shop->update(['account_id' => $account->id]);
         }
@@ -65,13 +68,13 @@ class StripeService implements StripeServiceInterface
             'payment_method_types' => ['card'],
             'mode' => 'payment',
             'payment_intent_data' => [
-//                'application_fee_amount' => getApplicationFee($validatedRequest['amount'])
+                'application_fee_amount' => getApplicationFee($amount)
             ],
             'line_items' => [
                 [
-                    'amount' => $amount,
+                    'amount' => getStripeFee($amount),
                     'quantity' => 1,
-                    'currency' => 'usd',
+                    'currency' => $shop->getAttributes()['currency'],
                     'name' => 'Замовлення № ' . $order->id
                 ],
             ],
