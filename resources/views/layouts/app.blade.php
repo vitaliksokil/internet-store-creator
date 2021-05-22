@@ -6,7 +6,32 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        @php
+        $shop = getShop();
+        $siteSettings = isset($shop) ? $shop->settings : null;
+        @endphp
+        <style>
+            {{--main{--}}
+            {{--    background: {{$siteSettings->branding_color ?? '#ffb261'}} !important;--}}
+            {{--}--}}
+            header{
+                background: {{$siteSettings->admin_header_bg_color ?? '#212529'}}  !important;
+            }
+            header a{
+                color: {{$siteSettings->admin_header_color ?? '#212529'}}  !important;
+            }
+            table{
+                background: {{$siteSettings->admin_tables_bg_color ?? '#cfe2ff'}}  !important;
+                color: {{$siteSettings->admin_tables_color ?? '#000000'}}  !important;
+            }
+            #admin-menu .nav-link{
+                color: {{$siteSettings->branding_second_color ?? '#212529'}} !important;
+            }
+            #admin-menu .active{
+                background: {{$siteSettings->admin_menu_item_active_bg_color ?? '#ffb261'}} !important;
+                color: {{$siteSettings->admin_menu_item_active_color ?? '#ffffff'}} !important;
+            }
+        </style>
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -19,13 +44,6 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
 
             <!-- Page Content -->
             <main>

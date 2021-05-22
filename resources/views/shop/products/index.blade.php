@@ -10,15 +10,15 @@
         @if (Session::has('message'))
             <div class="alert alert-success">{{ Session::get('message') }}</div>
         @endif
-        <h3>Categories</h3>
+        <h3>Категорії</h3>
         <table class="table table-primary">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">Image</th>
-                <th scope="col">Created At</th>
-                <th scope="col">View products</th>
+                <th scope="col">№</th>
+                <th scope="col">Назва категорії</th>
+                <th scope="col">Картинка</th>
+                <th scope="col">Створено</th>
+                <th scope="col">Переглянути товари</th>
             </tr>
             </thead>
             <tbody>
@@ -29,13 +29,13 @@
                     <td><img class="img-table" src="{{$category->img}}" alt=""></td>
                     <td>{{$category->created_at}}</td>
                     <td>
-                        <a href="{{route('category.products',['category'=>$category])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> View Products</a>
+                        <a href="{{route('category.products',['category'=>$category])}}" class="btn btn-primary ml-auto mr-5"><i class="fas fa-eye"></i> Переглянути товари</a>
                     </td>
                 </tr>
             @empty
                 <tr>
                     <th scope="row">
-                        No categories!
+                        Немає категорій
                     </th>
                     <td></td>
                     <td></td>

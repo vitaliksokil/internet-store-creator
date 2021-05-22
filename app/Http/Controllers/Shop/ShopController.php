@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Shop\CreateShopRequest;
 use App\Http\Requests\Shop\UpdateShopRequest;
+use App\Models\Shop\Shop;
+use App\Models\Shop\ShopType;
 use App\Services\ShopService\ShopServiceInterface;
 use Illuminate\Http\Request;
 
@@ -23,7 +25,7 @@ class ShopController extends Controller
 
     public function index(){
        return view('shop.pages.index',[
-           'shop' => getShop()
+           'shop' => getShop(),
        ]);
     }
     public function store(CreateShopRequest $request){
@@ -41,4 +43,5 @@ class ShopController extends Controller
         $this->shopService->update(getShop(),$data);
         return redirect()->route('shop.edit')->with(['message'=>__('messages.shop_updated')]);
     }
+
 }

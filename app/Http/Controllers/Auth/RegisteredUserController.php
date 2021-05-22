@@ -36,13 +36,11 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'type' => 'required|integer|min:1|max:2',
         ]);
 
         Auth::login($user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'type' => $request->type,
             'password' => Hash::make($request->password),
         ]));
 

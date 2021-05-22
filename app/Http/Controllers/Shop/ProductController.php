@@ -57,10 +57,10 @@ class ProductController extends Controller
         return redirect()->route('category.products',['category'=>$category])->with(['message'=>__('messages.product_created')]);
     }
 
-    public function show(Product $id)
-    {
-        //
-    }
+//    public function show(Product $id)
+//    {
+//        //
+//    }
 
     public function edit(Product $product)
     {

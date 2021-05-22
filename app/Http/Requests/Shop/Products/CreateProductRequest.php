@@ -28,7 +28,6 @@ class CreateProductRequest extends FormRequest
             'description' => 'required',
             'img' => 'required|file',
             'price' => 'required|integer',
-            'currency'=>'required'
         ];
     }
 }
