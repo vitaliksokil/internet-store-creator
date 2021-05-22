@@ -2,7 +2,9 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -37,4 +39,14 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof AuthorizationException || $e instanceof HttpException) {
+            session()->flash('error_403',$e->getMessage());
+            return redirect()->back()->with(['error_403' => $e->getMessage()]);
+        }
+        return parent::render($request, $e);
+    }
+
 }

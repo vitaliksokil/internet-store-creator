@@ -24,6 +24,7 @@ class ShopService implements ShopServiceInterface
     {
         $data['slug'] = Str::slug($data['name']);
         $shop = Shop::create($data);
+        $shop->settings()->create();
         if (isset($data['img'])){
             $shop->img = $this->fileUploaderService->uploadShopAvatar($shop,$data['img']);
             $shop->save();

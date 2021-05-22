@@ -7,10 +7,13 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Laravel\Cashier\Billable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Billable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'img',
+        'email_verified_at',
     ];
 
     /**
@@ -42,7 +47,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    const CUSTOMER_TYPE = 1;
+    const SELLER_TYPE = 2;
+    const IMAGE_PATH = 'users';
+    const TYPES = [
+        'Customer' => self::CUSTOMER_TYPE,
+        'Seller' => self::SELLER_TYPE,
+    ];
+
     public function shop(){
         return $this->hasOne(Shop::class,'owner_id');
+    }
+
+    public function getImgAttribute($value)
+    {
+        $img =  $value;
+        return Storage::exists($value) ? '/storage/'.$img : '/img/no-image.png';
+    }
+
+    public function delivery_address(){
+        return $this->hasOne(DeliveryAddress::class);
     }
 }

@@ -120,6 +120,8 @@ return [
     */
 
     'key' => env('APP_KEY'),
+    'new_post_api_key' => env('NEW_POST_API_KEY',''),
+    'new_post_endpoint' => env('NEW_POST_ENDPOINT',''),
 
     'cipher' => 'AES-256-CBC',
 

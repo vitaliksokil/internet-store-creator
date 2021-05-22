@@ -18,10 +18,22 @@ class Shop extends Model
         'img',
         'address',
         'phone_number',
-        'email'
+        'email',
+        'shop_type_id',
+        'theme_id',
+        'account_id',
+        'currency'
     ];
 
     const FILE_PATH = 'shops';
+    const CURRENCIES = [
+        'uah' => '₴',
+        'usd' => '$',
+    ];
+
+    public function getCurrencyAttribute($value){
+        return self::CURRENCIES[$value];
+    }
 
     public function getAvatarsFilePath(){
         return self::FILE_PATH.'/'.$this->id.'/avatars';
@@ -35,6 +47,24 @@ class Shop extends Model
     }
     public function getSiteUrl(){
         return config('app.url').'/'.$this->slug;
+    }
+
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
+
+    public function type(){
+        return $this->belongsTo(ShopType::class,'shop_type_id');
+    }
+    public function settings(){
+        return $this->hasOne(ShopSettings::class);
+    }
+
+    public function theme(){
+        return $this->belongsTo(Theme::class);
+    }
+    public function getTheme(){
+        return $this->theme ?? Theme::where('type',Theme::BLOCK_TYPE)->first();
     }
 
 }
