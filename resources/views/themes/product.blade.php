@@ -17,10 +17,17 @@
                         <div class="p-4 mb-3 bg-light rounded">
                             <h4 class="fst-italic">Про "{{$shop->name}}" магазин</h4>
                             <p class="mb-0">{{$shop->description}}</p>
+                            <hr>
+                            <h6>Контактні дані: </h6>
+                            <ol class="list-unstyled mb-0">
+                                <li>Адрес: <a href="#">{{$shop->address}}</a></li>
+                                <li>Номер телефону: <a href="#">{{$shop->phone_number}}</a></li>
+                                <li>Email: <a href="#">{{$shop->email}}</a></li>
+                            </ol>
                         </div>
 
                         <div class="p-4">
-                            <h4 class="fst-italic">Категорії "{{$shop->name}}" магазину</h4>
+                            <h4 class="fst-italic">Категорії магазину "{{$shop->name}}"</h4>
                             <ol class="list-unstyled mb-0">
                                 @forelse($categories as $category)
                                     <li><a href="{{route('shop.products.show',['shop'=>$shop,'category'=>$category])}}">{{$category->title}}</a></li>

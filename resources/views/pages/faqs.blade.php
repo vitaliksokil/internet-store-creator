@@ -12,12 +12,11 @@
 
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-                    <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+                    <h2 class="featurette-heading">Як мені створити свій магазин?</h2>
+                    <p class="lead">Для створення магазину, потрібно зареєструватись. Кнопку реєстрації ви можете знайти в правому верхньому куті. Після проходження реєстрації будь ласка підтвердіть свій поштовий адрес та Ви будете перенаправленні на сторінку створення магазину!</p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+                    <img  height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{asset('img/faqs/shop-create.png')}}" alt="">
                 </div>
             </div>
 
@@ -25,12 +24,15 @@
 
             <div class="row featurette">
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-                    <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+                    <h2 class="featurette-heading">Як приєднати Stripe Account?</h2>
+                    <p class="lead">
+                        Для того, щоб приєднати Stripe перейдіть у свій <span class="text-muted">Профіль Продаця</span>
+                        і там Ви побачите сторінку "Stripe Connect", перейдіть на неї та натисніть кнопку для приєднання. Після
+                        цих дій ви будете перенаправленні на Stripe для створення аккаунта!
+                    </p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+                    <img   height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{asset('img/faqs/stripe-connect.png')}}" alt="">
                 </div>
             </div>
 
@@ -38,12 +40,11 @@
 
             <div class="row featurette">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                    <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+                    <h2 class="featurette-heading">Я хочу оплатити своє замовлення онлайн, як це зробити?</h2>
+                    <p class="lead">При створенні замовлення у Вас буде вибір між оплатою накладеним платежем та оплатою онлайн, виберіть оплату онлайн!</p>
                 </div>
                 <div class="col-md-5">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-
+                    <img  height="500" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="{{asset('img/faqs/stripe-checkout.png')}}" alt="">
                 </div>
             </div>
 

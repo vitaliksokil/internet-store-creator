@@ -30,6 +30,7 @@ class UpdateShopRequest extends FormRequest
             'address'=>'',
             'phone_number'=>'regex:~^\+[0-9]{12}$~',
             'email'=>'email',
+            'shop_type_id'=>'required',
         ];
     }
     public function messages()

@@ -43,7 +43,7 @@
                                 <label for="img" class="form-label">Метод оплати</label>
                                 <select name="payment_type" class="form-control">
                                     <option value="1" {{$order->payment_type == \App\Models\Order::ONLINE_PAYMENT_TYPE ? 'selected' : ''}}>Онлайн оплата</option>
-                                    <option value="2" {{$order->payment_type == \App\Models\Order::OFFLINE_PAYMENT_TYPE ? 'selected' : ''}}>Оплата накладеним платежом</option>
+                                    <option value="2" {{$order->payment_type == \App\Models\Order::OFFLINE_PAYMENT_TYPE ? 'selected' : ''}}>Оплата накладеним платежем</option>
                                 </select>
                             </div>
                             <div class="mb-3">

@@ -33,7 +33,11 @@
             @forelse($products as $product)
                 <tr >
                     <th scope="row">{{$product->id}}</th>
-                    <td>{{$product->title}}</td>
+                    <td>
+                        <a href="{{route('shop.product.show',['shop'=>$product->category->shop,'product'=>$product])}}">
+                            {{$product->title}}
+                        </a>
+                    </td>
                     <td>{{\Illuminate\Support\Str::limit($product->description, 50, '...')}}</td>
                     <td>{{$product->price}}{{$shop->currency}}</td>
                     <td><img class="img-table" src="{{$product->img}}" alt=""></td>

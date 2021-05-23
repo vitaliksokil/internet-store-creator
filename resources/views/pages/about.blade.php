@@ -3,11 +3,11 @@
 @section('main-content')
     <main>
         <div class="container mt-4 mb-5">
-            <div class="goal-title text-center">
+            <div class="goal-title text-center py-3 mb-5 mt-5">
                 <h2>Про сайт</h2>
             </div>
-            <h3 class="text-center py-3 mb-5 mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt impedit
-                dolor, fugiat accusamus reiciendis dignissimos nobis ipsum quisquam delectus.</h3>
+{{--            <h3 class="text-center py-3 mb-5 mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt impedit--}}
+{{--                dolor, fugiat accusamus reiciendis dignissimos nobis ipsum quisquam delectus.</h3>--}}
 
             <!-- Grid row -->
             <div class="row">
@@ -16,7 +16,7 @@
                 <div class="col-lg-5">
 
                     <img class="img-fluid rounded z-depth-2"
-                         src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/new/img(21).jpg" alt="sample">
+                         src="{{asset('img/about/about.jpg')}}" alt="sample">
 
                 </div>
                 <!-- Grid column -->
@@ -24,29 +24,25 @@
                 <!-- Grid column -->
                 <div class="col-lg-7">
 
-                    <p class="mt-4 mt-lg-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                        architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                        sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-                        aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                        suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                        reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
-                        dolorem eum fugiat quo voluptas nulla pariatur.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio molestiae sit voluptates assumenda
-                        omnis dolorem porro non placeat natus iusto modi, reprehenderit voluptatum ducimus ab unde ad
-                        quis amet soluta. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
-                        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-                        architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem
-                        sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-                        aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-                        suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure
-                        reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui
-                        dolorem eum fugiat quo voluptas nulla pariatur.</p>
-
+                    <p class="mt-4 mt-lg-0">
+                        Інтернет-магазин - це найпопулярніша бізнес ідея в 2021 році. За найсвіжішими даними, український ринок онлайн-торгівлі за останній рік виріс на 65%, що свідчить про його високу перспективність. З кожним днем кількість користувачів, зацікавлених інтернет покупками збільшується. Аналітики запевняють, що ця тенденція з часом буде тільки посилюватися, не даючи шансу на розвиток магазинах, виробникам, посередникам, які ще не заявили про себе в мережі. Люди купляють різні товари в інтернет-магазинах: техніку, продукти, мебель, аксесуари, музикальні інструменти, тощо. Тому кожен, хто хоче продавати що-небудь має велику перспективу для розвитку свого бізнесу в інтернеті.
+                    </p>
+                    <hr>
+                    <p class="mt-4 mt-lg-0">
+                        Інтернет-магазин не потребує оренди приміщень, створення вивісок, створення зовнішньої реклами. Для початку ведення бізнесу достатньо налагодити зв'язок з постачальниками, розробити інтернет-магазин і організувати доставку до кінцевого покупця. Також, майже, відсутня проблема наймання персоналу, достатньо найняти декількох працівників для організації роботи магазину.
+                    </p>
+                    <hr>
+                    <p class="mt-4 mt-lg-0">
+                        Ще більшої популярності інтернет продажі набрали в період пандемії COVID-19. Пандемія коронавіруса служить додатковим поштовхом у розвитку онлайн-торгівлі. Адже в ситуації, що склалася, все більше людей по всьому світу змушені купувати в інтернеті те, за чим раніше ходили в магазин.
+                    </p>
+                    <hr>
+                    <p class="mt-4 mt-lg-0">
+                        Для розвитку малого бізнесу, завжди стояла проблема в створенні інтернет-магазину. Щоб розпочати вести свій бізнес в інтернет мережі потрібні чималі знання програмування або кошти, які будуть заплачені  програмістам для реалізації проекту під ключ. Тому багато хто находять альтернативні рішення для створення свого інтернет-магазину безплатно. Одне з них, наприклад, це створення сторінки в соціальній мережі “Instagram” і добавлення туда постів-товарів на продаж. Дане рішення не є зовсім зручним, адже немає можливості розділити свої товари на категорії, не можна автоматично приймати оплату за товари, немає автоматичного замовлення товарів. Всі ці дії повинні відслідковуватись, а це забере багато ресурсів в бізнесу.
+                    </p>
+                    <hr>
+                    <p class="mt-4 mt-lg-0">
+                        Основна ідея проекту - це надання можливості створення інтернет-магазину без знань програмування і безплатно. Після проходження надзвичайно простої регістрації. Користувачі зможуть автоматизувати процес замовлення товару, отримання оплати, добавлення власних категорій та товарів, легке створення знижок на товари й інше.
+                    </p>
                 </div>
                 <!-- Grid column -->
 

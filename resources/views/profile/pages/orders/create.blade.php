@@ -110,7 +110,7 @@
                                                     <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
                                                     <input type="hidden" name="payment_type" value="{{\App\Models\Order::OFFLINE_PAYMENT_TYPE}}">
                                                     <button type="submit" class="btn btn-outline-danger btn-block waves-effect waves-light">
-                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Підтвердити замовлення накладеним платежом
+                                                        <img src="{{asset('img/new-post.png')}}" class="image-icon" alt=""> Підтвердити замовлення накладеним платежем
                                                     </button>
                                                 </form>
                                                 <form action="{{route('profile.orders.store')}}" method="post">

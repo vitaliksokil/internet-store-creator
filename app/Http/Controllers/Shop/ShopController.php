@@ -35,7 +35,8 @@ class ShopController extends Controller
     }
     public function edit(){
         return view('shop.pages.edit',[
-            'shop' => getShop()
+            'shop' => getShop(),
+            'shopTypes' => ShopType::all()
         ]);
     }
     public function update(UpdateShopRequest $request){
