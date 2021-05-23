@@ -76,9 +76,9 @@
                 <div class="row">
                     @foreach($shopTypes as $shopType)
                         <div class="col-lg-3 mb-5">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card" style="width: 18rem;height: 100%">
                                 <img src="{{asset($shopType->image)}}" class="card-img-top" alt="...">
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column justify-content-end">
                                     <h5 class="card-title">{{$shopType->type}}</h5>
                                     <hr>
                                     <div>Кількість магазинів : {{$shopType->shops()->count()}}</div>

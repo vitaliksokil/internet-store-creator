@@ -40,6 +40,16 @@
                             <textarea class="form-control" name="description" id="description" required>{{ $shop->description }}</textarea>
                         </div>
                         <div class="mb-3">
+                            <label for="img" class="form-label">Рубрика магазину *</label>
+                            <select name="shop_type_id" id="" class="form-control">
+                                @forelse($shopTypes as $shopType)
+                                    <option value="{{$shopType->id}}" {{$shop->type->id == $shopType->id ? "selected" : ''}}>{{$shopType->type}}</option>
+                                @empty
+                                    Немає рубрик!
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="img" class="form-label">Картинка</label>
                             <img src="{{$shop->img}}" alt="" class="img-form">
                             <input type="file" class="form-control" name="img" id="img">
