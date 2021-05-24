@@ -45,7 +45,7 @@ class OrderService implements OrderServiceInterface
                 ]);
                 break;
             case Order::OFFLINE_PAYMENT_TYPE:
-                redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_created')]);
+                return redirect()->route('profile.orders.get')->with(['message'=>__('messages.order_created')]);
                 break;
         }
     }
