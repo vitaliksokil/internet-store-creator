@@ -42,7 +42,8 @@ class ProductController extends Controller
     public function productsByCategory(Category $category){
         return view('shop.products.productsByCategory',[
             'shop' => getShop(),
-            'products' => $category->products()->paginate(Product::PRODUCTS_PAGINATION_COUNT),
+            'products' => Product::where('category_id',$category->id)->orderBy('id','desc')
+                ->paginate(Product::PRODUCTS_PAGINATION_COUNT),
             'category' => $category
         ]);
     }

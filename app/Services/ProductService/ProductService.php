@@ -4,7 +4,10 @@
 namespace App\Services\ProductService;
 
 
+use App\Models\Shop\Feedback;
 use App\Models\Shop\Product;
+use App\Models\ShoppingCart;
+use App\Models\Wishlist;
 use App\Services\FileUploaderService\FileUploaderServiceInterface;
 
 class ProductService implements ProductServiceInterface
@@ -33,9 +36,9 @@ class ProductService implements ProductServiceInterface
 
     public function delete(Product $product)
     {
-//        if($product->img){
-//            $this->fileUploaderService->deleteImg($product->getAttributes()['img']);
-//        }
+        ShoppingCart::where('product_id',$product->id)->delete();
+        Wishlist::where('product_id',$product->id)->delete();
+        Feedback::where('product_id',$product->id)->delete();
         $product->delete();
     }
     public function update(Product $product,array $data){
