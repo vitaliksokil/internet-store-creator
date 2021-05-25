@@ -15,7 +15,7 @@
                 <h2>Категорії магазину "{{$shop->name}}"</h2>
             </div>
             <div class="row justify-content-center mt-4">
-                <div class="col-8">
+                <div class="col-8 p-3">
                     {{$categories->links()}}
                 </div>
             </div>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center mt-4">
-                    <div class="col-8">
+                    <div class="col-8 p-3">
                         {{$categories->links()}}
                     </div>
                 </div>

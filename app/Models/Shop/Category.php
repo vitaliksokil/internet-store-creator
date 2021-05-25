@@ -16,7 +16,7 @@ class Category extends Model
         'shop_id'
     ];
 
-    const CATEGORIES_PAGINATION_COUNT = 10;
+    const CATEGORIES_PAGINATION_COUNT = 12;
     const FILE_PATH = 'categories';
 
     public function getImgFilePath(){

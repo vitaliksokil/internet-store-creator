@@ -16,12 +16,15 @@
                 <h2>Магазини рубрики "{{$type->type}}"</h2>
             </div>
             <div class="shops-items">
+                <div class="row p-3">
+                    {{$shops->links()}}
+                </div>
                 <div class="row">
                     @forelse($shops as $s)
                         <div class="col-lg-3 mb-5">
-                            <div class="card" style="width: 18rem;">
-                                <img src="{{$s->img}}" class="card-img-top" alt="...">
-                                <div class="card-body">
+                            <div class="card" style="width: 18rem;height: 500px">
+                                <img src="{{$s->img}}" class="card-img-top" alt="..." style="height: 300px">
+                                <div class="card-body d-flex flex-column justify-content-end">
                                     <h5 class="card-title">{{$s->name}}</h5>
                                     <hr>
                                     <div>Кількість категорій : {{$s->categories()->count()}}</div>
@@ -33,6 +36,9 @@
                     @empty
                         Немає магазинів
                     @endforelse
+                </div>
+                <div class="row p-3">
+                    {{$shops->links()}}
                 </div>
             </div>
         </div>

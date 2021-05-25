@@ -16,16 +16,16 @@
             </div>
             <div class="shops-items">
                 <div class="row justify-content-center mb-4">
-                    <div class="col-12">
+                    <div class="col-12 p-3">
                         {{$products->links()}}
                     </div>
                 </div>
                 <div class="row">
                     @forelse($products as $product)
                         <div class="col-3 mb-5">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card" style="width: 18rem; height: 100%">
                                 <img src="{{$product->img}}" class="card-img-top" alt="..." style="height: 200px">
-                                <div class="card-body">
+                                <div class="card-body d-flex flex-column justify-content-end">
                                     <h5 class="card-title">{{$product->title}}</h5>
                                     <h6 class="text-danger">{{$product->is_published == \App\Models\Shop\Product::STATUS_NOT_AVAILABLE ? 'Немає в наявності' : ''}}</h6>
                                     <div class="d-flex flex-row">
@@ -83,7 +83,7 @@
                     @endforelse
                 </div>
                 <div class="row justify-content-center mb-4">
-                    <div class="col-12">
+                    <div class="col-12 p-3">
                         {{$products->links()}}
                     </div>
                 </div>

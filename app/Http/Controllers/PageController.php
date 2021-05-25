@@ -42,7 +42,7 @@ class PageController extends Controller
     }
     public function shops(ShopType $type){
         return view('pages.shopsOfType')->with([
-            'shops' => Shop::where('shop_type_id',$type->id)->get(),
+            'shops' => Shop::where('shop_type_id',$type->id)->paginate(12),
             'type' => $type
         ]);
     }
@@ -58,7 +58,7 @@ class PageController extends Controller
     public function shopProductsByCategory(Shop $shop, Category $category){
         return view('themes.'.$shop->getTheme()->type . '.products')->with([
             'shop' => $shop,
-            'products' => $category->products()->where('is_published','>',0)
+            'products' => $category->products()->where('is_published','>',0)->where('deleted_at','=',null)
                 ->orderBy('is_published','asc')->paginate(Product::PRODUCTS_PAGINATION_COUNT),
             'category' => $category,
         ]);
