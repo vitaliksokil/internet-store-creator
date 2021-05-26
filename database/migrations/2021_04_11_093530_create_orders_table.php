@@ -23,8 +23,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('count');
             $table->unsignedInteger('total_price');
-            $table->boolean('payment_type')->comment('1-online,2-offline')->default(2);
-            $table->boolean('is_paid')->default(false);
+            $table->tinyInteger('payment_type')->comment('1-online,2-offline')->default(2);
+            $table->tinyInteger('is_paid')->default(false);
 
             $table->timestamps();
         });
