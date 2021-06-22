@@ -119,7 +119,7 @@
                                                     <input type="hidden" name="total_price" value="{{$item['total_amount']}}">
                                                     <input type="hidden" name="shop_id" value="{{$item['shop']->id}}">
                                                     <input type="hidden" name="payment_type" value="{{\App\Models\Order::ONLINE_PAYMENT_TYPE}}">
-                                                    <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light">
+                                                    <button type="submit" class="btn btn-outline-success btn-block waves-effect waves-light" {{isset($item['shop']->account_id) ? '' : 'disabled'}}>
                                                         <img src="{{asset('img/stripe-logo.png')}}" class="image-icon" alt=""> Підтвердити замовлення оплатою онлайн
                                                     </button>
                                                 </form>

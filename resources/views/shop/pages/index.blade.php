@@ -25,11 +25,11 @@
                         <div class="shop-link">
                             <p>Рубрика магазину: {!! $shop->type->icon !!}{{$shop->type->type}}</p>
                         </div>
-                        <div class="shop-link">
-                            <a href="{{$shop->getSiteUrl()}}">
-                                {{$shop->getSiteUrl()}}
-                            </a>
-                        </div>
+{{--                        <div class="shop-link">--}}
+{{--                            <a href="{{$shop->getSiteUrl()}}">--}}
+{{--                                {{$shop->getSiteUrl()}}--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                         <hr>
                         <div class="shop-description">Опис: <p class="bg-light">{{$shop->description}}</p></div>
                         <div class="shop-description">Адрес: <p class="bg-light">{{$shop->address}}</p></div>

@@ -59,34 +59,37 @@ class StripeService implements StripeServiceInterface
     public function getCheckoutLink(User $user, Shop $shop, Order $order)
     {
         $stripeCustomer = $user->createOrGetStripeCustomer();
-        $customer = Customer::create([
-            'customer' => $stripeCustomer,
-            'email' => $user->email
-        ],['stripe_account' => $shop->account_id]);
-        $amount = $order->getAttributes()['total_price'];
-        $checkoutSession = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-            'mode' => 'payment',
-            'payment_intent_data' => [
-                'application_fee_amount' => getApplicationFee($amount)
-            ],
-            'line_items' => [
-                [
-                    'amount' => getStripeFee($amount),
-                    'quantity' => 1,
-                    'currency' => $shop->getAttributes()['currency'],
-                    'name' => 'Замовлення № ' . $order->id
+        if (isset($shop->account_id)){
+            $customer = Customer::create([
+                'customer' => $stripeCustomer,
+                'email' => $user->email
+            ],['stripe_account' => $shop->account_id]);
+            $amount = $order->getAttributes()['total_price'];
+            $checkoutSession = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'mode' => 'payment',
+                'payment_intent_data' => [
+                    'application_fee_amount' => getApplicationFee($amount)
                 ],
-            ],
-            'customer'      => $customer->id,
-            'success_url'   => route('stripe.paid-success',['order'=>$order]),
-            'cancel_url'    => route('stripe.paid-canceled',['order'=>$order]),
-            'metadata'      => [
-                'order_id' => $order->id,
-                'total_price' => $amount,
-                'shop_id' => $shop->id
-            ],
-        ], ['stripe_account' => $shop->account_id]);
-        return $checkoutSession->id;
+                'line_items' => [
+                    [
+                        'amount' => getStripeFee($amount),
+                        'quantity' => 1,
+                        'currency' => $shop->getAttributes()['currency'],
+                        'name' => 'Замовлення № ' . $order->id
+                    ],
+                ],
+                'customer'      => $customer->id,
+                'success_url'   => route('stripe.paid-success',['order'=>$order]),
+                'cancel_url'    => route('stripe.paid-canceled',['order'=>$order]),
+                'metadata'      => [
+                    'order_id' => $order->id,
+                    'total_price' => $amount,
+                    'shop_id' => $shop->id
+                ],
+            ], ['stripe_account' => $shop->account_id]);
+            return $checkoutSession->id;
+        }
+       return '';
     }
 }
